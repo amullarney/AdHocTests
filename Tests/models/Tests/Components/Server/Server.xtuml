@@ -261,7 +261,7 @@ INSERT INTO SPR_PS
 	'b',
 	'',
 	'',
-	3,
+	1,
 	0,
 	2);
 INSERT INTO C_EP_PROXY
@@ -283,7 +283,9 @@ INSERT INTO SPR_PS
 	'LOG::LogInfo( message:"Server: Employee name, birthdate, number" );
 LOG::LogInfo( message:param.emp.Name );
 LOG::LogInfo( message:param.emp.Birthdate );
-LOG::LogInteger( message:param.emp.Number );',
+LOG::LogInteger( message:param.emp.Number );
+person = param.emp;
+person.Report();',
 	1,
 	0,
 	3);

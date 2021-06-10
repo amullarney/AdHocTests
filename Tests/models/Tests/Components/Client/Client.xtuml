@@ -263,8 +263,8 @@ INSERT INTO SPR_RS
 	VALUES ("f0cac963-fe73-4020-bdd2-a5178adb9e00",
 	'b',
 	'',
-	'',
-	3,
+	'LOG::LogInteger( message:param.count );',
+	1,
 	0,
 	2);
 INSERT INTO C_EP_PROXY

@@ -43,8 +43,7 @@ public class Server extends Component<Server> {
         e.setName("Jana Burke");
         e.setNumber(123456);
         context().Clnt().b( 5 );
-        sysconfig.client.hr.impl.EmployeeImpl e_p = new sysconfig.client.hr.impl.EmployeeImpl( e );
-        context().Clnt().a( e_p );
+        context().Clnt().a( e );
     }
 
 

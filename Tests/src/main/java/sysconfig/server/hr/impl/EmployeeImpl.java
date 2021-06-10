@@ -60,7 +60,6 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
     }
 
 
-
     // attributes
     private String m_Name;
     @Override
@@ -108,19 +107,21 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
         return m_Number;
     }
 
-
     // instance identifiers
 
     // operations
+    @Override
+    public void Report() throws XtumlException {
+    }
     
     // @Added for 12002
     public String toString() {
     	// @TODO
     	return "";
     }
- 
-    // static operations
+    
 
+    // static operations
 
 
     // events
@@ -180,12 +181,12 @@ class EmptyEmployee extends ModelInstance<Employee,Server> implements Employee {
         throw new EmptyInstanceException( "Cannot get attribute of empty instance." );
     }
 
-
     // operations
-
+    public void Report() throws XtumlException {
+        throw new EmptyInstanceException( "Cannot invoke operation on empty instance." );
+    }
 
     // selections
-
 
     @Override
     public String getKeyLetters() {

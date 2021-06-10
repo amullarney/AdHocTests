@@ -126,15 +126,18 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     // instance identifiers
 
     // operations
-    
-    // static operations
+    @Override
+    public void Report() throws XtumlException {
+    }
     
     // @Added for 12002
-    public static Employee deserialize( Object o ) {
+    public String toString() {
     	// @TODO
-    	return (Employee) null;
+    	return "";
     }
 
+    // static operations
+    
 
     // events
 
@@ -195,6 +198,9 @@ class EmptyEmployee extends ModelInstance<Employee,Client> implements Employee {
 
 
     // operations
+    public void Report() throws XtumlException {
+        throw new EmptyInstanceException( "Cannot invoke operation on empty instance." );
+    }
 
 
     // selections
