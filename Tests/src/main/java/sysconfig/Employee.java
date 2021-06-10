@@ -19,12 +19,7 @@ public interface Employee extends IXtumlType {
     // operations
     public void Report() throws XtumlException;
 
-    // added for 12002
-    public static Employee deserialize( Object o ) {
-    	// @TODO - create component-specific instance here and populate.
-    	return ( Employee ) null;
-    }
- 
+  
 
     // selections
 

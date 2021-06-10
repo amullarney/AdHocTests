@@ -51,7 +51,7 @@ public class ClientSrv extends Port<Client> implements IFoo {
                 b(IntegerUtil.deserialize(message.get(0)));
                 break;
             case IFoo.SIGNAL_NO_A:
-                a( Employee.deserialize(message.get(0)) );
+                a( sysconfig.client.hr.impl.EmployeeImpl.deserialize(message.get(0)) );
                 break;
         default:
             throw new BadArgumentException( "Message not implemented by this port." );

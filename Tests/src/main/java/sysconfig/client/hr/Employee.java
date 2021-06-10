@@ -8,6 +8,7 @@ import sysconfig.Client;
 
 public interface Employee extends IModelInstance<Employee,Client>, sysconfig.Employee {
 
+
     // selections
 
 }

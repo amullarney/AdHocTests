@@ -122,7 +122,10 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
     
 
     // static operations
-
+    public static Employee deserialize( Object o ) {
+    	return (Employee) null;
+    }
+   
 
     // events
 
