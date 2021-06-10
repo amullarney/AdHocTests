@@ -28,5 +28,4 @@ public interface Employee extends IXtumlType {
 
     // selections
 
-
 }
