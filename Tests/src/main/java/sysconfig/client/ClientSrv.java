@@ -12,6 +12,7 @@ import io.ciera.runtime.summit.types.IntegerUtil;
 
 import sysconfig.Client;
 import sysconfig.Employee;
+import sysconfig.client.widgets.EmployeeMenu;
 
 
 public class ClientSrv extends Port<Client> implements IFoo {
@@ -31,6 +32,9 @@ public class ClientSrv extends Port<Client> implements IFoo {
         context().LOG().LogInfo( emp.getName() );
         context().LOG().LogInfo( emp.getBirthdate() );
         context().LOG().LogInteger( emp.getNumber() );
+        EmployeeMenu menu = context().EmployeeMenu_instances().any();
+        // Employee person = p_emp;
+        context().relate_R1_Employee_is_shown_on_EmployeeMenu( emp, menu );
     }
 
 

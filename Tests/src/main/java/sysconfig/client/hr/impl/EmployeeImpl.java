@@ -17,6 +17,8 @@ import io.ciera.runtime.summit.types.UniqueId;
 
 import sysconfig.Client;
 import sysconfig.client.hr.Employee;
+import sysconfig.client.widgets.EmployeeMenu;
+import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 
 
 public class EmployeeImpl extends ModelInstance<Employee,Client> implements Employee {
@@ -146,6 +148,15 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
 
     // selections
+    private EmployeeMenu R1_is_shown_on_EmployeeMenu_inst;
+    @Override
+    public void setR1_is_shown_on_EmployeeMenu( EmployeeMenu inst ) {
+        R1_is_shown_on_EmployeeMenu_inst = inst;
+    }
+    @Override
+    public EmployeeMenu R1_is_shown_on_EmployeeMenu() throws XtumlException {
+        return R1_is_shown_on_EmployeeMenu_inst;
+    }
 
 
     @Override
@@ -207,6 +218,10 @@ class EmptyEmployee extends ModelInstance<Employee,Client> implements Employee {
 
 
     // selections
+    @Override
+    public EmployeeMenu R1_is_shown_on_EmployeeMenu() {
+        return EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
+    }
 
 
     @Override
