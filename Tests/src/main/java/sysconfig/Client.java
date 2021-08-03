@@ -50,13 +50,25 @@ public class Client extends Component<Client> {
     }
 
     // domain functions
+    public void RegisterEmployee( final Employee p_employee ) throws XtumlException {
+        context().LOG().LogInfo( "Registering: " + p_employee.getName() );
+        Employee e = p_employee;
+        context().LOG().LogInteger( e.getNumber() );
+        EmployeeMenu menu = context().EmployeeMenu_instances().any();
+        if ( menu.isEmpty() ) {
+            menu = EmployeeMenuImpl.create( context() );
+        }
+        context().relate_R1_Employee_is_shown_on_EmployeeMenu( e, menu );
+        context().LOG().LogInfo( "Done" );
+        context().T2();
+        context().LOG().LogInfo( "Sent" );
+    }
+
     public void T2() throws XtumlException {
-        Employee e = EmployeeImpl.create( context() );
-        e.setBirthdate("07-Jan-1961");
-        e.setName("Jana Burke");
-        e.setNumber(123456);
+        Employee e = context().Employee_instances().any();
         context().Srv().c( e );
     }
+
 
 
 

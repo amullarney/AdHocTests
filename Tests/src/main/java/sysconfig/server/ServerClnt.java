@@ -10,6 +10,7 @@ import io.ciera.runtime.summit.interfaces.IPort;
 import io.ciera.runtime.summit.interfaces.Port;
 
 import sysconfig.Server;
+import sysconfig.Client;
 import sysconfig.Employee;
 
 
@@ -50,7 +51,7 @@ public class ServerClnt extends Port<Server> implements IFoo {
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
         switch ( message.getId() ) {
             case IFoo.SIGNAL_NO_C:
-                a( sysconfig.server.hr.impl.EmployeeImpl.deserialize(message.get(0)) );
+                a( sysconfig.server.hr.impl.EmployeeImpl.deserialize(message.get(0), context() ) );
                 break;
         default:
             throw new BadArgumentException( "Message not implemented by this port." );

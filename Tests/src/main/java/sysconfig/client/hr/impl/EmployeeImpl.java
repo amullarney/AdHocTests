@@ -139,7 +139,16 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     }
 
     // static operations
-    public static Employee deserialize( Object o ) {
+    public static Employee deserialize( Object o, Client context ) {
+    	// fake this for now... create component-specific instance and populate attributes  from JSON, it were here!
+    	try {
+        Employee e = EmployeeImpl.create( context );
+        e.setBirthdate("07-Jan-1961");
+        e.setName("Jana Burke");
+        e.setNumber(123456);
+    	return (Employee) e;
+    	}
+    	catch(Exception ex ) { };
     	return (Employee) null;
     }
    

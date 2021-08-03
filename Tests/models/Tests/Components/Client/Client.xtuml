@@ -268,9 +268,13 @@ INSERT INTO SPR_RS
 LOG::LogInfo( message:param.emp.Name );
 LOG::LogInfo( message:param.emp.Birthdate );
 LOG::LogInteger( message:param.emp.Number );
-select any menu from instances of EmployeeMenu;
 person = param.emp;
-relate menu to person across R1.''displays'';',
+select any menu from instances of EmployeeMenu;
+if ( not_empty menu )
+  relate menu to person across R1.''displays'';
+else
+  ::RegisterEmployee( employee:person);
+end if;',
 	1,
 	0,
 	1);
@@ -290,7 +294,8 @@ INSERT INTO SPR_RS
 	VALUES ("f0cac963-fe73-4020-bdd2-a5178adb9e00",
 	'b',
 	'',
-	'LOG::LogInteger( message:param.count );',
+	'LOG::LogInteger( message:param.count );
+create object instance menu of EmployeeMenu;',
 	1,
 	0,
 	2);
