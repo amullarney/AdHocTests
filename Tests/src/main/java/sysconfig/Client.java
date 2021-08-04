@@ -54,15 +54,22 @@ public class Client extends Component<Client> {
         context().LOG().LogInfo( "Registering: " + p_employee.getName() );
         Employee e = p_employee;
         context().LOG().LogInteger( e.getNumber() );
-        EmployeeMenu menu = context().EmployeeMenu_instances().any();
-        if ( menu.isEmpty() ) {
-            menu = EmployeeMenuImpl.create( context() );
+        EmployeeMenu menu = e.R1_is_shown_on_EmployeeMenu();
+        if ( !menu.isEmpty() ) {
+            context().LOG().LogInfo( e.getName() + " is already registered" );
         }
-        context().relate_R1_Employee_is_shown_on_EmployeeMenu( e, menu );
+        else {
+            menu = context().EmployeeMenu_instances().any();
+            if ( menu.isEmpty() ) {
+                menu = EmployeeMenuImpl.create( context() );
+            }
+            context().relate_R1_Employee_is_shown_on_EmployeeMenu( e, menu );
+        }
         context().LOG().LogInfo( "Done" );
         context().T2();
         context().LOG().LogInfo( "Sent" );
     }
+    
 
     public void T2() throws XtumlException {
         Employee e = context().Employee_instances().any();
@@ -155,11 +162,13 @@ public class Client extends Component<Client> {
         return prop.getProperty("version_date", "Unknown");
     }
 
+
     @Override
     public boolean addInstance( IModelInstance<?,?> instance ) throws XtumlException {
         if ( null == instance ) throw new BadArgumentException( "Null instance passed." );
         if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot add empty instance to population." );
         if ( instance instanceof Employee ) return Employee_extent.add( (Employee)instance );
+        else if ( instance instanceof EmployeeMenu ) return EmployeeMenu_extent.add( (EmployeeMenu)instance );
         return false;
     }
 
@@ -168,8 +177,10 @@ public class Client extends Component<Client> {
         if ( null == instance ) throw new BadArgumentException( "Null instance passed." );
         if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot remove empty instance from population." );
         if ( instance instanceof Employee ) return Employee_extent.remove( (Employee)instance );
+        else if ( instance instanceof EmployeeMenu ) return EmployeeMenu_extent.remove( (EmployeeMenu)instance );
         return false;
     }
+
 
     @Override
     public Client context() {

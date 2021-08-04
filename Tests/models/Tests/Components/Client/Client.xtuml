@@ -272,9 +272,9 @@ person = param.emp;
 select any menu from instances of EmployeeMenu;
 if ( not_empty menu )
   relate menu to person across R1.''displays'';
-else
-  ::RegisterEmployee( employee:person);
-end if;',
+end if;
+::RegisterEmployee( employee:person);
+',
 	1,
 	0,
 	1);

@@ -20,6 +20,9 @@ import sysconfig.client.hr.Employee;
 import sysconfig.client.widgets.EmployeeMenu;
 import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 
+import org.json.*; 
+//import org.json.JSONValue; 
+
 
 public class EmployeeImpl extends ModelInstance<Employee,Client> implements Employee {
 
@@ -48,15 +51,17 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         m_Name = "";
         m_Birthdate = "";
         m_Number = 0;
+        R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
     }
 
-    private EmployeeImpl( Client context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number ) {
+    private EmployeeImpl( Client context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number, int initialState ) {
         super(instanceId);
         this.context = context;
         this.m_Name = m_Name;
         this.m_Birthdate = m_Birthdate;
         this.m_Number = m_Number;
-    }
+        R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
+     }
 
     public static Employee create( Client context ) throws XtumlException {
         Employee newEmployee = new EmployeeImpl( context );
@@ -67,8 +72,8 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         else throw new InstancePopulationException( "Instance already exists within this population." );
     }
 
-    public static Employee create( Client context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number ) throws XtumlException {
-        Employee newEmployee = new EmployeeImpl( context, instanceId, m_Name, m_Birthdate, m_Number );
+    public static Employee create( Client context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number, int initialState ) throws XtumlException {
+        Employee newEmployee = new EmployeeImpl( context, instanceId, m_Name, m_Birthdate, m_Number, initialState );
         if ( context.addInstance( newEmployee ) ) {
             return newEmployee;
         }
@@ -80,6 +85,11 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     // attributes
     private String m_Name;
     @Override
+    public String getName() throws XtumlException {
+        checkLiving();
+        return m_Name;
+    }
+    @Override
     public void setName(String m_Name) throws XtumlException {
         checkLiving();
         if (StringUtil.inequality(m_Name, this.m_Name)) {
@@ -88,12 +98,12 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
             getRunContext().addChange(new AttributeChangedDelta(this, KEY_LETTERS, "m_Name", oldValue, this.m_Name));
         }
     }
-    @Override
-    public String getName() throws XtumlException {
-        checkLiving();
-        return m_Name;
-    }
     private String m_Birthdate;
+    @Override
+    public String getBirthdate() throws XtumlException {
+        checkLiving();
+        return m_Birthdate;
+    }
     @Override
     public void setBirthdate(String m_Birthdate) throws XtumlException {
         checkLiving();
@@ -103,12 +113,12 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
             getRunContext().addChange(new AttributeChangedDelta(this, KEY_LETTERS, "m_Birthdate", oldValue, this.m_Birthdate));
         }
     }
-    @Override
-    public String getBirthdate() throws XtumlException {
-        checkLiving();
-        return m_Birthdate;
-    }
     private int m_Number;
+    @Override
+    public int getNumber() throws XtumlException {
+        checkLiving();
+        return m_Number;
+    }
     @Override
     public void setNumber(int m_Number) throws XtumlException {
         checkLiving();
@@ -118,11 +128,6 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
             getRunContext().addChange(new AttributeChangedDelta(this, KEY_LETTERS, "m_Number", oldValue, this.m_Number));
         }
     }
-    @Override
-    public int getNumber() throws XtumlException {
-        checkLiving();
-        return m_Number;
-    }
 
 
     // instance identifiers
@@ -131,6 +136,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     @Override
     public void Report() throws XtumlException {
     }
+
     
     // @Added for 12002
     public String toString() {
@@ -140,12 +146,19 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
     // static operations
     public static Employee deserialize( Object o, Client context ) {
-    	// fake this for now... create component-specific instance and populate attributes  from JSON, it were here!
+        System.out.printf( "Employee deserialize\n" );
+    	//JSONParser json = new JSONParser();
+    	// fake this for now... create component-specific instance and populate attributes  from JSON, if it were here!
     	try {
         Employee e = EmployeeImpl.create( context );
-        e.setBirthdate("07-Jan-1961");
-        e.setName("Jana Burke");
+        String s = "{ \"Name\": \"Jana\", \"Number\": \"1234\"}";
+        //Object obj = JSONObject.Parse(s);
+ //       JSONObject jobj = new JSONObject(s);
+        //e.setBirthdate("07-Jan-1961");
+ //       e.setName( (String) jobj.getString("Name") );
+        e.setName("Jana");
         e.setNumber(123456);
+        // e.setName( jstr.getString( "Name" ));
     	return (Employee) e;
     	}
     	catch(Exception ex ) { };
