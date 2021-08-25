@@ -284,8 +284,8 @@ INSERT INTO SPR_PS
 LOG::LogInfo( message:param.emp.Name );
 LOG::LogInfo( message:param.emp.Birthdate );
 LOG::LogInteger( message:param.emp.Number );
-person = param.emp;
-person.Report();',
+LOG::LogInfo( message:"Server reporting " );
+Department::Report();',
 	1,
 	0,
 	3);

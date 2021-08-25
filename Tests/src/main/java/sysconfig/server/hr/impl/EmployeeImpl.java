@@ -152,9 +152,27 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
     
 
     // static operations
+    // static operations
     public static Employee deserialize( Object o, Server context ) {
+        System.out.printf( "Server Employee deserialize\n" );
+    	//JSONParser json = new JSONParser();
+    	// fake this for now... create component-specific instance and populate attributes  from JSON, if it were here!
+    	try {
+        Employee e = EmployeeImpl.create( context );
+        String s = "{ \"Name\": \"Jana\", \"Number\": \"1234\"}";
+        //Object obj = JSONObject.Parse(s);
+ //       JSONObject jobj = new JSONObject(s);
+        //e.setBirthdate("07-Jan-1961");
+ //       e.setName( (String) jobj.getString("Name") );
+        e.setName("Jana");
+        e.setNumber(123456);
+        // e.setName( jstr.getString( "Name" ));
+    	return (Employee) e;
+    	}
+    	catch(Exception ex ) { };
     	return (Employee) null;
     }
+   
    
 
     // events

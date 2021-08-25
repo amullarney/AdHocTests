@@ -173,7 +173,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
     // static operations
     public static Employee deserialize( Object o, Client context ) {
-        System.out.printf( "Employee deserialize\n" );
+        System.out.printf( "Client Employee deserialize\n" );
     	//JSONParser json = new JSONParser();
     	// fake this for now... create component-specific instance and populate attributes  from JSON, if it were here!
     	try {

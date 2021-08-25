@@ -38,9 +38,9 @@ INSERT INTO S_SYNC
 	"00000000-0000-0000-0000-000000000000",
 	'T2',
 	'',
-	'LOG::LogInfo( message:"T2 invoked" );
+	'LOG::LogInfo( message:"T2 invoked by client" );
 select any e from instances of Employee;
-//send Srv::c( emp:e );
+send Srv::c( emp:e );
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
@@ -65,9 +65,10 @@ end if;
 select any dept from instances of Department;
 person = param.employee;
 relate person to dept across R100;
-person.Report();
+LOG::LogInfo( message:"Client requesting Department Report() related employees" );
+Department::Report();
 ::T2();
-LOG::LogInfo( message:"Registered: " + person.Name );',
+LOG::LogInfo( message:"Client: Registered: " + person.Name );',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',

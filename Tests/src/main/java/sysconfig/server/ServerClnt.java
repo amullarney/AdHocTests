@@ -8,10 +8,13 @@ import io.ciera.runtime.summit.exceptions.XtumlException;
 import io.ciera.runtime.summit.interfaces.IMessage;
 import io.ciera.runtime.summit.interfaces.IPort;
 import io.ciera.runtime.summit.interfaces.Port;
+import io.ciera.runtime.summit.types.IntegerUtil;
 
 import sysconfig.Server;
-import sysconfig.Client;
-import sysconfig.Employee;
+//import sysconfig.Client;
+//import sysconfig.Employee;
+import sysconfig.server.hr.Employee;
+import sysconfig.server.hr.impl.DepartmentImpl;
 
 
 public class ServerClnt extends Port<Server> implements IFoo {
@@ -21,13 +24,16 @@ public class ServerClnt extends Port<Server> implements IFoo {
     }
 
     // inbound messages
-    public void c( final Employee p_emp ) throws XtumlException {
-    	sysconfig.server.hr.Employee emp = (sysconfig.server.hr.Employee) p_emp; // down-cast to component-specific
+    public void c( final sysconfig.Employee emp ) throws XtumlException {
+    	sysconfig.server.hr.Employee p_emp = (Employee) emp; // down-cast to component-specific
+//    public void c( final Employee p_emp ) throws XtumlException {
+//    	sysconfig.server.hr.Employee emp = (sysconfig.server.hr.Employee) p_emp; // down-cast to component-specific
         context().LOG().LogInfo( "Server: Employee name, birthdate, number" );
-        context().LOG().LogInfo( emp.getName() );
-        context().LOG().LogInfo( emp.getBirthdate() );
-        context().LOG().LogInteger( emp.getNumber() );
-        Employee person = emp;
+        context().LOG().LogInfo( p_emp.getName() );
+        context().LOG().LogInfo( p_emp.getBirthdate() );
+        context().LOG().LogInteger( p_emp.getNumber() );
+        context().LOG().LogInfo( "Server reporting " );
+        new DepartmentImpl.CLASS(context()).Report();
     }
 
 
@@ -38,7 +44,7 @@ public class ServerClnt extends Port<Server> implements IFoo {
         else {
         }
     }
-    public void a( final Employee p_emp ) throws XtumlException {
+    public void a( final sysconfig.Employee p_emp ) throws XtumlException {
         if ( satisfied() ) send(new IFoo.A(p_emp));
         else {
         }
@@ -51,7 +57,7 @@ public class ServerClnt extends Port<Server> implements IFoo {
         switch ( message.getId() ) {
             case IFoo.SIGNAL_NO_C:
                 System.out.printf( "Server heard response\n" );
-                //a( sysconfig.server.hr.impl.EmployeeImpl.deserialize(message.get(0), context() ) );
+                c( sysconfig.server.hr.impl.EmployeeImpl.deserialize(message.get(0), context() ) );
                 break;
         default:
             throw new BadArgumentException( "Message not implemented by this port." );

@@ -29,7 +29,7 @@ import sysconfig.client.hr.impl.DepartmentImpl;
 import sysconfig.client.hr.impl.DepartmentSetImpl;
 import sysconfig.client.hr.impl.EmployeeImpl;
 import sysconfig.client.hr.impl.EmployeeSetImpl;
-
+// 3 bad server imports removed
 
 public class Client extends Component<Client> {
 
@@ -55,14 +55,16 @@ public class Client extends Component<Client> {
         dept = context().Department_instances().any();
         Employee person = p_employee;
         context().relate_R100_Employee_works_in_Department( person, dept );
+        context().LOG().LogInfo( "Client requesting Employee.Report()" );
         person.Report();
         context().T2();
-        context().LOG().LogInfo( "Registered: " + person.getName() );
+        context().LOG().LogInfo( "Client: Registered: " + person.getName() );
     }
 
     public void T2() throws XtumlException {
-        context().LOG().LogInfo( "T2 invoked" );
+        context().LOG().LogInfo( "T2 invoked by client" );
         Employee e = context().Employee_instances().any();
+        context().Srv().c( e );
     }
 
 

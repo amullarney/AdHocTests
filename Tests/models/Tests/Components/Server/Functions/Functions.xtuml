@@ -38,7 +38,9 @@ INSERT INTO S_SYNC
 	"00000000-0000-0000-0000-000000000000",
 	'T1',
 	'',
-	'create object instance e of Employee;
+	'create object instance d of Department;
+create object instance e of Employee;
+relate e to d across R100;
 e.Birthdate = "07-Jan-1961";
 e.Name = "Jana Burke";
 e.Number = 123456;

@@ -7,6 +7,23 @@ INSERT INTO O_OBJ
 	'Department',
 	'',
 	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_TFR
+	VALUES ("aaeba809-4d4b-4ebc-9b24-a004c2dbee04",
+	"e3d9969a-867e-46e9-8cf2-714bbe1caf2e",
+	'Report',
+	'',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	0,
+	'select any dept from instances of Department;
+select many persons related by dept->Employee[R100.''employs''];
+for each person in persons
+  LOG::LogInfo( message:"Reporting: " + person.Name );
+end for;',
+	1,
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	1);
 INSERT INTO O_NBATTR
 	VALUES ("48118def-ff5d-4173-88a0-33f57a73f2ae",
 	"e3d9969a-867e-46e9-8cf2-714bbe1caf2e");
