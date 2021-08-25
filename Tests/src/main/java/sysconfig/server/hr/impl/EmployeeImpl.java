@@ -9,14 +9,20 @@ import io.ciera.runtime.summit.classes.InstanceIdentifier;
 import io.ciera.runtime.summit.classes.ModelInstance;
 import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
 import io.ciera.runtime.summit.exceptions.InstancePopulationException;
+import io.ciera.runtime.summit.statemachine.IEvent;
 import io.ciera.runtime.summit.exceptions.XtumlException;
 import io.ciera.runtime.summit.types.IWhere;
 import io.ciera.runtime.summit.types.IXtumlType;
 import io.ciera.runtime.summit.types.StringUtil;
 import io.ciera.runtime.summit.types.UniqueId;
 
+import java.util.Iterator;
+
 import sysconfig.Server;
+import sysconfig.server.hr.Department;
 import sysconfig.server.hr.Employee;
+import sysconfig.server.hr.EmployeeSet;
+import sysconfig.server.hr.impl.DepartmentImpl;
 
 
 public class EmployeeImpl extends ModelInstance<Employee,Server> implements Employee {
@@ -32,6 +38,8 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
         m_Name = "";
         m_Birthdate = "";
         m_Number = 0;
+        R100_works_in_Department_inst = DepartmentImpl.EMPTY_DEPARTMENT;
+        statemachine = new EmployeeStateMachine(this, context());
     }
 
     private EmployeeImpl( Server context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number ) {
@@ -40,6 +48,8 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
         this.m_Name = m_Name;
         this.m_Birthdate = m_Birthdate;
         this.m_Number = m_Number;
+        R100_works_in_Department_inst = DepartmentImpl.EMPTY_DEPARTMENT;
+        statemachine = new EmployeeStateMachine(this, context());
     }
 
     public static Employee create( Server context ) throws XtumlException {
@@ -57,6 +67,19 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
             return newEmployee;
         }
         else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+
+    private final EmployeeStateMachine statemachine;
+    
+    @Override
+    public void accept(IEvent event) throws XtumlException {
+        statemachine.transition(event);
+    }
+
+    @Override
+    public int getCurrentState() {
+        return statemachine.getCurrentState();
     }
 
 
@@ -112,6 +135,13 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
     // operations
     @Override
     public void Report() throws XtumlException {
+        Department dept = context().Department_instances().any();
+        EmployeeSet persons = dept.R100_employs_Employee();
+        Employee person;
+        for ( Iterator<Employee> _person_iter = persons.elements().iterator(); _person_iter.hasNext(); ) {
+            person = _person_iter.next();
+            context().LOG().LogInfo( "Reporting: " + person.getName() );
+        }
     }
     
     // @Added for 12002
@@ -131,6 +161,15 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
 
 
     // selections
+    private Department R100_works_in_Department_inst;
+    @Override
+    public void setR100_works_in_Department( Department inst ) {
+        R100_works_in_Department_inst = inst;
+    }
+    @Override
+    public Department R100_works_in_Department() throws XtumlException {
+        return R100_works_in_Department_inst;
+    }
 
 
     @Override
@@ -190,6 +229,10 @@ class EmptyEmployee extends ModelInstance<Employee,Server> implements Employee {
     }
 
     // selections
+    @Override
+    public Department R100_works_in_Department() {
+        return DepartmentImpl.EMPTY_DEPARTMENT;
+    }
 
     @Override
     public String getKeyLetters() {

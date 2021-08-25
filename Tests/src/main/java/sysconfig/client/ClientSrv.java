@@ -12,8 +12,7 @@ import io.ciera.runtime.summit.types.IntegerUtil;
 
 import sysconfig.Client;
 import sysconfig.client.hr.Employee;
-import sysconfig.client.widgets.EmployeeMenu;
-import sysconfig.client.widgets.impl.EmployeeMenuImpl;
+
 
 
 public class ClientSrv extends Port<Client> implements IFoo {
@@ -25,7 +24,6 @@ public class ClientSrv extends Port<Client> implements IFoo {
     // inbound messages
     public void b( final int p_count ) throws XtumlException {
         context().LOG().LogInteger( p_count );
-        EmployeeMenu menu = EmployeeMenuImpl.create( context() );
     }
 
 
@@ -36,10 +34,6 @@ public class ClientSrv extends Port<Client> implements IFoo {
         context().LOG().LogInfo( p_emp.getBirthdate() );
         context().LOG().LogInteger( p_emp.getNumber() );
         sysconfig.client.hr.Employee person = p_emp;
-        EmployeeMenu menu = context().EmployeeMenu_instances().any();
-        if ( !menu.isEmpty() ) {
-            context().relate_R1_Employee_is_shown_on_EmployeeMenu( person, menu );
-        }
         context().RegisterEmployee( person );
     }
 

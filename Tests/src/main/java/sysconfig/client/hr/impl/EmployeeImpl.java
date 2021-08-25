@@ -9,16 +9,20 @@ import io.ciera.runtime.summit.classes.InstanceIdentifier;
 import io.ciera.runtime.summit.classes.ModelInstance;
 import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
 import io.ciera.runtime.summit.exceptions.InstancePopulationException;
+import io.ciera.runtime.summit.statemachine.IEvent;
 import io.ciera.runtime.summit.exceptions.XtumlException;
 import io.ciera.runtime.summit.types.IWhere;
 import io.ciera.runtime.summit.types.IXtumlType;
 import io.ciera.runtime.summit.types.StringUtil;
 import io.ciera.runtime.summit.types.UniqueId;
 
+import java.util.Iterator;
+
 import sysconfig.Client;
+import sysconfig.client.hr.Department;
 import sysconfig.client.hr.Employee;
-import sysconfig.client.widgets.EmployeeMenu;
-import sysconfig.client.widgets.impl.EmployeeMenuImpl;
+import sysconfig.client.hr.impl.DepartmentImpl;
+import sysconfig.client.hr.EmployeeSet;
 
 import org.json.*; 
 //import org.json.JSONValue; 
@@ -34,7 +38,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     // constructors
     
     // @Added for 12002
-    public EmployeeImpl( sysconfig.server.hr.Employee serverEmp ) {
+ /*   public EmployeeImpl( sysconfig.server.hr.Employee serverEmp ) {
       System.out.printf( "Copy constructor\n" );
       try {
     	m_Name = serverEmp.getName();
@@ -45,13 +49,15 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
       }
       
     }
+*/
     
     private EmployeeImpl( Client context ) {
         this.context = context;
         m_Name = "";
         m_Birthdate = "";
         m_Number = 0;
-        R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
+        R100_works_in_Department_inst = DepartmentImpl.EMPTY_DEPARTMENT;
+        statemachine = new EmployeeStateMachine(this, context());
     }
 
     private EmployeeImpl( Client context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number, int initialState ) {
@@ -60,7 +66,8 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         this.m_Name = m_Name;
         this.m_Birthdate = m_Birthdate;
         this.m_Number = m_Number;
-        R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
+        R100_works_in_Department_inst = DepartmentImpl.EMPTY_DEPARTMENT;
+        statemachine = new EmployeeStateMachine(this, context());
      }
 
     public static Employee create( Client context ) throws XtumlException {
@@ -80,6 +87,19 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         else throw new InstancePopulationException( "Instance already exists within this population." );
     }
 
+
+
+    private final EmployeeStateMachine statemachine;
+    
+    @Override
+    public void accept(IEvent event) throws XtumlException {
+        statemachine.transition(event);
+    }
+
+    @Override
+    public int getCurrentState() {
+        return statemachine.getCurrentState();
+    }
 
 
     // attributes
@@ -135,6 +155,13 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     // operations
     @Override
     public void Report() throws XtumlException {
+        Department dept = context().Department_instances().any();
+        EmployeeSet persons = dept.R100_employs_Employee();
+        Employee person;
+        for ( Iterator<Employee> _person_iter = persons.elements().iterator(); _person_iter.hasNext(); ) {
+            person = _person_iter.next();
+            context().LOG().LogInfo( "Reporting: " + person.getName() );
+        }
     }
 
     
@@ -170,15 +197,16 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
 
     // selections
-    private EmployeeMenu R1_is_shown_on_EmployeeMenu_inst;
+    private Department R100_works_in_Department_inst;
     @Override
-    public void setR1_is_shown_on_EmployeeMenu( EmployeeMenu inst ) {
-        R1_is_shown_on_EmployeeMenu_inst = inst;
+    public void setR100_works_in_Department( Department inst ) {
+        R100_works_in_Department_inst = inst;
     }
     @Override
-    public EmployeeMenu R1_is_shown_on_EmployeeMenu() throws XtumlException {
-        return R1_is_shown_on_EmployeeMenu_inst;
+    public Department R100_works_in_Department() throws XtumlException {
+        return R100_works_in_Department_inst;
     }
+
 
 
     @Override
@@ -241,8 +269,8 @@ class EmptyEmployee extends ModelInstance<Employee,Client> implements Employee {
 
     // selections
     @Override
-    public EmployeeMenu R1_is_shown_on_EmployeeMenu() {
-        return EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
+    public Department R100_works_in_Department() {
+        return DepartmentImpl.EMPTY_DEPARTMENT;
     }
 
 

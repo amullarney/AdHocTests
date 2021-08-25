@@ -14,8 +14,12 @@ INSERT INTO O_TFR
 	'',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
-	'',
-	3,
+	'select any dept from instances of Department;
+select many persons related by dept->Employee[R100.''employs''];
+for each person in persons
+  LOG::LogInfo( message:"Reporting: " + person.Name );
+end for;',
+	1,
 	'',
 	"00000000-0000-0000-0000-000000000000",
 	0,

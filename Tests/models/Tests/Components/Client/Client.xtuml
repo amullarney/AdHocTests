@@ -207,30 +207,6 @@ INSERT INTO DIM_ELE
 	VALUES ("52e85fab-48f1-4a16-83c1-0081fff91731",
 	0,
 	"58c57ca9-2eb2-424e-8ab5-bd3f266de364");
-INSERT INTO GD_GE
-	VALUES ("4ad5fe54-82fb-4793-b9c0-fc77f1576c36",
-	"486f3281-b1f3-468c-9262-10f6a65fb7c0",
-	"616dd458-6ec8-4082-b9ee-94f642cf2c29",
-	108,
-	0,
-	'Tests::Components::Client::Widgets');
-INSERT INTO GD_SHP
-	VALUES ("4ad5fe54-82fb-4793-b9c0-fc77f1576c36");
-INSERT INTO GD_NCS
-	VALUES ("4ad5fe54-82fb-4793-b9c0-fc77f1576c36");
-INSERT INTO DIM_ND
-	VALUES (200.000000,
-	150.000000,
-	"4ad5fe54-82fb-4793-b9c0-fc77f1576c36");
-INSERT INTO DIM_GE
-	VALUES (5140.000000,
-	3100.000000,
-	"4ad5fe54-82fb-4793-b9c0-fc77f1576c36",
-	"00000000-0000-0000-0000-000000000000");
-INSERT INTO DIM_ELE
-	VALUES ("4ad5fe54-82fb-4793-b9c0-fc77f1576c36",
-	0,
-	"58c57ca9-2eb2-424e-8ab5-bd3f266de364");
 INSERT INTO DIM_DIA
 	VALUES ("486f3281-b1f3-468c-9262-10f6a65fb7c0",
 	'',
@@ -269,11 +245,7 @@ LOG::LogInfo( message:param.emp.Name );
 LOG::LogInfo( message:param.emp.Birthdate );
 LOG::LogInteger( message:param.emp.Number );
 person = param.emp;
-select any menu from instances of EmployeeMenu;
-if ( not_empty menu )
-  relate menu to person across R1.''displays'';
-end if;
-::RegisterEmployee( employee:person);
+::RegisterEmployee( employee:person );
 ',
 	1,
 	0,
@@ -295,7 +267,7 @@ INSERT INTO SPR_RS
 	'b',
 	'',
 	'LOG::LogInteger( message:param.count );
-create object instance menu of EmployeeMenu;',
+',
 	1,
 	0,
 	2);

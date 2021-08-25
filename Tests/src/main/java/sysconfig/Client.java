@@ -21,18 +21,14 @@ import java.util.Properties;
 import java.util.TreeMap;
 
 import sysconfig.client.ClientSrv;
+import sysconfig.client.hr.Department;
+import sysconfig.client.hr.DepartmentSet;
 import sysconfig.client.hr.Employee;
 import sysconfig.client.hr.EmployeeSet;
+import sysconfig.client.hr.impl.DepartmentImpl;
+import sysconfig.client.hr.impl.DepartmentSetImpl;
 import sysconfig.client.hr.impl.EmployeeImpl;
 import sysconfig.client.hr.impl.EmployeeSetImpl;
-import sysconfig.client.widgets.EmployeeMenu;
-import sysconfig.client.widgets.EmployeeMenuSet;
-import sysconfig.client.widgets.impl.EmployeeMenuImpl;
-import sysconfig.client.widgets.impl.EmployeeMenuSetImpl;
-/* @Removed for 12002
-import sysconfig.server.hr.Employee;
-import sysconfig.server.hr.impl.EmployeeImpl;
-*/
 
 
 public class Client extends Component<Client> {
@@ -41,72 +37,63 @@ public class Client extends Component<Client> {
 
     public Client(IApplication app, IRunContext runContext, int populationId) {
         super(app, runContext, populationId);
+        Department_extent = new DepartmentSetImpl();
         Employee_extent = new EmployeeSetImpl();
-        EmployeeMenu_extent = new EmployeeMenuSetImpl();
-        R1_Employee_is_shown_on_EmployeeMenu_extent = new RelationshipSet();
+        R100_Employee_works_in_Department_extent = new RelationshipSet();
         LOG = null;
         classDirectory = new TreeMap<>();
+        classDirectory.put("Department", DepartmentImpl.class);
         classDirectory.put("Employee", EmployeeImpl.class);
     }
 
     // domain functions
     public void RegisterEmployee( final Employee p_employee ) throws XtumlException {
-        context().LOG().LogInfo( "Registering: " + p_employee.getName() );
-        Employee e = p_employee;
-        context().LOG().LogInteger( e.getNumber() );
-        EmployeeMenu menu = e.R1_is_shown_on_EmployeeMenu();
-        if ( !menu.isEmpty() ) {
-            context().LOG().LogInfo( e.getName() + " is already registered" );
+        Department dept = context().Department_instances().any();
+        if ( dept.isEmpty() ) {
+            dept = DepartmentImpl.create( context() );
         }
-        else {
-            menu = context().EmployeeMenu_instances().any();
-            if ( menu.isEmpty() ) {
-                menu = EmployeeMenuImpl.create( context() );
-            }
-            context().relate_R1_Employee_is_shown_on_EmployeeMenu( e, menu );
-        }
-        context().LOG().LogInfo( "Done" );
+        dept = context().Department_instances().any();
+        Employee person = p_employee;
+        context().relate_R100_Employee_works_in_Department( person, dept );
+        person.Report();
         context().T2();
-        context().LOG().LogInfo( "Sent" );
+        context().LOG().LogInfo( "Registered: " + person.getName() );
     }
-    
 
     public void T2() throws XtumlException {
+        context().LOG().LogInfo( "T2 invoked" );
         Employee e = context().Employee_instances().any();
-        context().Srv().c( e );
     }
-
-
 
 
 
     // relates and unrelates
-    public void relate_R1_Employee_is_shown_on_EmployeeMenu( Employee form, EmployeeMenu part ) throws XtumlException {
+    public void relate_R100_Employee_works_in_Department( Employee form, Department part ) throws XtumlException {
         if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
         if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot relate empty instances." );
         // TODO cardinality check
-        if ( R1_Employee_is_shown_on_EmployeeMenu_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
-            part.addR1_displays_Employee(form);
-            form.setR1_is_shown_on_EmployeeMenu(part);
+        if ( R100_Employee_works_in_Department_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.addR100_employs_Employee(form);
+            form.setR100_works_in_Department(part);
         }
         else throw new ModelIntegrityException( "Instances could not be related." );
     }
 
-    public void unrelate_R1_Employee_is_shown_on_EmployeeMenu( Employee form, EmployeeMenu part ) throws XtumlException {
+    public void unrelate_R100_Employee_works_in_Department( Employee form, Department part ) throws XtumlException {
         if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
         if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot unrelate empty instances." );
-        if ( R1_Employee_is_shown_on_EmployeeMenu_extent.remove( R1_Employee_is_shown_on_EmployeeMenu_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
-            part.removeR1_displays_Employee(form);
-            form.setR1_is_shown_on_EmployeeMenu(EmployeeMenuImpl.EMPTY_EMPLOYEEMENU);
+        if ( R100_Employee_works_in_Department_extent.remove( R100_Employee_works_in_Department_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.removeR100_employs_Employee(form);
+            form.setR100_works_in_Department(DepartmentImpl.EMPTY_DEPARTMENT);
         }
         else throw new ModelIntegrityException( "Instances could not be unrelated." );
     }
 
 
     // instance selections
-    private EmployeeMenuSet EmployeeMenu_extent;
-    public EmployeeMenuSet EmployeeMenu_instances() {
-        return EmployeeMenu_extent;
+    private DepartmentSet Department_extent;
+    public DepartmentSet Department_instances() {
+        return Department_extent;
     }
     private EmployeeSet Employee_extent;
     public EmployeeSet Employee_instances() {
@@ -115,12 +102,10 @@ public class Client extends Component<Client> {
 
 
     // relationship selections
-    // relationship selections
-    private IRelationshipSet R1_Employee_is_shown_on_EmployeeMenu_extent;
-    public IRelationshipSet R1_Employee_is_shown_on_EmployeeMenus() throws XtumlException {
-        return R1_Employee_is_shown_on_EmployeeMenu_extent;
+    private IRelationshipSet R100_Employee_works_in_Department_extent;
+    public IRelationshipSet R100_Employee_works_in_Departments() throws XtumlException {
+        return R100_Employee_works_in_Department_extent;
     }
-
 
 
     // ports
@@ -162,13 +147,12 @@ public class Client extends Component<Client> {
         return prop.getProperty("version_date", "Unknown");
     }
 
-
     @Override
     public boolean addInstance( IModelInstance<?,?> instance ) throws XtumlException {
         if ( null == instance ) throw new BadArgumentException( "Null instance passed." );
         if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot add empty instance to population." );
-        if ( instance instanceof Employee ) return Employee_extent.add( (Employee)instance );
-        else if ( instance instanceof EmployeeMenu ) return EmployeeMenu_extent.add( (EmployeeMenu)instance );
+        if ( instance instanceof Department ) return Department_extent.add( (Department)instance );
+        else if ( instance instanceof Employee ) return Employee_extent.add( (Employee)instance );
         return false;
     }
 
@@ -176,11 +160,10 @@ public class Client extends Component<Client> {
     public boolean removeInstance( IModelInstance<?,?> instance ) throws XtumlException {
         if ( null == instance ) throw new BadArgumentException( "Null instance passed." );
         if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot remove empty instance from population." );
-        if ( instance instanceof Employee ) return Employee_extent.remove( (Employee)instance );
-        else if ( instance instanceof EmployeeMenu ) return EmployeeMenu_extent.remove( (EmployeeMenu)instance );
+        if ( instance instanceof Department ) return Department_extent.remove( (Department)instance );
+        else if ( instance instanceof Employee ) return Employee_extent.remove( (Employee)instance );
         return false;
     }
-
 
     @Override
     public Client context() {

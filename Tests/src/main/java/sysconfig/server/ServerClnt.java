@@ -28,7 +28,6 @@ public class ServerClnt extends Port<Server> implements IFoo {
         context().LOG().LogInfo( emp.getBirthdate() );
         context().LOG().LogInteger( emp.getNumber() );
         Employee person = emp;
-        person.Report();
     }
 
 

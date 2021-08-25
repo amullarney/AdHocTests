@@ -2,6 +2,6 @@ package sysconfig;
 
 import io.ciera.runtime.summit.types.IXtumlType;
 
-public interface Employee extends IXtumlType {
+public interface Department extends IXtumlType {
 
 }
