@@ -10,9 +10,13 @@ import io.ciera.runtime.summit.interfaces.IPort;
 import io.ciera.runtime.summit.interfaces.Port;
 import io.ciera.runtime.summit.types.IntegerUtil;
 
-import sysconfig.Client;
-import sysconfig.client.hr.Employee;
+import java.util.Iterator;
 
+import sysconfig.Client;
+import sysconfig.client.clientapp.Menu;
+import sysconfig.client.clientapp.impl.MenuImpl;
+import sysconfig.client.hr.Employee;
+import sysconfig.client.hr.EmployeeSet;
 
 
 public class ClientSrv extends Port<Client> implements IFoo {
@@ -35,6 +39,19 @@ public class ClientSrv extends Port<Client> implements IFoo {
         context().LOG().LogInteger( p_emp.getNumber() );
         sysconfig.client.hr.Employee person = p_emp;
         context().RegisterEmployee( person );
+        Menu menu = context().Menu_instances().any();
+        if ( menu.isEmpty() ) {
+            menu = MenuImpl.create( context() );
+        }
+        menu = context().Menu_instances().any();
+        context().relate_R1_Employee_appears_in_Menu( person, menu );
+        context().LOG().LogInfo( "Client display menu contents" );
+        EmployeeSet entries = menu.R1_displays_Employee();
+        Employee entry;
+        for ( Iterator<Employee> _entry_iter = entries.elements().iterator(); _entry_iter.hasNext(); ) {
+            entry = _entry_iter.next();
+            context().LOG().LogInfo( entry.getName() );
+        }
     }
 
 

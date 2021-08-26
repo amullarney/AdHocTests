@@ -21,6 +21,10 @@ import java.util.Properties;
 import java.util.TreeMap;
 
 import sysconfig.client.ClientSrv;
+import sysconfig.client.clientapp.Menu;
+import sysconfig.client.clientapp.MenuSet;
+import sysconfig.client.clientapp.impl.MenuImpl;
+import sysconfig.client.clientapp.impl.MenuSetImpl;
 import sysconfig.client.hr.Department;
 import sysconfig.client.hr.DepartmentSet;
 import sysconfig.client.hr.Employee;
@@ -29,7 +33,10 @@ import sysconfig.client.hr.impl.DepartmentImpl;
 import sysconfig.client.hr.impl.DepartmentSetImpl;
 import sysconfig.client.hr.impl.EmployeeImpl;
 import sysconfig.client.hr.impl.EmployeeSetImpl;
-// 3 bad server imports removed
+//import sysconfig.server.hr.Department;
+//import sysconfig.server.hr.Employee;
+//import sysconfig.server.hr.impl.DepartmentImpl;
+
 
 public class Client extends Component<Client> {
 
@@ -39,11 +46,14 @@ public class Client extends Component<Client> {
         super(app, runContext, populationId);
         Department_extent = new DepartmentSetImpl();
         Employee_extent = new EmployeeSetImpl();
+        Menu_extent = new MenuSetImpl();
         R100_Employee_works_in_Department_extent = new RelationshipSet();
+        R1_Employee_appears_in_Menu_extent = new RelationshipSet();
         LOG = null;
         classDirectory = new TreeMap<>();
         classDirectory.put("Department", DepartmentImpl.class);
         classDirectory.put("Employee", EmployeeImpl.class);
+        classDirectory.put("Menu", MenuImpl.class);
     }
 
     // domain functions
@@ -55,8 +65,8 @@ public class Client extends Component<Client> {
         dept = context().Department_instances().any();
         Employee person = p_employee;
         context().relate_R100_Employee_works_in_Department( person, dept );
-        context().LOG().LogInfo( "Client requesting Employee.Report()" );
-        person.Report();
+        context().LOG().LogInfo( "Client requesting Department Report() related employees" );
+        new DepartmentImpl.CLASS(context()).Report();
         context().T2();
         context().LOG().LogInfo( "Client: Registered: " + person.getName() );
     }
@@ -90,6 +100,26 @@ public class Client extends Component<Client> {
         }
         else throw new ModelIntegrityException( "Instances could not be unrelated." );
     }
+    public void relate_R1_Employee_appears_in_Menu( Employee form, Menu part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot relate empty instances." );
+        // TODO cardinality check
+        if ( R1_Employee_appears_in_Menu_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.addR1_displays_Employee(form);
+            form.setR1_appears_in_Menu(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be related." );
+    }
+
+    public void unrelate_R1_Employee_appears_in_Menu( Employee form, Menu part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot unrelate empty instances." );
+        if ( R1_Employee_appears_in_Menu_extent.remove( R1_Employee_appears_in_Menu_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.removeR1_displays_Employee(form);
+            form.setR1_appears_in_Menu(MenuImpl.EMPTY_MENU);
+        }
+        else throw new ModelIntegrityException( "Instances could not be unrelated." );
+    }
 
 
     // instance selections
@@ -101,12 +131,20 @@ public class Client extends Component<Client> {
     public EmployeeSet Employee_instances() {
         return Employee_extent;
     }
+    private MenuSet Menu_extent;
+    public MenuSet Menu_instances() {
+        return Menu_extent;
+    }
 
 
     // relationship selections
     private IRelationshipSet R100_Employee_works_in_Department_extent;
     public IRelationshipSet R100_Employee_works_in_Departments() throws XtumlException {
         return R100_Employee_works_in_Department_extent;
+    }
+    private IRelationshipSet R1_Employee_appears_in_Menu_extent;
+    public IRelationshipSet R1_Employee_appears_in_Menus() throws XtumlException {
+        return R1_Employee_appears_in_Menu_extent;
     }
 
 
@@ -155,6 +193,7 @@ public class Client extends Component<Client> {
         if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot add empty instance to population." );
         if ( instance instanceof Department ) return Department_extent.add( (Department)instance );
         else if ( instance instanceof Employee ) return Employee_extent.add( (Employee)instance );
+        else if ( instance instanceof Menu ) return Menu_extent.add( (Menu)instance );
         return false;
     }
 
@@ -164,6 +203,7 @@ public class Client extends Component<Client> {
         if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot remove empty instance from population." );
         if ( instance instanceof Department ) return Department_extent.remove( (Department)instance );
         else if ( instance instanceof Employee ) return Employee_extent.remove( (Employee)instance );
+        else if ( instance instanceof Menu ) return Menu_extent.remove( (Menu)instance );
         return false;
     }
 

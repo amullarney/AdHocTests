@@ -5,6 +5,8 @@ import io.ciera.runtime.summit.classes.IModelInstance;
 import io.ciera.runtime.summit.exceptions.XtumlException;
 
 import sysconfig.Client;
+import sysconfig.client.clientapp.Menu;
+import sysconfig.client.hr.Department;
 
 public interface Employee extends IModelInstance<Employee,Client>, sysconfig.Employee {
 
@@ -24,6 +26,8 @@ public interface Employee extends IModelInstance<Employee,Client>, sysconfig.Emp
     // selections
     default public void setR100_works_in_Department( Department inst ) {}
     public Department R100_works_in_Department() throws XtumlException;
+    default public void setR1_appears_in_Menu( Menu inst ) {}
+    public Menu R1_appears_in_Menu() throws XtumlException;
 
 
 }

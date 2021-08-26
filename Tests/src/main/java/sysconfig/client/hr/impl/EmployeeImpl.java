@@ -19,6 +19,8 @@ import io.ciera.runtime.summit.types.UniqueId;
 import java.util.Iterator;
 
 import sysconfig.Client;
+import sysconfig.client.clientapp.Menu;
+import sysconfig.client.clientapp.impl.MenuImpl;
 import sysconfig.client.hr.Department;
 import sysconfig.client.hr.Employee;
 import sysconfig.client.hr.impl.DepartmentImpl;
@@ -36,27 +38,13 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     private Client context;
 
     // constructors
-    
-    // @Added for 12002
- /*   public EmployeeImpl( sysconfig.server.hr.Employee serverEmp ) {
-      System.out.printf( "Copy constructor\n" );
-      try {
-    	m_Name = serverEmp.getName();
-    	m_Birthdate = serverEmp.getBirthdate();
-    	m_Number = serverEmp.getNumber();
-      } catch (Exception e) {
-          System.out.printf( "Exception in copy constructor: %s\n", e );
-      }
-      
-    }
-*/
-    
-    private EmployeeImpl( Client context ) {
+     private EmployeeImpl( Client context ) {
         this.context = context;
         m_Name = "";
         m_Birthdate = "";
         m_Number = 0;
         R100_works_in_Department_inst = DepartmentImpl.EMPTY_DEPARTMENT;
+        R1_appears_in_Menu_inst = MenuImpl.EMPTY_MENU;
         statemachine = new EmployeeStateMachine(this, context());
     }
 
@@ -67,6 +55,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         this.m_Birthdate = m_Birthdate;
         this.m_Number = m_Number;
         R100_works_in_Department_inst = DepartmentImpl.EMPTY_DEPARTMENT;
+        R1_appears_in_Menu_inst = MenuImpl.EMPTY_MENU;
         statemachine = new EmployeeStateMachine(this, context());
      }
 
@@ -206,6 +195,15 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     public Department R100_works_in_Department() throws XtumlException {
         return R100_works_in_Department_inst;
     }
+    private Menu R1_appears_in_Menu_inst;
+    @Override
+    public void setR1_appears_in_Menu( Menu inst ) {
+        R1_appears_in_Menu_inst = inst;
+    }
+    @Override
+    public Menu R1_appears_in_Menu() throws XtumlException {
+        return R1_appears_in_Menu_inst;
+    }
 
 
 
@@ -271,6 +269,10 @@ class EmptyEmployee extends ModelInstance<Employee,Client> implements Employee {
     @Override
     public Department R100_works_in_Department() {
         return DepartmentImpl.EMPTY_DEPARTMENT;
+    }
+    @Override
+    public Menu R1_appears_in_Menu() {
+        return MenuImpl.EMPTY_MENU;
     }
 
 

@@ -24,10 +24,12 @@ public class ServerClnt extends Port<Server> implements IFoo {
     }
 
     // inbound messages
+//  public void c( final Employee p_emp ) throws XtumlException {
+//  Note: the template can be edited to make each inst_ref parameter component-independent.
+//  The parameter should be declared with a non-p_xxx name.
+//  The template can insert a downcast so that the generated p_xxx variable becomes component-specific
     public void c( final sysconfig.Employee emp ) throws XtumlException {
-    	sysconfig.server.hr.Employee p_emp = (Employee) emp; // down-cast to component-specific
-//    public void c( final Employee p_emp ) throws XtumlException {
-//    	sysconfig.server.hr.Employee emp = (sysconfig.server.hr.Employee) p_emp; // down-cast to component-specific
+    	sysconfig.server.hr.Employee p_emp = (Employee) emp; // example of inserted down-cast to component-specific p_xxx
         context().LOG().LogInfo( "Server: Employee name, birthdate, number" );
         context().LOG().LogInfo( p_emp.getName() );
         context().LOG().LogInfo( p_emp.getBirthdate() );
