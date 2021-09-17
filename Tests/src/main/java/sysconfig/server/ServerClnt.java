@@ -40,7 +40,13 @@ public class ServerClnt extends Port<Server> implements IFoo {
         }
     }
     public void a( final Employee p_emp ) throws XtumlException {
-        if ( satisfied() ) send(new IFoo.A(p_emp));
+        if ( satisfied() ) {
+          IMessage msg = new IFoo.A(p_emp);
+          String str = msg.serialize();
+          //String str = "Employee data here...";
+          System.out.printf( "Server send: %s\n", str );
+          send(msg);
+        }
         else {
         }
     }
@@ -58,7 +64,6 @@ public class ServerClnt extends Port<Server> implements IFoo {
             throw new BadArgumentException( "Message not implemented by this port." );
         }
     }
-
 
 
     @Override

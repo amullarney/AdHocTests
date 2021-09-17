@@ -6,12 +6,15 @@ import interfaces.IFoo;
 import io.ciera.runtime.summit.exceptions.BadArgumentException;
 import io.ciera.runtime.summit.exceptions.XtumlException;
 import io.ciera.runtime.summit.interfaces.IMessage;
+import io.ciera.runtime.summit.interfaces.Message;  // needed for serialize()
 import io.ciera.runtime.summit.interfaces.IPort;
 import io.ciera.runtime.summit.interfaces.Port;
 import io.ciera.runtime.summit.types.IntegerUtil;
+import io.ciera.runtime.summit.types.StringUtil;
 
 import sysconfig.Client;
 import sysconfig.client.hr.Employee;
+import sysconfig.client.hr.impl.EmployeeImpl;
 import sysconfig.client.widgets.EmployeeMenu;
 import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 
@@ -30,7 +33,7 @@ public class ClientSrv extends Port<Client> implements IFoo {
 
 
     public void a( final sysconfig.Employee emp ) throws XtumlException {
-    	sysconfig.client.hr.Employee p_emp = (Employee) emp; // down-cast to component-specific
+    	Employee p_emp = (Employee) emp; // down-cast to component-specific
         context().LOG().LogInfo( "Client: Employee name, birthdate, number" );
         context().LOG().LogInfo( p_emp.getName() );
         context().LOG().LogInfo( p_emp.getBirthdate() );
@@ -56,15 +59,22 @@ public class ClientSrv extends Port<Client> implements IFoo {
     @Override
     public void deliver( IMessage message ) throws XtumlException {
         System.out.printf( "Client-Server deliver message\n" );
+        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"A\",\"parameterData\":[\"Jana Burke\", \"123456\"],\"id\":1}";
+        message = Message.deserialize(s);
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
         switch ( message.getId() ) {
             case IFoo.SIGNAL_NO_B:
                 b(IntegerUtil.deserialize(message.get(0)));
                 break;
             case IFoo.SIGNAL_NO_A:
-                a( sysconfig.client.hr.impl.EmployeeImpl.deserialize(message.get(0), context() ) );
+            	String name = StringUtil.deserialize(message.get(0));
+            	int number = IntegerUtil.deserialize(message.get(1));
+            	
+                System.out.printf( "message params %s %d \n", name, number );
+                a( (sysconfig.Employee)EmployeeImpl.deserialize( name, number, context() ));
                 break;
-        default:
+    
+            default:
             throw new BadArgumentException( "Message not implemented by this port." );
         }
     }

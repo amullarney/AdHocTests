@@ -21,7 +21,7 @@ import sysconfig.client.widgets.EmployeeMenu;
 import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 
 import org.json.*; 
-//import org.json.JSONValue; 
+import org.json.JSONObject;
 
 
 public class EmployeeImpl extends ModelInstance<Employee,Client> implements Employee {
@@ -139,29 +139,30 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
     
     // @Added for 12002
-    public String toString() {
+    public String serialize() {
     	// @TODO
-    	return "";
+    	return "{ employee data here }";
     }
 
     // static operations
-    public static Employee deserialize( Object o, Client context ) {
-        System.out.printf( "Employee deserialize\n" );
-    	//JSONParser json = new JSONParser();
+    public static Employee deserialize( String name, int number, Client context ) {
     	// fake this for now... create component-specific instance and populate attributes  from JSON, if it were here!
-    	try {
-        Employee e = EmployeeImpl.create( context );
-        String s = "{ \"Name\": \"Jana\", \"Number\": \"1234\"}";
-        //Object obj = JSONObject.Parse(s);
- //       JSONObject jobj = new JSONObject(s);
-        //e.setBirthdate("07-Jan-1961");
- //       e.setName( (String) jobj.getString("Name") );
-        e.setName("Jana");
-        e.setNumber(123456);
-        // e.setName( jstr.getString( "Name" ));
-    	return (Employee) e;
+        // String s = "{ \"Name\": \"Jana\", \"Number\": \"1234\"}";
+
+        System.out.printf( "Employee deserialize %s %d \n", name, number );
+     	try {
+	        Employee e = EmployeeImpl.create( context );
+	        e.setName( name );
+	        e.setNumber( number );
+/*
+	        JSONObject jobj = new JSONObject(s);
+	        e.setName( (String) jobj.getString("Name") );
+	        e.setNumber( (int) jobj.getInt("Number") );
+ */
+	    	return (Employee) e;
     	}
     	catch(Exception ex ) { };
+        System.out.printf( "Employee deserialize failed\n");
     	return (Employee) null;
     }
    

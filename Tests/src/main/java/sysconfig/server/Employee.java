@@ -19,4 +19,6 @@ public interface Employee extends IXtumlType {
     // operations
     public void Report() throws XtumlException;
 
+
+
 }

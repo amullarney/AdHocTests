@@ -115,9 +115,9 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
     }
     
     // @Added for 12002
-    public String toString() {
-    	// @TODO
-    	return "";
+    public String serialize() {
+    	System.out.printf( "serializing employee on server side... %s\n", this.m_Name );
+    	return "\"\""  + this.m_Name + "\", "  +  "\""  + Integer.toString(this.m_Number) + "\"";
     }
     
 
