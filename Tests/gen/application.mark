@@ -1,2 +1,1 @@
-*,RootPackage,*,Tests::Components
-Components::Test,InitFunction,Component,Selections
+*,RootPackage,*,Tests::SysConfig
