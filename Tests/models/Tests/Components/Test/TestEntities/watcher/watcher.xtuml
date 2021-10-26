@@ -1,23 +1,23 @@
 -- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
 
 INSERT INTO O_OBJ
-	VALUES ("8c94fc7b-02ee-4d61-be66-231efcd5b86a",
-	'License',
-	13,
-	'License',
+	VALUES ("70bf8f28-fdfe-46c5-831f-8b3490d8ad62",
+	'watcher',
+	27,
+	'watcher',
 	'',
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO O_ID
 	VALUES (0,
-	"8c94fc7b-02ee-4d61-be66-231efcd5b86a");
+	"70bf8f28-fdfe-46c5-831f-8b3490d8ad62");
 INSERT INTO O_ID
 	VALUES (1,
-	"8c94fc7b-02ee-4d61-be66-231efcd5b86a");
+	"70bf8f28-fdfe-46c5-831f-8b3490d8ad62");
 INSERT INTO O_ID
 	VALUES (2,
-	"8c94fc7b-02ee-4d61-be66-231efcd5b86a");
+	"70bf8f28-fdfe-46c5-831f-8b3490d8ad62");
 INSERT INTO PE_PE
-	VALUES ("8c94fc7b-02ee-4d61-be66-231efcd5b86a",
+	VALUES ("70bf8f28-fdfe-46c5-831f-8b3490d8ad62",
 	1,
 	"7036918d-228f-40f1-b925-22f845d3b660",
 	"00000000-0000-0000-0000-000000000000",

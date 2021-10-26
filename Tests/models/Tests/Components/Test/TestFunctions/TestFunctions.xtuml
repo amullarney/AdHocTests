@@ -46,6 +46,7 @@ generate observation1:peek() to glance;',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("11a44be8-a1a3-4c0b-9871-0a634b5e8920",
@@ -78,96 +79,10 @@ end for;
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("78879f39-c2a4-467e-8b01-dea55e9d8ab9",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("3477824f-86bc-4c06-a565-396bf833be72",
-	"00000000-0000-0000-0000-000000000000",
-	'SetAddition',
-	'',
-	'create object instance t1 of thingmajig;
-t1.sequenceNumber = 1;
-create object instance t2 of thingmajig;
-t2.sequenceNumber = 2;
-create object instance t3 of thingmajig;
-t3.sequenceNumber = 3;
-create object instance t4 of thingmajig;
-t4.sequenceNumber = 4;
-create object instance t5 of thingmajig;
-t5.sequenceNumber = 5;
-
-select many items from instances of thingmajig;
-select many entities from instances of thingmajig;
-
-all = items + entities;
-for each t in all
-  LOG::LogInfo( message:"SetAddition - expect 5 entities" );
-  LOG::LogInteger( message:t.sequenceNumber );
-end for;',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("3477824f-86bc-4c06-a565-396bf833be72",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("69d7ee07-e57d-488b-921d-a34954f3c9f5",
-	"00000000-0000-0000-0000-000000000000",
-	'Selections',
-	'',
-	'create object instance e1 of employee;
-e1.name = "Jack";
-e1.role = "technician";
-create object instance e2 of employee;
-e2.name = "Jill";
-e2.role = "supervisor";
-
-create object instance p1 of payment;
-relate p1 to e1 across R3.''is for'';
-create object instance p2 of payment;
-relate p2 to e2 across R3.''is for'';
-
-// Jack''s pay
-create object instance element1 of payElement;
-element1.amount = 400;
-element1.name = "salary";
-element1.withholding = 90;
-relate element1 to p1 across R4.''contributes to'';
-create object instance element2 of payElement;
-relate element2 to p1 across R4.''contributes to'';
-create object instance element3 of payElement;
-element3.amount = 50;
-element3.name = "bonus";
-relate element3 to p1 across R4.''contributes to'';
-
-// Jill''s pay
-create object instance element4 of payElement;
-relate element4 to p2 across R4.''contributes to'';
-create object instance element5 of payElement;
-relate element5 to p2 across R4.''contributes to'';
-
-create object instance payroll of Payroll;
-payroll.month = "June";
-select many elements from instances of payElement;
-for each element in elements
-  relate element to payroll across R5.''is part of'';
-end for;
-',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("69d7ee07-e57d-488b-921d-a34954f3c9f5",
 	1,
 	"6a4a82e9-5119-463b-b210-5e00c3ece052",
 	"00000000-0000-0000-0000-000000000000",
@@ -188,6 +103,7 @@ end if;',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("0fc6c5a7-d306-40e5-a30c-a8e0e6ab5da8",
@@ -203,29 +119,20 @@ INSERT INTO S_SYNC
 	'LOG::LogInfo( message:"Trying to load from stdin" );
 SQL::load();
 
-select any employee from instances of employee;
-if ( empty employee )
+select any obv from instances of observation;
+if ( empty obv )
   LOG::LogInfo( message:"creating instances programatically" );
-    ::Selections();
-    ::AssocTest();
-    ::RouteTest();
-    ::SuperTest();
-    ::OwnerTest();
+  ::Testtrigger();
   LOG::LogInfo( message:"created..." );
-  Route::Report();
-  Payroll::Report();
-  Aircraft::Report();
-  coOwner::Report();
-  Driver::Report();
-  TheParent::Report();
 else
   LOG::LogInfo( message:"Sucessfully loaded persisted data - exploring what we got:" );
-  Route::Report();
-  Payroll::Report();
-  Aircraft::Report();
-  coOwner::Report();
-  Driver::Report();
-  TheParent::Report();
+  select many obvs from instances of observation;
+  select many trgs related by obvs->trigger[R10.''waits for''];
+  if ( not_empty trgs )
+  	LOG::LogInfo( message:"found triggers" );
+  end if;
+  select any trg from instances of trigger;
+  select many onlookers related by trg->observation[R10.''initiates'']->watcher[R25.''is reported to''];
 end if;
 
 LOG::LogInfo( message:"persisting..." );
@@ -237,67 +144,10 @@ control stop;',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("1f8e0ab5-2dd3-4153-bd5e-4145b872766e",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("dbaf23b3-8cc2-433f-a98f-9c2865c0d5cd",
-	"00000000-0000-0000-0000-000000000000",
-	'AssocTest',
-	'',
-	'create object instance suv of Car;
-create object instance man of Driver;
-create object instance reg of Registration;
-reg.Fee = 50;
-relate man to suv across R6.''owns'' using reg;
-create object instance cdl of License;
-create object instance exp of expiration;
-exp.endDate = 2023;
-relate cdl to man across R7.''licenses'' using exp;',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("dbaf23b3-8cc2-433f-a98f-9c2865c0d5cd",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("d23830cd-b660-4ef5-931c-7e727fd1af9f",
-	"00000000-0000-0000-0000-000000000000",
-	'RouteTest',
-	'',
-	'create object instance Dublin of City;
-Dublin.name = "dublin";
-create object instance Limerick of City;
-Limerick.name = "limerick";
-create object instance Belfast of City;
-Belfast.name = "belfast";
-create object instance Wicklow of City;
-Wicklow.name = "wicklow";
-create object instance M1 of Route;
-M1.distance = 90;
-relate Belfast to Dublin across R11.''has routes to'' using M1;
-create object instance M7 of Route;
-M7.distance = 110;
-relate Limerick to Dublin across R11.''has routes to'' using M7;
-create object instance M2 of Route;
-M2.distance = 30;
-relate Wicklow to Dublin across R11.''has routes from'' using M2;
-create object instance Byway of Route;
-relate Belfast to Limerick across R11.''has routes from'' using Byway;',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("d23830cd-b660-4ef5-931c-7e727fd1af9f",
 	1,
 	"6a4a82e9-5119-463b-b210-5e00c3ece052",
 	"00000000-0000-0000-0000-000000000000",
@@ -320,17 +170,6 @@ create object instance glider of Glider;
 glider.wingspan = 15;
 relate glider to ac across R12;
 
-create object instance parent of TheParent;
-parent.Name = "LivingCreature";
-create object instance child of TheChild;
-child.Name = "Animal";
-relate child to parent across R13;
-
-create object instance parent of TheParent;
-parent.Name = "LivingCreature";
-create object instance child of TheChild;
-child.Name = "Man";
-relate child to parent across R13;
 
 create object instance isaA of classA;
 create object instance isaB of classB;
@@ -338,31 +177,10 @@ relate isaB to isaA across R14.''is a'';',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("9412d2d4-9488-4981-b09d-3e3e4e39b42c",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("ef378a65-6197-4acb-844a-29cd3fe66a53",
-	"00000000-0000-0000-0000-000000000000",
-	'OwnerTest',
-	'',
-	'create object instance c of coOwner;
-create object instance t of thingmajig;
-t.sequenceNumber = 1001;
-relate t to c across R8.''are shared by'';
-create object instance t of thingmajig;
-t.sequenceNumber = 1002;
-relate t to c across R8.''are shared by'';',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("ef378a65-6197-4acb-844a-29cd3fe66a53",
 	1,
 	"6a4a82e9-5119-463b-b210-5e00c3ece052",
 	"00000000-0000-0000-0000-000000000000",
@@ -390,6 +208,7 @@ When simulated time is unchecked( and deterministically unchecked ) log messages
 	0,
 	"00000000-0000-0000-0000-000000000000",
 	0,
+	'',
 	'',
 	'../Test.xtuml');
 INSERT INTO S_SYS_PROXY
