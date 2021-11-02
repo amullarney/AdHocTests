@@ -10,6 +10,8 @@ import io.ciera.runtime.summit.classes.ModelInstance;
 import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
 import io.ciera.runtime.summit.exceptions.InstancePopulationException;
 import io.ciera.runtime.summit.exceptions.XtumlException;
+import io.ciera.runtime.summit.statemachine.Event;
+import io.ciera.runtime.summit.statemachine.IEvent;
 import io.ciera.runtime.summit.types.IWhere;
 import io.ciera.runtime.summit.types.IXtumlType;
 import io.ciera.runtime.summit.types.StringUtil;
@@ -18,6 +20,7 @@ import io.ciera.runtime.summit.types.UniqueId;
 import sysconfig.Server;
 import sysconfig.server.hr.Employee;
 
+import java.util.HashMap;
 
 public class EmployeeImpl extends ModelInstance<Employee,Server> implements Employee {
 
@@ -32,14 +35,24 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
         m_Name = "";
         m_Birthdate = "";
         m_Number = 0;
+        statemachine = new EmployeeStateMachine(this, context());
     }
 
-    private EmployeeImpl( Server context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number ) {
+    private EmployeeImpl( Server context, String m_Name, String m_Birthdate, int m_Number, int initialState ) {
+        this.context = context;
+        this.m_Name = m_Name;
+        this.m_Birthdate = m_Birthdate;
+        this.m_Number = m_Number;
+        statemachine = new EmployeeStateMachine(this, context(), initialState);
+    }
+
+    private EmployeeImpl( Server context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number, int initialState ) {
         super(instanceId);
         this.context = context;
         this.m_Name = m_Name;
         this.m_Birthdate = m_Birthdate;
         this.m_Number = m_Number;
+        statemachine = new EmployeeStateMachine(this, context(), initialState);
     }
 
     public static Employee create( Server context ) throws XtumlException {
@@ -51,14 +64,34 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
         else throw new InstancePopulationException( "Instance already exists within this population." );
     }
 
-    public static Employee create( Server context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number ) throws XtumlException {
-        Employee newEmployee = new EmployeeImpl( context, instanceId, m_Name, m_Birthdate, m_Number );
+    public static Employee create( Server context, String m_Name, String m_Birthdate, int m_Number, int initialState ) throws XtumlException {
+        Employee newEmployee = new EmployeeImpl( context, m_Name, m_Birthdate, m_Number, initialState );
         if ( context.addInstance( newEmployee ) ) {
             return newEmployee;
         }
         else throw new InstancePopulationException( "Instance already exists within this population." );
     }
 
+    public static Employee create( Server context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number, int initialState ) throws XtumlException {
+        Employee newEmployee = new EmployeeImpl( context, instanceId, m_Name, m_Birthdate, m_Number, initialState );
+        if ( context.addInstance( newEmployee ) ) {
+            return newEmployee;
+        }
+        else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+    private final EmployeeStateMachine statemachine;
+    
+    @Override
+    public void accept(IEvent event) throws XtumlException {
+        statemachine.transition(event);
+    }
+
+    @Override
+    public int getCurrentState() {
+        return statemachine.getCurrentState();
+    }
+    
 
     // attributes
     private String m_Name;
@@ -107,28 +140,60 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
         return m_Number;
     }
 
+
     // instance identifiers
 
     // operations
     @Override
     public void Report() throws XtumlException {
     }
-    
+
+
+
+    // static operations
+
     // @Added for 12002
     public String serialize() {
     	System.out.printf( "serializing employee on server side... %s\n", this.m_Name );
-    	return "\"\""  + this.m_Name + "\", "  +  "\""  + Integer.toString(this.m_Number) + "\"";
+//    	return "\"\""  + this.m_Name + "\", "  +  "\""  + Integer.toString(this.m_Number) + "\"";
+    	int cs = this.getCurrentState();
+    	return   "{\"name\":\"" + this.m_Name + "\", \"number\":\"" + this.m_Number + "\", \"curr_state\":\"" + cs + "\"}";
     }
     
 
-    // static operations
     public static Employee deserialize( Object o, Server context ) {
+        System.out.printf( "Employee deserialize in Server \n");
+        HashMap hash =  (HashMap)o;
+        String name = (String) hash.get("name");
+        String num = (String) hash.get("number");
+        System.out.printf( "Employee deserialize name, number %s %s \n", name, num );
+     	try {
+	        int initialState = Integer.parseInt( (String) hash.get("curr_state") );
+	        Employee e = EmployeeImpl.create( context, "", "", 0, initialState );
+	        e.setName( (String) hash.get("name") );
+	        e.setNumber( Integer.parseInt( (String) hash.get("number") ));
+	    	return (Employee) e;
+    	}
+    	catch(Exception ex ) { };
+        System.out.printf( "Employee deserialize failed\n");
     	return (Employee) null;
     }
    
-
+ 
     // events
-
+    public static class leave extends Event {
+        public leave(IRunContext runContext, int populationId) {
+            super(runContext, populationId);
+        }
+        @Override
+        public int getId() {
+            return 2;
+        }
+        @Override
+        public String getClassName() {
+            return "Employee";
+        }
+    }
 
     // selections
 
@@ -184,12 +249,15 @@ class EmptyEmployee extends ModelInstance<Employee,Server> implements Employee {
         throw new EmptyInstanceException( "Cannot get attribute of empty instance." );
     }
 
+
     // operations
     public void Report() throws XtumlException {
         throw new EmptyInstanceException( "Cannot invoke operation on empty instance." );
     }
 
+
     // selections
+
 
     @Override
     public String getKeyLetters() {

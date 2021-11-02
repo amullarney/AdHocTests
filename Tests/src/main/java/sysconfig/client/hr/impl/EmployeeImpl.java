@@ -10,6 +10,8 @@ import io.ciera.runtime.summit.classes.ModelInstance;
 import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
 import io.ciera.runtime.summit.exceptions.InstancePopulationException;
 import io.ciera.runtime.summit.exceptions.XtumlException;
+import io.ciera.runtime.summit.statemachine.Event;
+import io.ciera.runtime.summit.statemachine.IEvent;
 import io.ciera.runtime.summit.types.IWhere;
 import io.ciera.runtime.summit.types.IXtumlType;
 import io.ciera.runtime.summit.types.StringUtil;
@@ -23,6 +25,8 @@ import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 import org.json.*; 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 
 public class EmployeeImpl extends ModelInstance<Employee,Client> implements Employee {
 
@@ -33,24 +37,21 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
     // constructors
     
-    // @Added for 12002
-    public EmployeeImpl( sysconfig.server.hr.Employee serverEmp ) {
-      System.out.printf( "Copy constructor\n" );
-      try {
-    	m_Name = serverEmp.getName();
-    	m_Birthdate = serverEmp.getBirthdate();
-    	m_Number = serverEmp.getNumber();
-      } catch (Exception e) {
-          System.out.printf( "Exception in copy constructor: %s\n", e );
-      }
-      
-    }
-    
     private EmployeeImpl( Client context ) {
         this.context = context;
         m_Name = "";
         m_Birthdate = "";
         m_Number = 0;
+        statemachine = new EmployeeStateMachine(this, context());
+        R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
+    }
+
+    private EmployeeImpl( Client context, String m_Name, String m_Birthdate, int m_Number, int initialState ) {
+        this.context = context;
+        this.m_Name = m_Name;
+        this.m_Birthdate = m_Birthdate;
+        this.m_Number = m_Number;
+        statemachine = new EmployeeStateMachine(this, context(), initialState);
         R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
     }
 
@@ -60,6 +61,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         this.m_Name = m_Name;
         this.m_Birthdate = m_Birthdate;
         this.m_Number = m_Number;
+        statemachine = new EmployeeStateMachine(this, context(), initialState);
         R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
      }
 
@@ -67,6 +69,14 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         Employee newEmployee = new EmployeeImpl( context );
         if ( context.addInstance( newEmployee ) ) {
             newEmployee.getRunContext().addChange(new InstanceCreatedDelta(newEmployee, KEY_LETTERS));
+            return newEmployee;
+        }
+        else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+    public static Employee create( Client context, String m_Name, String m_Birthdate, int m_Number, int initialState ) throws XtumlException {
+        Employee newEmployee = new EmployeeImpl( context, m_Name, m_Birthdate, m_Number, initialState );
+        if ( context.addInstance( newEmployee ) ) {
             return newEmployee;
         }
         else throw new InstancePopulationException( "Instance already exists within this population." );
@@ -80,7 +90,17 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         else throw new InstancePopulationException( "Instance already exists within this population." );
     }
 
+    private final EmployeeStateMachine statemachine;
+    
+    @Override
+    public void accept(IEvent event) throws XtumlException {
+        statemachine.transition(event);
+    }
 
+    @Override
+    public int getCurrentState() {
+        return statemachine.getCurrentState();
+    }
 
     // attributes
     private String m_Name;
@@ -129,7 +149,6 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         }
     }
 
-
     // instance identifiers
 
     // operations
@@ -140,25 +159,25 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     
     // @Added for 12002
     public String serialize() {
-    	// @TODO
-    	return "{ employee data here }";
+    	System.out.printf( "serializing employee on client... %s\n", this.m_Name );
+    	int cs = this.getCurrentState();
+    	return   "{\"name\":\"" + this.m_Name + "\", \"number\":\"" + this.m_Number + "\", \"curr_state\":\"" + cs + "\"}";
     }
 
     // static operations
-    public static Employee deserialize( String name, int number, Client context ) {
-    	// fake this for now... create component-specific instance and populate attributes  from JSON, if it were here!
-        // String s = "{ \"Name\": \"Jana\", \"Number\": \"1234\"}";
+    public static Employee deserialize( Object o, Client context ) {
+    	// create component-specific instance and populate attributes
+        System.out.printf( "Employee deserialize in Client \n");
 
-        System.out.printf( "Employee deserialize %s %d \n", name, number );
+        HashMap hash =  (HashMap)o;
+        String name = (String) hash.get("name");
+        String num = (String) hash.get("number");
+        System.out.printf( "Employee deserialize name, number %s %s \n", name, num );
      	try {
-	        Employee e = EmployeeImpl.create( context );
-	        e.setName( name );
-	        e.setNumber( number );
-/*
-	        JSONObject jobj = new JSONObject(s);
-	        e.setName( (String) jobj.getString("Name") );
-	        e.setNumber( (int) jobj.getInt("Number") );
- */
+	        int initialState = Integer.parseInt( (String) hash.get("curr_state") );
+	        Employee e = EmployeeImpl.create( context, "", "", 0, initialState );
+	        e.setName( (String) hash.get("name") );
+	        e.setNumber( Integer.parseInt( (String) hash.get("number") ));
 	    	return (Employee) e;
     	}
     	catch(Exception ex ) { };
@@ -169,6 +188,19 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
     // events
 
+    public static class leave extends Event {
+        public leave(IRunContext runContext, int populationId) {
+            super(runContext, populationId);
+        }
+        @Override
+        public int getId() {
+            return 2;
+        }
+        @Override
+        public String getClassName() {
+            return "Employee";
+        }
+    }
 
     // selections
     private EmployeeMenu R1_is_shown_on_EmployeeMenu_inst;

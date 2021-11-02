@@ -12,8 +12,8 @@ public interface IFoo {
     // to provider messages
     public static final int SIGNAL_NO_C = 3;
     public static class C extends Message {
-        public C( final Employee p_emp ) {
-            super(new Object[]{p_emp});
+        public C( final String p_ename,  final int p_enumb ) {
+            super(new Object[]{p_ename,  p_enumb});
         }
         @Override
         public int getId() {
@@ -21,7 +21,7 @@ public interface IFoo {
         }
  
     }
-    public void c( final Employee p_emp ) throws XtumlException;
+    public void c( final String p_ename,  final int p_enumb ) throws XtumlException;
 
 
     // from provider messages

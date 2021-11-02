@@ -274,7 +274,7 @@ if ( not_empty menu )
   relate menu to person across R1.''displays'';
 end if;
 ::RegisterEmployee( employee:person);
-',
+generate Employee1:leave() to person;',
 	1,
 	0,
 	1);

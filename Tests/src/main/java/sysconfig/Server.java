@@ -42,8 +42,7 @@ public class Server extends Component<Server> {
         e.setBirthdate("07-Jan-1961");
         e.setName("Jana Burke");
         e.setNumber(123456);
-        context().Clnt().b( 5 );
-        context().Clnt().a( e );
+         context().Clnt().a( e );
     }
 
 
