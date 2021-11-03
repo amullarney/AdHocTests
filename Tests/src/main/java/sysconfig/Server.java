@@ -41,7 +41,7 @@ public class Server extends Component<Server> {
         Employee e = EmployeeImpl.create( context() );
         e.setName("John Doe");
         e.setNumber(123456);
-         context().Clnt().a( e );
+        context().Clnt().a( e );
     }
 
 

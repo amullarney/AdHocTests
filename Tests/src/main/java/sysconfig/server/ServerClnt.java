@@ -17,6 +17,7 @@ import sysconfig.Client;
 import sysconfig.Employee;
 
 import java.util.HashMap;
+import org.json.JSONObject;
 
 public class ServerClnt extends Port<Server> implements IFoo {
 
@@ -51,30 +52,24 @@ public class ServerClnt extends Port<Server> implements IFoo {
         else {
         }
     }
+//   {"messageHandle":"89e6c56d-e487-474d-bbd4-ceaae28d919c","name":"C","parameterData":"{"ename":"John Doe", "enumb":"12345"}",id:3} 
 
+//    {"messageHandle":"89e6c56d-e487-474d-bbd4-ceaae28d919c","name":"C","parameterData":"{'ename':'John Doe', 'enumb':'12345'}",id:3} 
 
     @Override
     public void deliver( IMessage message ) throws XtumlException {
-        System.out.printf( "Server heard response c from Client\n" );
-        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"C\",\"parameterData\":[{\"ename\":\"John Doe\", \"enumb\":\"12345\"}],id:3}";
-        System.out.printf( "Client invoked Server::deliver(message) : %s \n", s );
-        message = Message.deserialize(s);
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
-        switch ( message.getId() ) {
+        System.out.printf( "Server heard response c from Client\n" );
+        //String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"C\",\"parameterData\":[{\"ename\":\"John Doe\", \"enumb\":\"12345\"}],id:3}";
+        String msgstr = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"C\",\"parameterData\":\"{\\\"ename\\\":\\\"John Doe\\\", \\\"enumb\\\":\\\"12345\\\"}\",id:3}";
+        System.out.printf( "Client invoked Server::deliver(message) : %s \n", msgstr );
+        JSONObject msgobj = new JSONObject(msgstr);
+        int msgid = msgobj.getInt("id");
+        switch ( msgid ) {
             case IFoo.SIGNAL_NO_C:
-            	Object o = message.get(0);
-            	if (o instanceof HashMap) {
-            		HashMap hm = (HashMap)o;
-            		/*
-                    System.out.printf( "message param is HashMap %d  \n", hm.size() );
-                    if ( hm.containsKey("ename"))
-                        System.out.printf( "name is  %s  \n", hm.get("ename") );
-        	        String eName = (String) hm.get("ename");
-        	        int eNumber = Integer.parseInt( (String) hm.get("enumb") );
-                    System.out.printf( "name & number %s  %d \n", eName, eNumber );
-                    */
-                    c((String) hm.get("ename"), Integer.parseInt( (String) hm.get("enumb") ));
-            	}
+                String params = msgobj.getString("parameterData");
+                JSONObject parmobj = new JSONObject(params);
+                c( parmobj.getString("ename"), parmobj.getInt("enumb") );
                 break;
         default:
             throw new BadArgumentException( "Message not implemented by this port." );

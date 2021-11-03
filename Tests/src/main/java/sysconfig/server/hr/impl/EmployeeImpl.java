@@ -20,6 +20,7 @@ import io.ciera.runtime.summit.types.UniqueId;
 import sysconfig.Server;
 import sysconfig.server.hr.Employee;
 
+import org.json.JSONObject;
 import java.util.HashMap;
 
 public class EmployeeImpl extends ModelInstance<Employee,Server> implements Employee {
@@ -156,9 +157,14 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
     // @Added for 12002
     public String serialize() {
     	System.out.printf( "serializing employee on server side... %s\n", this.m_Name );
-//    	return "\"\""  + this.m_Name + "\", "  +  "\""  + Integer.toString(this.m_Number) + "\"";
     	int cs = this.getCurrentState();
-    	return   "{\"name\":\"" + this.m_Name + "\", \"number\":\"" + this.m_Number + "\", \"curr_state\":\"" + cs + "\"}";
+//    	return   "{\"name\":\"" + this.m_Name + "\", \"number\":\"" + this.m_Number + "\", \"curr_state\":\"" + cs + "\"}";
+    	JSONObject inst = new JSONObject();
+    	inst.put("name", this.m_Name);
+    	inst.put("number", this.m_Number);
+    	String str = inst.toString();
+    	System.out.printf( "serialized... %s\n", str );
+   	    return str;
     }
     
 
