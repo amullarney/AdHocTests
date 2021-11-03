@@ -39,8 +39,7 @@ public class Server extends Component<Server> {
     // domain functions
     public void T1() throws XtumlException {
         Employee e = EmployeeImpl.create( context() );
-        e.setBirthdate("07-Jan-1961");
-        e.setName("Jana Burke");
+        e.setName("John Doe");
         e.setNumber(123456);
          context().Clnt().a( e );
     }

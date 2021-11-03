@@ -146,6 +146,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
     // operations
     @Override
     public void Report() throws XtumlException {
+        context().LOG().LogInfo( self().getName() + " reporting for duty" );
     }
 
 

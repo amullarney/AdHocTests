@@ -29,6 +29,8 @@ public class ServerClnt extends Port<Server> implements IFoo {
         context().LOG().LogInfo( "Server: Employee name, number" );
         context().LOG().LogInfo( p_ename );
         context().LOG().LogInteger( p_enumb );
+        Employee emp = context().Employee_instances().anyWhere(selected -> StringUtil.equality(((Employee)selected).getName(), p_ename));
+        emp.Report();
     }
 
 
@@ -54,7 +56,7 @@ public class ServerClnt extends Port<Server> implements IFoo {
     @Override
     public void deliver( IMessage message ) throws XtumlException {
         System.out.printf( "Server heard response c from Client\n" );
-        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"C\",\"parameterData\":[{\"ename\":\"Jana Burke\", \"enumb\":\"12345\"}],id:3}";
+        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"C\",\"parameterData\":[{\"ename\":\"John Doe\", \"enumb\":\"12345\"}],id:3}";
         System.out.printf( "Client invoked Server::deliver(message) : %s \n", s );
         message = Message.deserialize(s);
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
@@ -63,12 +65,14 @@ public class ServerClnt extends Port<Server> implements IFoo {
             	Object o = message.get(0);
             	if (o instanceof HashMap) {
             		HashMap hm = (HashMap)o;
+            		/*
                     System.out.printf( "message param is HashMap %d  \n", hm.size() );
                     if ( hm.containsKey("ename"))
                         System.out.printf( "name is  %s  \n", hm.get("ename") );
         	        String eName = (String) hm.get("ename");
         	        int eNumber = Integer.parseInt( (String) hm.get("enumb") );
                     System.out.printf( "name & number %s  %d \n", eName, eNumber );
+                    */
                     c((String) hm.get("ename"), Integer.parseInt( (String) hm.get("enumb") ));
             	}
                 break;

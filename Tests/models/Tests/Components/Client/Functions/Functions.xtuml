@@ -41,6 +41,7 @@ INSERT INTO S_SYNC
 	'LOG::LogInfo( message:"T2 invoked" );
 select any e from instances of Employee;
 send Srv::c( ename:e.Name, enumb:e.Number );
+LOG::LogInfo( message:"Client responded to server with employee name & number" );
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
@@ -71,9 +72,9 @@ else
   end if;
   relate e to menu across R1.''is shown on'';
 end if;
-LOG::LogInfo( message:"Done" );
+LOG::LogInfo( message:"Done with registration" );
 ::T2();
-LOG::LogInfo( message:"Sent" );',
+',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',

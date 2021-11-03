@@ -283,6 +283,9 @@ INSERT INTO SPR_PS
 	'LOG::LogInfo( message:"Server: Employee name, number" );
 LOG::LogInfo( message:param.ename);
 LOG::LogInteger( message:param.enumb );
+select any emp from instances of Employee
+ where ( selected.Name == param.ename );
+emp.Report();
 ',
 	1,
 	0,

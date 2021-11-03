@@ -18,9 +18,6 @@ import sysconfig.client.hr.impl.EmployeeImpl;
 import sysconfig.client.widgets.EmployeeMenu;
 import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 
-import org.json.*; 
-import org.json.JSONObject;
-import java.util.List;
 import java.util.HashMap;
 
 public class ClientSrv extends Port<Client> implements IFoo {
@@ -63,7 +60,7 @@ public class ClientSrv extends Port<Client> implements IFoo {
     @Override
     public void deliver( IMessage message ) throws XtumlException {
     	// fake this received string data representation of the serialized message - note: this fake is 'always' msg 'A' with id=1
-        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"A\",\"parameterData\":[{\"name\":\"Jana Burke\", \"number\":\"12345\", \"curr_state\":\"0\"}],id:1}";
+        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"A\",\"parameterData\":[{\"name\":\"John Doe\", \"number\":\"12345\", \"curr_state\":\"0\"}],id:1}";
         System.out.printf( "Server invoked Client::deliver(message) : %s \n", s );
         message = Message.deserialize(s);
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
@@ -73,12 +70,14 @@ public class ClientSrv extends Port<Client> implements IFoo {
                 break;
             case IFoo.SIGNAL_NO_A:
             	Object o = message.get(0);
+            	/*
             	if (o instanceof HashMap) {
             		HashMap h = (HashMap)o;
                     System.out.printf( "message param is HashMap %d  \n", h.size() );
                     if ( h.containsKey("name"))
                         System.out.printf( "name is  %s  \n", h.get("name") );
             	}
+            	*/
                 a( (sysconfig.Employee)EmployeeImpl.deserialize(message.get(0), context() ));
                 break;
     
@@ -86,8 +85,6 @@ public class ClientSrv extends Port<Client> implements IFoo {
             throw new BadArgumentException( "Message not implemented by this port." );
         }
     }
-
-
 
     @Override
     public String getName() {

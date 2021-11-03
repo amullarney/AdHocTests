@@ -154,6 +154,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     // operations
     @Override
     public void Report() throws XtumlException {
+        context().LOG().LogInfo( self().getName() + " reporting for duty" );
     }
 
     
@@ -170,9 +171,11 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         System.out.printf( "Employee deserialize in Client \n");
 
         HashMap hash =  (HashMap)o;
+        /*
         String name = (String) hash.get("name");
         String num = (String) hash.get("number");
         System.out.printf( "Employee deserialize name, number %s %s \n", name, num );
+        */
      	try {
 	        int initialState = Integer.parseInt( (String) hash.get("curr_state") );
 	        Employee e = EmployeeImpl.create( context, "", "", 0, initialState );

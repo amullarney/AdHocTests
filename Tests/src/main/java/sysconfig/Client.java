@@ -65,16 +65,15 @@ public class Client extends Component<Client> {
             }
             context().relate_R1_Employee_is_shown_on_EmployeeMenu( e, menu );
             context().T2();
-            context().LOG().LogInfo( "Registering employee; sent response to Server..." );
         }
         context().LOG().LogInfo( "Done with registration" );
     }
     
 
     public void T2() throws XtumlException {
-        context().LOG().LogInfo( "T2 invoked" );
         Employee e = context().Employee_instances().any();
         context().Srv().c( e.getName(), e.getNumber() );
+        context().LOG().LogInfo( "Client responded to server with employee name & number" );
     }
 
 
