@@ -16,7 +16,6 @@ import sysconfig.Server;
 import sysconfig.Client;
 import sysconfig.Employee;
 
-import java.util.HashMap;
 import org.json.JSONObject;
 
 public class ServerClnt extends Port<Server> implements IFoo {

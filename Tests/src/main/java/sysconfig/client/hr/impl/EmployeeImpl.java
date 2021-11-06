@@ -177,7 +177,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         System.out.printf( "Employee deserialize name, number %s %s \n", name, num );
         */
      	try {
-	        int initialState = Integer.parseInt( (String) hash.get("curr_state") );
+	        int initialState = Integer.parseInt( (String) hash.get("current_state") );
 	        Employee e = EmployeeImpl.create( context, "", "", 0, initialState );
 	        e.setName( (String) hash.get("name") );
 	        e.setNumber( Integer.parseInt( (String) hash.get("number") ));

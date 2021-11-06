@@ -51,7 +51,12 @@ public class ClientSrv extends Port<Client> implements IFoo {
 
     // outbound messages
     public void c( final String p_ename,  final int p_enumb ) throws XtumlException {
-        if ( satisfied() ) send(new IFoo.C(p_ename, p_enumb));
+        if ( satisfied() ) {
+		    IMessage msg = new IFoo.C(p_ename, p_enumb );
+		    String str = msg.serialize();
+		    System.out.printf( "Client send: %s\n", str );
+       	    send(new IFoo.C(p_ename, p_enumb));
+        }
         else {
         }
     }
@@ -60,7 +65,7 @@ public class ClientSrv extends Port<Client> implements IFoo {
     @Override
     public void deliver( IMessage message ) throws XtumlException {
     	// fake this received string data representation of the serialized message - note: this fake is 'always' msg 'A' with id=1
-        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"A\",\"parameterData\":[{\"name\":\"John Doe\", \"number\":\"12345\", \"curr_state\":\"0\"}],id:1}";
+        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"A\",\"parameterData\":[{\"name\":\"John Doe\", \"number\":\"12345\", \"current_state\":\"0\"}],id:1}";
         System.out.printf( "Server invoked Client::deliver(message) : %s \n", s );
         message = Message.deserialize(s);
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
