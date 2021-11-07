@@ -1,0 +1,83 @@
+-- BP 7.1.6 content: Interface syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO C_I
+	VALUES ("41f6d903-1768-4de0-ab38-47fd8cdb9703",
+	"00000000-0000-0000-0000-000000000000",
+	'Signalling',
+	'');
+INSERT INTO C_EP
+	VALUES ("0bbc7f8b-eded-4b73-bdee-28986952469c",
+	"41f6d903-1768-4de0-ab38-47fd8cdb9703",
+	-1,
+	'Request',
+	'',
+	1);
+INSERT INTO C_AS
+	VALUES ("0bbc7f8b-eded-4b73-bdee-28986952469c",
+	'Request',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("1b8d3d63-749b-42c8-a154-feae302026e4",
+	"0bbc7f8b-eded-4b73-bdee-28986952469c",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'Ident',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("9f8ac164-a845-4ca2-a389-bf2ef0e9bccf",
+	"0bbc7f8b-eded-4b73-bdee-28986952469c",
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'Count',
+	'',
+	0,
+	'',
+	"1b8d3d63-749b-42c8-a154-feae302026e4");
+INSERT INTO C_PP
+	VALUES ("250e1354-2244-431a-b9cf-6127b057aa1b",
+	"0bbc7f8b-eded-4b73-bdee-28986952469c",
+	"ba5eda7a-def5-0000-0000-000000000001",
+	'Priority',
+	'',
+	0,
+	'',
+	"9f8ac164-a845-4ca2-a389-bf2ef0e9bccf");
+INSERT INTO C_EP
+	VALUES ("0b53a231-c336-45cc-a31d-9e47b4a425f7",
+	"41f6d903-1768-4de0-ab38-47fd8cdb9703",
+	-1,
+	'Response',
+	'',
+	2);
+INSERT INTO C_AS
+	VALUES ("0b53a231-c336-45cc-a31d-9e47b4a425f7",
+	'Response',
+	'',
+	1,
+	"0bbc7f8b-eded-4b73-bdee-28986952469c");
+INSERT INTO C_PP
+	VALUES ("4966ff39-a9c0-4b31-b071-91b6b476d5e4",
+	"0b53a231-c336-45cc-a31d-9e47b4a425f7",
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'Num',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO PE_PE
+	VALUES ("41f6d903-1768-4de0-ab38-47fd8cdb9703",
+	1,
+	"a076b0df-b30a-49b2-bd60-7f32a9e8d184",
+	"00000000-0000-0000-0000-000000000000",
+	6);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("a076b0df-b30a-49b2-bd60-7f32a9e8d184",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'Interfaces',
+	'',
+	0,
+	'../Interfaces.xtuml');
