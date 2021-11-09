@@ -1,0 +1,164 @@
+-- BP 7.1.6 content: Package syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO EP_PKG
+	VALUES ("15deecd4-fe61-437b-8637-f697ed433368",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'deployment',
+	'',
+	0);
+INSERT INTO CL_IC
+	VALUES ("26c13dbc-aad9-46f0-a026-f0d307bff788",
+	"479bf6fe-e992-4da0-8b97-59a652c611b7",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'Tests::Components::Client',
+	'');
+INSERT INTO CL_POR
+	VALUES ("26c13dbc-aad9-46f0-a026-f0d307bff788",
+	"a2c524d8-758a-45c9-8fba-22cd9082a114",
+	'Server',
+	"c81feac2-0511-4647-aebf-c2b170c492dd");
+INSERT INTO CL_IIR
+	VALUES ("524e28fd-5597-44d5-81b0-37643608f6fb",
+	"7dcd738a-4a20-48c9-a71e-eee2b535d30b",
+	"c81feac2-0511-4647-aebf-c2b170c492dd",
+	"00000000-0000-0000-0000-000000000000",
+	'Signalling',
+	'');
+INSERT INTO CL_IR
+	VALUES ("524e28fd-5597-44d5-81b0-37643608f6fb",
+	"cb82fb1d-e7ed-4c0b-9be0-fdcccec825f7",
+	'Signalling',
+	'');
+INSERT INTO C_IR_PROXY
+	VALUES ("7dcd738a-4a20-48c9-a71e-eee2b535d30b",
+	"41f6d903-1768-4de0-ab38-47fd8cdb9703",
+	"00000000-0000-0000-0000-000000000000",
+	"a2c524d8-758a-45c9-8fba-22cd9082a114",
+	'../Components/Client/Client.xtuml');
+INSERT INTO C_PO_PROXY
+	VALUES ("a2c524d8-758a-45c9-8fba-22cd9082a114",
+	"479bf6fe-e992-4da0-8b97-59a652c611b7",
+	'Server',
+	0,
+	0,
+	'',
+	'../Components/Client/Client.xtuml');
+INSERT INTO PE_PE
+	VALUES ("26c13dbc-aad9-46f0-a026-f0d307bff788",
+	1,
+	"15deecd4-fe61-437b-8637-f697ed433368",
+	"00000000-0000-0000-0000-000000000000",
+	21);
+INSERT INTO C_C_PROXY
+	VALUES ("479bf6fe-e992-4da0-8b97-59a652c611b7",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'Client',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../Components/Client/Client.xtuml');
+INSERT INTO CL_IC
+	VALUES ("2d75d743-d0c5-4a52-a63d-9a5827e583fb",
+	"dbea32f8-c1cd-4c1e-b519-e004907e51ed",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'Tests::Components::Server',
+	'');
+INSERT INTO CL_POR
+	VALUES ("2d75d743-d0c5-4a52-a63d-9a5827e583fb",
+	"90301b32-7868-4d3c-877b-db8f2e382993",
+	'Client',
+	"58ce6fe5-727c-4a04-9c77-bca6169dd763");
+INSERT INTO CL_IIR
+	VALUES ("eb7757ae-9ebc-4714-bcbf-ae67a53e2790",
+	"066d3285-3bb4-4904-93b7-4a44c65249c2",
+	"58ce6fe5-727c-4a04-9c77-bca6169dd763",
+	"00000000-0000-0000-0000-000000000000",
+	'Signalling',
+	'');
+INSERT INTO CL_IP
+	VALUES ("eb7757ae-9ebc-4714-bcbf-ae67a53e2790",
+	'Signalling',
+	'');
+INSERT INTO CL_IPINS
+	VALUES ("cb82fb1d-e7ed-4c0b-9be0-fdcccec825f7",
+	"eb7757ae-9ebc-4714-bcbf-ae67a53e2790");
+INSERT INTO C_IR_PROXY
+	VALUES ("066d3285-3bb4-4904-93b7-4a44c65249c2",
+	"41f6d903-1768-4de0-ab38-47fd8cdb9703",
+	"00000000-0000-0000-0000-000000000000",
+	"90301b32-7868-4d3c-877b-db8f2e382993",
+	'../Components/Server/Server.xtuml');
+INSERT INTO C_PO_PROXY
+	VALUES ("90301b32-7868-4d3c-877b-db8f2e382993",
+	"dbea32f8-c1cd-4c1e-b519-e004907e51ed",
+	'Client',
+	0,
+	0,
+	'',
+	'../Components/Server/Server.xtuml');
+INSERT INTO PE_PE
+	VALUES ("2d75d743-d0c5-4a52-a63d-9a5827e583fb",
+	1,
+	"15deecd4-fe61-437b-8637-f697ed433368",
+	"00000000-0000-0000-0000-000000000000",
+	21);
+INSERT INTO C_C_PROXY
+	VALUES ("dbea32f8-c1cd-4c1e-b519-e004907e51ed",
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	'Server',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'',
+	'../Components/Server/Server.xtuml');
+INSERT INTO C_SF
+	VALUES ("cb82fb1d-e7ed-4c0b-9be0-fdcccec825f7",
+	"7dcd738a-4a20-48c9-a71e-eee2b535d30b",
+	"066d3285-3bb4-4904-93b7-4a44c65249c2",
+	'',
+	'Server::Client::Signalling -o)- Client::Server::Signalling');
+INSERT INTO PE_PE
+	VALUES ("cb82fb1d-e7ed-4c0b-9be0-fdcccec825f7",
+	1,
+	"15deecd4-fe61-437b-8637-f697ed433368",
+	"00000000-0000-0000-0000-000000000000",
+	22);
+INSERT INTO C_R_PROXY
+	VALUES ("7dcd738a-4a20-48c9-a71e-eee2b535d30b",
+	'Signalling',
+	'',
+	'Unnamed Interface',
+	'Client::Server::Signalling',
+	'../Components/Client/Client.xtuml');
+INSERT INTO C_P_PROXY
+	VALUES ("066d3285-3bb4-4904-93b7-4a44c65249c2",
+	'Signalling',
+	'Unnamed Interface',
+	'',
+	'Server::Client::Signalling',
+	'../Components/Server/Server.xtuml');
+INSERT INTO PE_PE
+	VALUES ("15deecd4-fe61-437b-8637-f697ed433368",
+	1,
+	"00000000-0000-0000-0000-000000000000",
+	"00000000-0000-0000-0000-000000000000",
+	7);
+INSERT INTO S_SYS_PROXY
+	VALUES ("846e9e70-104d-4678-8694-b2e3922e335a",
+	'Tests',
+	1,
+	'../Tests.xtuml');

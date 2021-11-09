@@ -190,7 +190,7 @@ INSERT INTO GD_GE
 	"066d3285-3bb4-4904-93b7-4a44c65249c2",
 	94,
 	0,
-	'Tests::Components::Server::Port1::Unnamed Interface');
+	'Tests::Components::Server::Client::Signalling');
 INSERT INTO GD_CON
 	VALUES ("9fe648a8-5010-4b59-a59a-3b15c17c2c18",
 	"00000000-0000-0000-0000-000000000000");

@@ -1,1 +1,2 @@
-*,RootPackage,*,Tests::Components
+*,RootPackage,*,Tests::deployment
+Components::Client,InitFunction,Component,UpdateMenu

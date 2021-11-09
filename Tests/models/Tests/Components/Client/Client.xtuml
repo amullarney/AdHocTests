@@ -248,6 +248,26 @@ INSERT INTO C_EP_PROXY
 	'',
 	2,
 	'../../Interfaces/Signalling/Signalling.xtuml');
+INSERT INTO SPR_REP
+	VALUES ("181512fa-41d6-4c85-a2b1-ea2fc89f3878",
+	"7557bb89-06a5-41c8-a8f3-c5e2791c5eb8",
+	"7dcd738a-4a20-48c9-a71e-eee2b535d30b");
+INSERT INTO SPR_RS
+	VALUES ("181512fa-41d6-4c85-a2b1-ea2fc89f3878",
+	'Record',
+	'',
+	'',
+	3,
+	0,
+	3);
+INSERT INTO C_EP_PROXY
+	VALUES ("7557bb89-06a5-41c8-a8f3-c5e2791c5eb8",
+	"41f6d903-1768-4de0-ab38-47fd8cdb9703",
+	-1,
+	'Record',
+	'',
+	3,
+	'../../Interfaces/Signalling/Signalling.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("41f6d903-1768-4de0-ab38-47fd8cdb9703",
 	"00000000-0000-0000-0000-000000000000",

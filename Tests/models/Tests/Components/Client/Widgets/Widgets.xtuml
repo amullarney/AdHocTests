@@ -196,6 +196,46 @@ INSERT INTO DIM_DIA
 	0.000000,
 	0.000000,
 	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_DT
+	VALUES ("ea5abc0e-5508-4768-af05-2cd06e8c4b4c",
+	"00000000-0000-0000-0000-000000000000",
+	'inst_ref<Item>',
+	'',
+	'');
+INSERT INTO S_IRDT
+	VALUES ("ea5abc0e-5508-4768-af05-2cd06e8c4b4c",
+	0,
+	"801716e1-57ed-426b-b345-5eeee170db8d");
+INSERT INTO O_OBJ_PROXY
+	VALUES ("801716e1-57ed-426b-b345-5eeee170db8d",
+	'Item',
+	2,
+	'Item',
+	'',
+	"00000000-0000-0000-0000-000000000000",
+	'./Item/Item.xtuml');
+INSERT INTO PE_PE
+	VALUES ("ea5abc0e-5508-4768-af05-2cd06e8c4b4c",
+	1,
+	"701acde9-fe0b-4d27-a292-12538c6f6eb7",
+	"00000000-0000-0000-0000-000000000000",
+	3);
+INSERT INTO S_DT
+	VALUES ("5da5a28b-3ab3-4a86-bf7e-c35b5341a00b",
+	"00000000-0000-0000-0000-000000000000",
+	'inst_ref_set<Item>',
+	'',
+	'');
+INSERT INTO S_IRDT
+	VALUES ("5da5a28b-3ab3-4a86-bf7e-c35b5341a00b",
+	1,
+	"801716e1-57ed-426b-b345-5eeee170db8d");
+INSERT INTO PE_PE
+	VALUES ("5da5a28b-3ab3-4a86-bf7e-c35b5341a00b",
+	1,
+	"701acde9-fe0b-4d27-a292-12538c6f6eb7",
+	"00000000-0000-0000-0000-000000000000",
+	3);
 INSERT INTO R_SIMP
 	VALUES ("76a3a4d4-4435-4aeb-93c4-dced55a9ffbf");
 INSERT INTO R_REL
@@ -245,14 +285,6 @@ INSERT INTO R_OIR
 	"76a3a4d4-4435-4aeb-93c4-dced55a9ffbf",
 	"5f9a7534-aae4-4146-a1bf-fc243a546bdc",
 	"00000000-0000-0000-0000-000000000000");
-INSERT INTO O_OBJ_PROXY
-	VALUES ("801716e1-57ed-426b-b345-5eeee170db8d",
-	'Item',
-	2,
-	'Item',
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'./Item/Item.xtuml');
 INSERT INTO PE_PE
 	VALUES ("76a3a4d4-4435-4aeb-93c4-dced55a9ffbf",
 	1,
@@ -264,9 +296,12 @@ INSERT INTO S_SYNC
 	"00000000-0000-0000-0000-000000000000",
 	'UpdateMenu',
 	'',
-	'select any menu from instances of Menu;
+	'create object instance menu of Menu;
+create object instance item of Item;
+select any menu from instances of Menu;
 select any item from instances of Item;
 relate item to menu across R1.''is on'';
+LOG::LogInfo( message:"requesting.." );
 send Server::Request( Ident:"Item1", Count:2, Priority:True );',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,

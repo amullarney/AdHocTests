@@ -216,8 +216,8 @@ INSERT INTO SPR_PS
 	VALUES ("17e6a75e-b5d3-4476-a48f-50f80724805e",
 	'Request',
 	'',
-	'',
-	3,
+	'LOG::LogInfo( message:"Client requested: " + param.Ident );',
+	1,
 	0,
 	1);
 INSERT INTO C_EP_PROXY
@@ -247,6 +247,26 @@ INSERT INTO C_EP_PROXY
 	'Response',
 	'',
 	2,
+	'../../Interfaces/Signalling/Signalling.xtuml');
+INSERT INTO SPR_PEP
+	VALUES ("13ffddcd-6947-43b5-8ad2-1d8979ee4a45",
+	"7557bb89-06a5-41c8-a8f3-c5e2791c5eb8",
+	"066d3285-3bb4-4904-93b7-4a44c65249c2");
+INSERT INTO SPR_PS
+	VALUES ("13ffddcd-6947-43b5-8ad2-1d8979ee4a45",
+	'Record',
+	'',
+	'',
+	3,
+	0,
+	3);
+INSERT INTO C_EP_PROXY
+	VALUES ("7557bb89-06a5-41c8-a8f3-c5e2791c5eb8",
+	"41f6d903-1768-4de0-ab38-47fd8cdb9703",
+	-1,
+	'Record',
+	'',
+	3,
 	'../../Interfaces/Signalling/Signalling.xtuml');
 INSERT INTO C_I_PROXY
 	VALUES ("41f6d903-1768-4de0-ab38-47fd8cdb9703",
