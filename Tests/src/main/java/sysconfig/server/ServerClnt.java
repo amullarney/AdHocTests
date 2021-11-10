@@ -60,7 +60,7 @@ public class ServerClnt extends Port<Server> implements IFoo {
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
         System.out.printf( "Server heard response c from Client\n" );
         //String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"C\",\"parameterData\":[{\"ename\":\"John Doe\", \"enumb\":\"12345\"}],id:3}";
-        String msgstr = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"C\",\"parameterData\":\"{\\\"ename\\\":\\\"John Doe\\\", \\\"enumb\\\":\\\"12345\\\"}\",id:3}";
+        String msgstr = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"C\",\"parameterData\":\"{\\\"ename\\\":\\\"John Doe\\\", \\\"enumb\\\":\\\"12345\\\"}\",\"id\":3}";
         System.out.printf( "Client invoked Server::deliver(message) : %s \n", msgstr );
         JSONObject msgobj = new JSONObject(msgstr);
         int msgid = msgobj.getInt("id");
