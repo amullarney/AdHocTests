@@ -149,19 +149,19 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     public static Employee deserialize( Object o, Client context ) {
     	// fake this for now... create component-specific instance and populate attributes  from JSON, if it were here!
         // String s = "{ \"Name\": \"Jana\", \"Number\": \"1234\"}";
-        Employee e = null;
         System.out.printf( "Employee deserialize for client %s  \n", (String)o );
      	try {
-	         e = EmployeeImpl.create( context );
+     		Employee e = EmployeeImpl.create( context );
 	        System.out.printf( "Employee created for client \n" );
 
-	        JSONObject jobj = new JSONObject(o);
-	        System.out.printf( "JSON created  \n" );
-	        int number = (int)jobj.opt("Number");
-	        System.out.printf( "Number is %d  \n", number );
-	        String name = (String)jobj.opt("Name");
-	        System.out.printf( "Name is %s  \n", name );
+	        JSONObject jobj = new JSONObject((String)o);
+	        System.out.println(jobj.toString(4));
 
+	        System.out.printf( "JSON created  \n" );
+	        int number = jobj.getInt("Number");
+	        System.out.printf( "Number is %d  \n", number );
+	        String name = jobj.getString("Name");
+	        System.out.printf( "Name is %s  \n", name );
 
 	        e.setName( name );
 	        e.setNumber( number );
@@ -171,7 +171,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     	catch(Exception ex ) { 
         System.out.printf( "Employee deserialize failed: %s \n", ex.toString() );
     	};
-    	return e;
+    	return (Employee) null;
     }
    
 
