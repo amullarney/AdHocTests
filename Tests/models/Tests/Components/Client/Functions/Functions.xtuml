@@ -39,8 +39,7 @@ INSERT INTO S_SYNC
 	'T2',
 	'',
 	'LOG::LogInfo( message:"T2 invoked" );
-select any e from instances of Employee;
-//send Srv::c( emp:e );
+send Srv::c( available:true, quantity:3.14, item:"Pies" );
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
@@ -49,54 +48,6 @@ select any e from instances of Employee;
 	1);
 INSERT INTO PE_PE
 	VALUES ("e72bc35c-c53e-424a-997f-6715c3a8aada",
-	1,
-	"2f9f985f-7fb3-4792-ae55-8855debc24e3",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("c9ad35b1-0cc3-4fea-95b9-84dc9dc5de37",
-	"00000000-0000-0000-0000-000000000000",
-	'RegisterEmployee',
-	'',
-	'LOG::LogInfo( message:"Registering: " + param.employee.Name );
-e = param.employee;
-LOG::LogInteger( message:e.Number );
-select one menu related by e->EmployeeMenu[R1.''is shown on''];
-if ( not empty menu )
-  LOG::LogInfo( message:e.Name + " is already registered" );
-else
-  select any menu from instances of EmployeeMenu;
-  if ( empty menu )
-    create object instance menu of EmployeeMenu;
-  end if;
-  relate e to menu across R1.''is shown on'';
-end if;
-LOG::LogInfo( message:"Done" );
-::T2();
-LOG::LogInfo( message:"Sent" );',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0,
-	2);
-INSERT INTO S_SPARM
-	VALUES ("e7fd106d-8402-4bca-8877-33b98f75ee7d",
-	"c9ad35b1-0cc3-4fea-95b9-84dc9dc5de37",
-	'employee',
-	"e2b6734f-dd71-49ef-a655-90326eb25580",
-	0,
-	'',
-	"00000000-0000-0000-0000-000000000000",
-	'');
-INSERT INTO S_DT_PROXY
-	VALUES ("e2b6734f-dd71-49ef-a655-90326eb25580",
-	"00000000-0000-0000-0000-000000000000",
-	'inst_ref<Employee>',
-	'',
-	'',
-	'../../../HR/HR.xtuml');
-INSERT INTO PE_PE
-	VALUES ("c9ad35b1-0cc3-4fea-95b9-84dc9dc5de37",
 	1,
 	"2f9f985f-7fb3-4792-ae55-8855debc24e3",
 	"00000000-0000-0000-0000-000000000000",

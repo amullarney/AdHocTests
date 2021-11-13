@@ -280,12 +280,14 @@ INSERT INTO SPR_PS
 	VALUES ("5b5963b8-674c-4ed4-b5f8-44a4c90c4cae",
 	'c',
 	'',
-	'LOG::LogInfo( message:"Server: Employee name, birthdate, number" );
-LOG::LogInfo( message:param.emp.Name );
-LOG::LogInfo( message:param.emp.Birthdate );
-LOG::LogInteger( message:param.emp.Number );
-person = param.emp;
-person.Report();',
+	'LOG::LogInfo( message:"Server received msg C" );
+LOG::LogInfo( message:param.item);
+LOG::LogReal( message:param.item, r:param.quantity);
+if ( param.available )
+  LOG::LogSuccess( message:"in stock" );
+else
+LOG::LogFailure( message:"on back order" );
+end if;',
 	1,
 	0,
 	3);
