@@ -140,30 +140,38 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     
     // @Added for 12002
     public String serialize() {
-    	// @TODO
-    	return "{ employee data here }";
+    	System.out.printf( "serializing employee on client side... %s\n", this.m_Name );
+//    	return "\"\""  + this.m_Name + "\", "  +  "\""  + Integer.toString(this.m_Number) + "\"";
+    	return "{  \"Name\": \"Jana\", \"Number\": \"1234\" }";
     }
 
     // static operations
-    public static Employee deserialize( String name, int number, Client context ) {
+    public static Employee deserialize( Object o, Client context ) {
     	// fake this for now... create component-specific instance and populate attributes  from JSON, if it were here!
         // String s = "{ \"Name\": \"Jana\", \"Number\": \"1234\"}";
-
-        System.out.printf( "Employee deserialize %s %d \n", name, number );
+        Employee e = null;
+        System.out.printf( "Employee deserialize for client %s  \n", (String)o );
      	try {
-	        Employee e = EmployeeImpl.create( context );
+	         e = EmployeeImpl.create( context );
+	        System.out.printf( "Employee created for client \n" );
+
+	        JSONObject jobj = new JSONObject(o);
+	        System.out.printf( "JSON created  \n" );
+	        int number = (int)jobj.opt("Number");
+	        System.out.printf( "Number is %d  \n", number );
+	        String name = (String)jobj.opt("Name");
+	        System.out.printf( "Name is %s  \n", name );
+
+
 	        e.setName( name );
 	        e.setNumber( number );
-/*
-	        JSONObject jobj = new JSONObject(s);
-	        e.setName( (String) jobj.getString("Name") );
-	        e.setNumber( (int) jobj.getInt("Number") );
- */
-	    	return (Employee) e;
+ 
+	    	return  e;
     	}
-    	catch(Exception ex ) { };
-        System.out.printf( "Employee deserialize failed\n");
-    	return (Employee) null;
+    	catch(Exception ex ) { 
+        System.out.printf( "Employee deserialize failed: %s \n", ex.toString() );
+    	};
+    	return e;
     }
    
 

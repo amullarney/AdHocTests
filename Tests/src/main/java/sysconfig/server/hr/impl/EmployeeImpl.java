@@ -18,6 +18,8 @@ import io.ciera.runtime.summit.types.UniqueId;
 import sysconfig.Server;
 import sysconfig.server.hr.Employee;
 
+import org.json.*; 
+import org.json.JSONObject;
 
 public class EmployeeImpl extends ModelInstance<Employee,Server> implements Employee {
 
@@ -117,19 +119,39 @@ public class EmployeeImpl extends ModelInstance<Employee,Server> implements Empl
     // @Added for 12002
     public String serialize() {
     	System.out.printf( "serializing employee on server side... %s\n", this.m_Name );
-    	return "\"\""  + this.m_Name + "\", "  +  "\""  + Integer.toString(this.m_Number) + "\"";
+//    	return "\"\""  + this.m_Name + "\", "  +  "\""  + Integer.toString(this.m_Number) + "\"";
+    	return "{  \"Name\": \"Jana\", \"Number\": \"123456\" }";
     }
     
 
     // static operations
     public static Employee deserialize( Object o, Server context ) {
-    	return (Employee) null;
+        System.out.printf( "Employee deserialize for server %s \n", (String)o );
+        Employee e = null;
+     	try {
+	         e = EmployeeImpl.create( context );
+	        System.out.printf( "Employee created for server \n" );
+
+	        JSONObject jobj = new JSONObject(o);
+	        System.out.printf( "JSON created  \n" );
+	        int number = (int)jobj.opt("Number");
+	        System.out.printf( "Number is %d  \n", number );
+	        String name = (String)jobj.opt("Name");
+	        System.out.printf( "Name is %s  \n", name );
+
+
+	        e.setName( name );
+	        e.setNumber( number );
+ 
+	    	return  e;
+    	}
+    	catch(Exception ex ) { 
+        System.out.printf( "Employee deserialize failed: %s \n", ex.toString() );
+    	};
+    	return e;
     }
-   
-
-    // events
-
-
+    
+    
     // selections
 
 

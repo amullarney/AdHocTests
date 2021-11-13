@@ -26,7 +26,7 @@ public class ClientSrv extends Port<Client> implements IFoo {
     }
 
     // inbound messages
-    public void b( final int p_count ) throws XtumlException {
+    public void b( final int p_count,  final String p_name ) throws XtumlException {
         context().LOG().LogInteger( p_count );
         EmployeeMenu menu = EmployeeMenuImpl.create( context() );
     }
@@ -59,19 +59,16 @@ public class ClientSrv extends Port<Client> implements IFoo {
     @Override
     public void deliver( IMessage message ) throws XtumlException {
         System.out.printf( "Client-Server deliver message\n" );
-        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"A\",\"parameterData\":[\"Jana Burke\", \"123456\"],\"id\":1}";
-        message = Message.deserialize(s);
+//        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"A\",\"parameterData\":[\"Jana Burke\", \"123456\"],\"id\":1}";
+//        message = Message.deserialize(s);
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
         switch ( message.getId() ) {
             case IFoo.SIGNAL_NO_B:
-                b(IntegerUtil.deserialize(message.get(0)));
+                b(IntegerUtil.deserialize(message.get(0)), StringUtil.deserialize(message.get(1)));
                 break;
             case IFoo.SIGNAL_NO_A:
-            	String name = StringUtil.deserialize(message.get(0));
-            	int number = IntegerUtil.deserialize(message.get(1));
-            	
-                System.out.printf( "message params %s %d \n", name, number );
-                a( (sysconfig.Employee)EmployeeImpl.deserialize( name, number, context() ));
+                System.out.printf( "Client-Server received: %s \n", message.getParm("p_emp") );
+                a( (sysconfig.Employee)EmployeeImpl.deserialize( message.getParm("p_emp"), context() ) );
                 break;
     
             default:
