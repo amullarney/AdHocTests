@@ -29,10 +29,6 @@ import sysconfig.client.widgets.EmployeeMenu;
 import sysconfig.client.widgets.EmployeeMenuSet;
 import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 import sysconfig.client.widgets.impl.EmployeeMenuSetImpl;
-/* @Removed for 12002
-import sysconfig.server.hr.Employee;
-import sysconfig.server.hr.impl.EmployeeImpl;
-*/
 
 
 public class Client extends Component<Client> {
@@ -72,6 +68,7 @@ public class Client extends Component<Client> {
     
 
     public void T2() throws XtumlException {
+        context().LOG().LogInfo( "T2 invoked" );
         Employee e = context().Employee_instances().any();
         context().Srv().c( e );
     }
@@ -115,12 +112,10 @@ public class Client extends Component<Client> {
 
 
     // relationship selections
-    // relationship selections
     private IRelationshipSet R1_Employee_is_shown_on_EmployeeMenu_extent;
     public IRelationshipSet R1_Employee_is_shown_on_EmployeeMenus() throws XtumlException {
         return R1_Employee_is_shown_on_EmployeeMenu_extent;
     }
-
 
 
     // ports

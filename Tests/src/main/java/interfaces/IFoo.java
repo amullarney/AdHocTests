@@ -4,7 +4,6 @@ package interfaces;
 import io.ciera.runtime.summit.exceptions.XtumlException;
 import io.ciera.runtime.summit.interfaces.Message;
 
-//import sysconfig.client.hr.Employee;
 import sysconfig.Employee;
 
 

@@ -18,7 +18,6 @@ import sysconfig.client.hr.impl.EmployeeImpl;
 import sysconfig.client.widgets.EmployeeMenu;
 import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 
-
 public class ClientSrv extends Port<Client> implements IFoo {
 
     public ClientSrv( Client context, IPort<?> peer ) {
@@ -30,7 +29,6 @@ public class ClientSrv extends Port<Client> implements IFoo {
         context().LOG().LogInteger( p_count );
         EmployeeMenu menu = EmployeeMenuImpl.create( context() );
     }
-
 
     public void a( final sysconfig.Employee emp ) throws XtumlException {
     	Employee p_emp = (Employee) emp; // down-cast to component-specific
@@ -47,7 +45,6 @@ public class ClientSrv extends Port<Client> implements IFoo {
     }
 
 
-
     // outbound messages
     public void c( final sysconfig.Employee p_emp ) throws XtumlException {
         if ( satisfied() ) send(new IFoo.C(p_emp));
@@ -58,9 +55,6 @@ public class ClientSrv extends Port<Client> implements IFoo {
 
     @Override
     public void deliver( IMessage message ) throws XtumlException {
-        System.out.printf( "Client-Server deliver message\n" );
-//        String s = "{\"messageHandle\":\"89e6c56d-e487-474d-bbd4-ceaae28d919c\",\"name\":\"A\",\"parameterData\":[\"Jana Burke\", \"123456\"],\"id\":1}";
-//        message = Message.deserialize(s);
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );
         switch ( message.getId() ) {
             case IFoo.SIGNAL_NO_B:
@@ -75,7 +69,6 @@ public class ClientSrv extends Port<Client> implements IFoo {
             throw new BadArgumentException( "Message not implemented by this port." );
         }
     }
-
 
 
     @Override

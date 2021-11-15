@@ -22,7 +22,7 @@ public class ServerClnt extends Port<Server> implements IFoo {
 
     // inbound messages
     public void c( final sysconfig.Employee emp ) throws XtumlException {
-    	sysconfig.server.hr.Employee p_emp = (sysconfig.server.hr.Employee) emp; // down-cast to component-specific
+    	Employee p_emp = (Employee) emp; // down-cast to component-specific
         context().LOG().LogInfo( "Server: Employee name, birthdate, number" );
         context().LOG().LogInfo( p_emp.getName() );
         context().LOG().LogInfo( p_emp.getBirthdate() );
@@ -30,8 +30,6 @@ public class ServerClnt extends Port<Server> implements IFoo {
         Employee person = p_emp;
         person.Report();
     }
-
-
 
     // outbound messages
     public void b( final int p_count,  final String p_name ) throws XtumlException {
@@ -44,18 +42,7 @@ public class ServerClnt extends Port<Server> implements IFoo {
         else {
         }
     }
-/*    public void a( final Employee p_emp ) throws XtumlException {
-        if ( satisfied() ) {
-          IMessage msg = new IFoo.A(p_emp);
-          String str = msg.serialize();
-          //String str = "Employee data here...";
-          System.out.printf( "Server send: %s\n", str );
-          send(msg);
-        }
-        else {
-        }
-    }
-*/
+
     @Override
     public void deliver( IMessage message ) throws XtumlException {
         if ( null == message ) throw new BadArgumentException( "Cannot deliver null message." );

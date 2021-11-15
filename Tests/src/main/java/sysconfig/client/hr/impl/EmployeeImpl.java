@@ -33,19 +33,6 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
     // constructors
     
-    // @Added for 12002
-    public EmployeeImpl( sysconfig.server.hr.Employee serverEmp ) {
-      System.out.printf( "Copy constructor\n" );
-      try {
-    	m_Name = serverEmp.getName();
-    	m_Birthdate = serverEmp.getBirthdate();
-    	m_Number = serverEmp.getNumber();
-      } catch (Exception e) {
-          System.out.printf( "Exception in copy constructor: %s\n", e );
-      }
-      
-    }
-    
     private EmployeeImpl( Client context ) {
         this.context = context;
         m_Name = "";
@@ -147,8 +134,6 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
 
     // static operations
     public static Employee deserialize( Object o, Client context ) {
-    	// fake this for now... create component-specific instance and populate attributes  from JSON, if it were here!
-        // String s = "{ \"Name\": \"Jana\", \"Number\": \"1234\"}";
         System.out.printf( "Employee deserialize for client %s  \n", (String)o );
      	try {
      		Employee e = EmployeeImpl.create( context );
