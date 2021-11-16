@@ -1,0 +1,879 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--------------------------< [0;36morg.xtuml:Tests[0;1m >---------------------------[m
+[[1;34mINFO[m] [1mBuilding Tests 1.0.0-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mciera-maven-plugin:2.5.1-SNAPSHOT:pyxtuml-pre-build[m [1m(pre-build)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] Pre-build output up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mciera-maven-plugin:2.5.1-SNAPSHOT:core[m [1m(ciera-core)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] tool-core SQL load file: target/Tests.sql
+[[1;34mINFO[m] Preprocessing... in tool-core::translation_utility_functions.preprocess 
+[[1;34mINFO[m] Loading marking data.
+[[1;34mINFO[m] Translating...
+[[1;34mINFO[m]   Resolving associative selections...
+[[1;34mINFO[m]   done.
+[[1;34mINFO[m]   Elapsed time: 3000
+[[1;34mINFO[m]   Translating builtin types...
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type boolean, .boolean
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type component_ref, io.ciera.runtime.summit.components.IComponent
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type date, io.ciera.runtime.summit.types.Date
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type inst<Event>, io.ciera.runtime.summit.statemachine.EventHandle
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type inst<Mapping>, io.ciera.runtime.summit.types.InstMapping
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type inst_ref<Mapping>, io.ciera.runtime.summit.types.InstRefMapping
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type inst_ref<Object>, io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type inst_ref<Timer>, io.ciera.runtime.summit.time.TimerHandle
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type inst_ref_set<Object>, io.ciera.runtime.summit.classes.IInstanceSet
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type integer, .int
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type real, .double
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type string, .String
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type timestamp, .long
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type unique_id, io.ciera.runtime.summit.types.UniqueId
+[[1;34mINFO[m] JRW Type::resolve(): s_dt, Type void, .void
+[[1;34mINFO[m]   done.
+[[1;34mINFO[m]   Elapsed time: 109000
+[[1;34mINFO[m]   Publishing IRDTs...
+[[1;34mINFO[m]   done.
+[[1;34mINFO[m]   Elapsed time: 128000
+[[1;34mINFO[m]   Translating application package...
+[[1;34mINFO[m] JRW ::transformApplication: invoking ::transformComponentDefinition()
+[[1;34mINFO[m] JRW entering ::transformComponentDefinition( pass: 1 )
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, io.ciera.runtime.summit.interfaces.Port
+[[1;34mINFO[m] JRW addStringToImports: file, string interfaces.IFoo, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW addStringToImports: file, string interfaces.IFoo, io.ciera.runtime.summit.interfaces.Message
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, io.ciera.runtime.summit.types.StringUtil
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, io.ciera.runtime.summit.types.IntegerUtil
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW addFileToImports: file, string ClientSrv, interfaces.IFoo
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, interfaces.IFoo
+[[1;34mINFO[m] JRW addFileToImports: file, string Client, sysconfig.client.ClientSrv
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.ClientSrv
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, io.ciera.runtime.summit.exceptions.BadArgumentException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, io.ciera.runtime.summit.interfaces.IMessage
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, io.ciera.runtime.summit.interfaces.IPort
+[[1;34mINFO[m] JRW addFileToImports: file, string ClientSrv, sysconfig.Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, sysconfig.Client
+[[1;34mINFO[m] JRW addFileToImports: file, string ClientSrv, interfaces.IFoo
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 1 ), package: Functions path: sysconfig/client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW Type::createUnresolvedType(): new unresolved type: .UnresolvedType0
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: Functions
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 1 ), package: HR path: sysconfig/client
+[[1;34mINFO[m] JRW Entering ::transformClassInComponent() Employee
+[[1;34mINFO[m] JRW package: HR
+[[1;34mINFO[m] JRW ensure the component-independent instance of Class has been transformed
+[[1;34mINFO[m] JRW transforming component-independent class: Employee
+[[1;34mINFO[m] JRW ::packageOutsideComponent(): pkg, comp HR, Client
+[[1;34mINFO[m] JRW ::packageOutsideComponent(): returning TRUE
+[[1;34mINFO[m] JRW entering ::transformClass()
+[[1;34mINFO[m] JRW Type::resolveCompIndepClass(): s_dt, Type inst_ref<Employee>, sysconfig.hr.Employee
+[[1;34mINFO[m] JRW ::transformClass(): adding import block
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.hr.Employee, io.ciera.runtime.summit.types.IXtumlType
+[[1;34mINFO[m] JRW exiting ::transformClass()
+[[1;34mINFO[m] JRW creating ClassInComponent and File
+[[1;34mINFO[m] JRW ComponentSpecificType::resolve(): s_dt, new_type inst_ref<Employee>, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW relating Class to Component using ClassInComponent
+[[1;34mINFO[m] JRW transforming attributes
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.instanceloading.AttributeChangedDelta
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.exceptions.EmptyInstanceException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.types.StringUtil
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW transforming operations
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW transforming state machine
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeStateMachine, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeStateMachine, io.ciera.runtime.summit.statemachine.ITransition
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeStateMachine, io.ciera.runtime.summit.statemachine.StateMachine
+[[1;34mINFO[m] JRW addFileToImports: file, string EmployeeStateMachine, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeStateMachine, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addFileToImports: file, string EmployeeStateMachine, sysconfig.Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeStateMachine, sysconfig.Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.statemachine.IEvent
+[[1;34mINFO[m] JRW transforming set object
+[[1;34mINFO[m] JRW ComponentSpecificType::resolve(): s_dt, new_type inst_ref_set<Employee>, sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW addFileToImports: file, string EmployeeSet, sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW addFileToImports: file, string EmployeeSet, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, java.util.Arrays
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, java.util.Comparator
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, java.util.List
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, io.ciera.runtime.summit.classes.InstanceSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, io.ciera.runtime.summit.classes.IInstanceSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW add to the containing component imports
+[[1;34mINFO[m] JRW addFileToImports: file, string Client, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addFileToImports: file, string Client, sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.hr.impl.EmployeeImpl
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.hr.impl.EmployeeSetImpl
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW create the import block
+[[1;34mINFO[m] JRW addFileToImports: file, string Employee, sysconfig.Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, sysconfig.Client
+[[1;34mINFO[m] JRW addFileToImports: file, string Employee, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.application.IRunContext
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.classes.InstanceIdentifier
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.classes.IInstanceIdentifier
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.classes.ModelInstance
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.exceptions.InstancePopulationException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.types.IWhere
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.types.IXtumlType
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.summit.types.UniqueId
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, io.ciera.runtime.instanceloading.InstanceCreatedDelta
+[[1;34mINFO[m] JRW finished creating import block
+[[1;34mINFO[m] JRW exiting ::transformClassInComponent()
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: HR
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 1 ), package: Widgets path: sysconfig/client
+[[1;34mINFO[m] JRW Entering ::transformClassInComponent() EmployeeMenu
+[[1;34mINFO[m] JRW package: Widgets
+[[1;34mINFO[m] JRW ensure the component-independent instance of Class has been transformed
+[[1;34mINFO[m] JRW transforming component-independent class: EmployeeMenu
+[[1;34mINFO[m] JRW ::packageOutsideComponent(): pkg, comp Widgets, Client
+[[1;34mINFO[m] JRW ::packageOutsideComponent(): returning FALSE
+[[1;34mINFO[m] JRW entering ::transformClass()
+[[1;34mINFO[m] JRW Type::resolveCompIndepClass(): s_dt, Type inst_ref<EmployeeMenu>, sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::transformClass(): adding import block
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.components.client.widgets.EmployeeMenu, io.ciera.runtime.summit.types.IXtumlType
+[[1;34mINFO[m] JRW exiting ::transformClass()
+[[1;34mINFO[m] JRW creating ClassInComponent and File
+[[1;34mINFO[m] JRW ComponentSpecificType::resolve(): s_dt, new_type inst_ref<EmployeeMenu>, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW relating Class to Component using ClassInComponent
+[[1;34mINFO[m] JRW transforming attributes
+[[1;34mINFO[m] JRW transforming operations
+[[1;34mINFO[m] JRW transforming state machine
+[[1;34mINFO[m] JRW transforming set object
+[[1;34mINFO[m] JRW ComponentSpecificType::resolve(): s_dt, new_type inst_ref_set<EmployeeMenu>, sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW addFileToImports: file, string EmployeeMenuSet, sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW addFileToImports: file, string EmployeeMenuSet, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, java.util.Arrays
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, java.util.Comparator
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, java.util.List
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, io.ciera.runtime.summit.classes.InstanceSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, io.ciera.runtime.summit.classes.IInstanceSet
+[[1;34mINFO[m] JRW add to the containing component imports
+[[1;34mINFO[m] JRW addFileToImports: file, string Client, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW addFileToImports: file, string Client, sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.widgets.impl.EmployeeMenuImpl
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.widgets.impl.EmployeeMenuSetImpl
+[[1;34mINFO[m] JRW create the import block
+[[1;34mINFO[m] JRW addFileToImports: file, string EmployeeMenu, sysconfig.Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, sysconfig.Client
+[[1;34mINFO[m] JRW addFileToImports: file, string EmployeeMenu, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.application.IRunContext
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.classes.InstanceIdentifier
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.classes.IInstanceIdentifier
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.classes.ModelInstance
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.exceptions.InstancePopulationException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.types.IWhere
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.types.IXtumlType
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.types.UniqueId
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.instanceloading.InstanceCreatedDelta
+[[1;34mINFO[m] JRW finished creating import block
+[[1;34mINFO[m] JRW exiting ::transformClassInComponent()
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: Widgets
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.application.IApplication
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.application.IRunContext
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.components.Component
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.exceptions.BadArgumentException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.exceptions.EmptyInstanceException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, java.util.Map
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, java.util.TreeMap
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, java.io.IOException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, java.util.Properties
+[[1;34mINFO[m] JRW exiting ::transformComponentDefinition()
+[[1;34mINFO[m] JRW entering ::transformComponentDefinition( pass: 2)
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 2 ), package: Functions
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: Functions
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 2 ), package: HR
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: HR
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 2 ), package: Widgets
+[[1;34mINFO[m] AM:: xformAssoc - form: EmployeeMenu part: Employee
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.classes.RelationshipSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.classes.Relationship
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.classes.IRelationshipSet
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.exceptions.ModelIntegrityException
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: Widgets
+[[1;34mINFO[m] JRW exiting ::transformComponentDefinition()
+[[1;34mINFO[m] JRW entering ::transformComponentDefinition( pass: 3 )
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 3 ), package: Functions
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: Functions
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 3 ), package: HR
+[[1;34mINFO[m] JRW ::transformSelector() rel, obj, other_obj R1_EmployeeMenu_displays_Employee, sysconfig.hr.Employee, sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref_set<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] AM :: xform_selector: param MULT is ONE; R1_is_shown_on_EmployeeMenu class_type: EmployeeMenu
+[[1;34mINFO[m] JRW ::transformSelector(), add imports to object file
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, sysconfig.client.widgets.impl.EmployeeMenuImpl
+[[1;34mINFO[m] JRW ::transformSelector(), add imports to object set file
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, sysconfig.client.widgets.impl.EmployeeMenuSetImpl
+[[1;34mINFO[m] JRW ::transformSelector(), add imports to component file
+[[1;34mINFO[m] JRW ::transformSelector() exiting
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: HR
+[[1;34mINFO[m] JRW entering ::transformPackage( pass: 3 ), package: Widgets
+[[1;34mINFO[m] JRW ::transformSelector() rel, obj, other_obj R1_EmployeeMenu_displays_Employee, sysconfig.components.client.widgets.EmployeeMenu, sysconfig.hr.Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, EmployeeMenu
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref_set<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] AM :: xform_selector: param MULT is MANY; R1_displays_Employee set_type: EmployeeSet
+[[1;34mINFO[m] JRW ::transformSelector(), add imports to object file
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, sysconfig.client.hr.impl.EmployeeSetImpl
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, EmployeeMenu
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::transformSelector(), add imports to object set file
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, sysconfig.client.hr.impl.EmployeeSetImpl
+[[1;34mINFO[m] JRW ::transformSelector(), add imports to component file
+[[1;34mINFO[m] JRW ::transformSelector() exiting
+[[1;34mINFO[m] JRW exiting ::transformPackage(), package: Widgets
+[[1;34mINFO[m] JRW exiting ::transformComponentDefinition()
+[[1;34mINFO[m] JRW ::transformApplication: invoking ::addFileToImports()
+[[1;34mINFO[m] JRW addFileToImports: file, string TestsApplication, sysconfig.Client
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, sysconfig.Client
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, io.ciera.runtime.summit.application.tasks.HaltExecutionTask
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, io.ciera.runtime.summit.application.tasks.GenericExecutionTask
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, java.util.Arrays
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, io.ciera.runtime.summit.application.ApplicationExecutor
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, io.ciera.runtime.summit.application.IApplication
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, io.ciera.runtime.summit.application.ILogger
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, io.ciera.runtime.summit.components.IComponent
+[[1;34mINFO[m] JRW addStringToImports: file, string tests.TestsApplication, io.ciera.runtime.summit.exceptions.XtumlException
+[[1;34mINFO[m]   done.
+[[1;34mINFO[m]   Elapsed time: 661000
+[[1;34mINFO[m]   Resolving type references...
+[[1;34mINFO[m] JRW entering ::resolveTypeImports()
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.types.Date
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW Parm->Func->Comp: sysconfig.Client
+[[1;34mINFO[m] JRW :: addToImport for file name: Client component Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW Selector->InsSelector->ClassInComp: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW :: addToImport for file name: Employee component Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.Employee, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW Selector->SetSelector->ClassSet: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW :: addToImport for file name: EmployeeSet component Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.hr.EmployeeSet, sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW Selector->InsSelector->ClassInComp: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW Selector->SetSelector->ClassSet: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW :: addToImport for file name: EmployeeMenu component Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenu, sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW :: addToImport for file name: EmployeeMenuSet component Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.widgets.EmployeeMenuSet, sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.statemachine.EventHandle
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.components.IComponent
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.classes.IInstanceSet
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.types.InstMapping
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.types.InstRefMapping
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: .String
+[[1;34mINFO[m] JRW Attr->ClassInComp: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW Attr->ClassSet: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW Parm->IFace: interfaces.IFoo
+[[1;34mINFO[m] JRW Parm->Port: sysconfig.client.ClientSrv
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.time.TimerHandle
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: io.ciera.runtime.summit.types.UniqueId
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: .boolean
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: .double
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: .int
+[[1;34mINFO[m] JRW Attr->ClassInComp: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW Attr->ClassSet: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW Parm->IFace: interfaces.IFoo
+[[1;34mINFO[m] JRW Parm->Port: sysconfig.client.ClientSrv
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: .long
+[[1;34mINFO[m] JRW ::resolveTypeImports(): type: .void
+[[1;34mINFO[m] JRW InsOp->ClassInComp: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW InvObj->PortMsg->Msg->IFace: interfaces.IFoo
+[[1;34mINFO[m] JRW InvObj->PortMsg->Port: sysconfig.client.ClientSrv
+[[1;34mINFO[m] JRW exiting ::resolveTypeImports()
+[[1;34mINFO[m]   done.
+[[1;34mINFO[m]   Elapsed time: 730000
+[[1;34mINFO[m]   Resolving user defined types...
+[[1;34mINFO[m]   done.
+[[1;34mINFO[m]   Elapsed time: 732000
+[[1;34mINFO[m]   Translating OAL bodies...
+[[1;34mINFO[m]   Translating 'sysconfig.hr.Employee#Report' ...
+[[1;34mINFO[m]   Translating 'sysconfig.client.hr.EmployeeStateMachine#Active' ...
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: a = 5;
+[[1;34mINFO[m] JRW ClassInComponent::get(): empty obj
+[[1;34mINFO[m] JRW ClassInComponent::get(): empty obj
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable EmployeeStateMachine, Active
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName int, EmployeeStateMachine
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m]   Translating 'sysconfig.client.hr.EmployeeStateMachine#OnLeave' ...
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: b = 6;
+[[1;34mINFO[m] JRW ClassInComponent::get(): empty obj
+[[1;34mINFO[m] JRW ClassInComponent::get(): empty obj
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable EmployeeStateMachine, OnLeave
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName int, EmployeeStateMachine
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m]   Translating 'sysconfig.hr.Employee#Report' ...
+[[1;34mINFO[m]   Translating 'sysconfig.client.ClientSrv#c' ...
+[[1;34mINFO[m]   Translating 'sysconfig.client.ClientSrv#a' ...
+[[1;34mINFO[m] AM ::xform BRG invoc ee path, comp: io/ciera/runtime/summit/util Client
+[[1;34mINFO[m] AM ::xformUtilty -created utility: LOG for comp: Client
+[[1;34mINFO[m] AM ::xformUtilty -utility package: io.ciera.runtime.summit.util
+[[1;34mINFO[m] AM ::xformUtility - xforming util func: LogDate comp: Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp date, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: io.ciera.runtime.summit.types.Date
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: io.ciera.runtime.summit.types.Date
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] AM ::xform util func - invInComp populate LogDate Client
+[[1;34mINFO[m] AM ::xformUtility - xforming util func: LogFailure comp: Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] AM ::xform util func - invInComp populate LogFailure Client
+[[1;34mINFO[m] AM ::xformUtility - xforming util func: LogInfo comp: Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] AM ::xform util func - invInComp populate LogInfo Client
+[[1;34mINFO[m] AM ::xformUtility - xforming util func: LogInteger comp: Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] AM ::xform util func - invInComp populate LogInteger Client
+[[1;34mINFO[m] AM ::xformUtility - xforming util func: LogReal comp: Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp real, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .double
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .double
+[[1;34mINFO[m] AM ::xform util func - invInComp populate LogReal Client
+[[1;34mINFO[m] AM ::xformUtility - xforming util func: LogSuccess comp: Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] AM ::xform util func - invInComp populate LogSuccess Client
+[[1;34mINFO[m] AM ::xformUtility - xforming util func: LogTime comp: Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp void, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .void
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp timestamp, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .long
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .long
+[[1;34mINFO[m] AM ::xform util func - invInComp populate LogTime Client
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] AM ::xformUtility - R4560 ref LOG to comp: Client
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.util.LOG
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.Client, io.ciera.runtime.summit.util.impl.LOGImpl
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: select any menu from instances of EmployeeMenu;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable ClientSrv, a
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, ClientSrv
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, EmployeeMenu
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref_set<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: select any person from instances of Employee;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable ClientSrv, a
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, ClientSrv
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref_set<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp boolean, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .boolean
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .boolean
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Object>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: if ( not_empty menu )
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable ClientSrv, a
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, ClientSrv
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: relate menu to person across R1.'displays';
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable ClientSrv, a
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, ClientSrv
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: relate menu to person across R1.'displays';
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable ClientSrv, a
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, ClientSrv
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: ::RegisterEmployee( employee:person);
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable ClientSrv, a
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, ClientSrv
+[[1;34mINFO[m]   Translating 'sysconfig.Client#RegisterEmployee' ...
+[[1;34mINFO[m] AM ::xform BRG invoc ee path, comp: io/ciera/runtime/summit/util Client
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: LOG::LogInfo( message:"Registering: " + param.employee.Name );
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: e = param.employee;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] AM ::xform BRG invoc ee path, comp: io/ciera/runtime/summit/util Client
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: LOG::LogInteger( message:e.Number );
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: select one menu related by e->EmployeeMenu[R1.'is shown on'];
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: select one menu related by e->EmployeeMenu[R1.'is shown on'];
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp boolean, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .boolean
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .boolean
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp boolean, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .boolean
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .boolean
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Object>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: if ( not empty menu )
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, Client
+[[1;34mINFO[m] AM ::xform BRG invoc ee path, comp: io/ciera/runtime/summit/util Client
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: LOG::LogInfo( message:e.Name + " is already registered" );
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: LOG::LogInfo( message:e.Name + " is already registered" );
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: select any menu from instances of EmployeeMenu;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, Client
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, EmployeeMenu
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref_set<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenuSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp boolean, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .boolean
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .boolean
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Object>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: io.ciera.runtime.summit.classes.IModelInstance
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: if ( empty menu )
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: create object instance menu of EmployeeMenu;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, Client
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, EmployeeMenu
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: create object instance menu of EmployeeMenu;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: relate e to menu across R1.'is shown on';
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: relate e to menu across R1.'is shown on';
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, Client
+[[1;34mINFO[m] AM ::xform BRG invoc ee path, comp: io/ciera/runtime/summit/util Client
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] AM ::xform BRG invoc ee path, comp: io/ciera/runtime/summit/util Client
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m]   Translating 'sysconfig.Client#T2' ...
+[[1;34mINFO[m] AM ::xform BRG invoc ee path, comp: io/ciera/runtime/summit/util Client
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: select any e from instances of Employee;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable Client, T2
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName Employee, Client
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref_set<Employee>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.hr.EmployeeSet
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp string, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .String
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .String
+[[1;34mINFO[m]   Translating 'sysconfig.client.hr.EmployeeStateMachine#Retired' ...
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: c = 7;
+[[1;34mINFO[m] JRW ClassInComponent::get(): empty obj
+[[1;34mINFO[m] JRW ClassInComponent::get(): empty obj
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable EmployeeStateMachine, Retired
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName int, EmployeeStateMachine
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m]   Translating 'sysconfig.client.ClientSrv#b' ...
+[[1;34mINFO[m] AM ::xform BRG invoc ee path, comp: io/ciera/runtime/summit/util Client
+[[1;34mINFO[m] JRW UtilityInComponent::get(): empty return value
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp integer, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): resolved comp-indpendent type: .int
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt, comp inst_ref<EmployeeMenu>, Client
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.components.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): component-specific s_dt type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW TypeReference::getInstance(): comp-specific resolved type: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: create object instance menu of EmployeeMenu;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable ClientSrv, b
+[[1;34mINFO[m] JRW ::addTypeToImports(): typeName, fileName EmployeeMenu, ClientSrv
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, EmployeeMenu
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] JRW ::getFileForStatement(): smt.oal: create object instance menu of EmployeeMenu;
+[[1;34mINFO[m] JRW ::getFileForInvocable(): file, invocable ClientSrv, b
+[[1;34mINFO[m] JRW addStringToImports: file, string sysconfig.client.ClientSrv, sysconfig.client.widgets.impl.EmployeeMenuImpl
+[[1;34mINFO[m]   done.
+[[1;34mINFO[m]   Elapsed time: 1110000
+[[1;34mINFO[m]   Rendering application...
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig Client
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, RegisterEmployee
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal RegisterEmployee
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, T2
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal T2
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.hr.Employee
+[[1;34mINFO[m] JRW ClassInComponent::get(): comp, class Client, EmployeeMenu
+[[1;34mINFO[m] JRW ClassInComponent::get(): retVal: sysconfig.client.widgets.EmployeeMenu
+[[1;34mINFO[m] File: sysconfig/Client.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig ClientProperties
+[[1;34mINFO[m] File: sysconfig/ClientProperties.properties REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig/client ClientSrv
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, b
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal b
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, a
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal a
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, c
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal c
+[[1;34mINFO[m] File: sysconfig/client/ClientSrv.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig/hr Employee
+[[1;34mINFO[m] File: sysconfig/hr/Employee.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig/client/hr Employee
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, Report
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal Report
+[[1;34mINFO[m] AM :: Inst_selector_render:  type_name: EmployeeMenu inst_type_name: EmployeeMenu
+[[1;34mINFO[m] File: sysconfig/client/hr/impl/EmployeeImpl.java REPLACED.
+[[1;34mINFO[m] File: sysconfig/client/hr/Employee.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - excluding file: sysconfig/components/client/widgets EmployeeMenu
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig/client/widgets EmployeeMenu
+[[1;34mINFO[m] AM :: Inst_selector_render:  type_name: EmployeeSet inst_type_name: Employee
+[[1;34mINFO[m] File: sysconfig/client/widgets/impl/EmployeeMenuImpl.java REPLACED.
+[[1;34mINFO[m] File: sysconfig/client/widgets/EmployeeMenu.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig/client/widgets EmployeeMenuSet
+[[1;34mINFO[m] File: sysconfig/client/widgets/impl/EmployeeMenuSetImpl.java REPLACED.
+[[1;34mINFO[m] File: sysconfig/client/widgets/EmployeeMenuSet.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig/client/hr EmployeeSet
+[[1;34mINFO[m] File: sysconfig/client/hr/impl/EmployeeSetImpl.java REPLACED.
+[[1;34mINFO[m] File: sysconfig/client/hr/EmployeeSet.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: sysconfig/client/hr EmployeeStateMachine
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, Active
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal Active
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, OnLeave
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal OnLeave
+[[1;34mINFO[m] JRW InvocableInComponent::get(): comp, invocable Client, Retired
+[[1;34mINFO[m] JRW InvocableInComponent::get(): retVal Retired
+[[1;34mINFO[m] File: sysconfig/client/hr/impl/EmployeeStateMachine.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: interfaces IFoo
+[[1;34mINFO[m] File: interfaces/IFoo.java REPLACED.
+[[1;34mINFO[m] AM tool-core::translate - rendering file: tests TestsApplication
+[[1;34mINFO[m] File: tests/TestsApplication.java REPLACED.
+[[1;34mINFO[m]   done.
+[[1;34mINFO[m]   Elapsed time: 1468000
+[[1;34mINFO[m] Done.
+[[1;34mINFO[m] Elapsed time: 1469000
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 17 resources
+[[1;34mINFO[m] Copying 1 resource
+[[1;34mINFO[m] skip non existing resourceDirectory /home/amullarney/git/AdHocTests/Tests/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:compile[m [1m(default-compile)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;34mINFO[m] Compiling 14 source files to /home/amullarney/git/AdHocTests/Tests/target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/amullarney/git/AdHocTests/Tests/src/test/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.1:testCompile[m [1m(default-testCompile)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] No sources to compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] No tests to run.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:2.4:jar[m [1m(default-jar)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] Building jar: /home/amullarney/git/AdHocTests/Tests/target/Tests-1.0.0-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-install-plugin:2.4:install[m [1m(default-install)[m @ [36mTests[0;1m ---[m
+[[1;34mINFO[m] Installing /home/amullarney/git/AdHocTests/Tests/target/Tests-1.0.0-SNAPSHOT.jar to /home/amullarney/.m2/repository/org/xtuml/Tests/1.0.0-SNAPSHOT/Tests-1.0.0-SNAPSHOT.jar
+[[1;34mINFO[m] Installing /home/amullarney/git/AdHocTests/Tests/pom.xml to /home/amullarney/.m2/repository/org/xtuml/Tests/1.0.0-SNAPSHOT/Tests-1.0.0-SNAPSHOT.pom
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  11.442 s
+[[1;34mINFO[m] Finished at: 2021-11-15T10:53:07-08:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m

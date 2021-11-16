@@ -281,11 +281,7 @@ INSERT INTO SPR_PS
 	'c',
 	'',
 	'LOG::LogInfo( message:"Server: Employee name, birthdate, number" );
-LOG::LogInfo( message:param.emp.Name );
-LOG::LogInfo( message:param.emp.Birthdate );
-LOG::LogInteger( message:param.emp.Number );
-person = param.emp;
-person.Report();',
+',
 	1,
 	0,
 	3);

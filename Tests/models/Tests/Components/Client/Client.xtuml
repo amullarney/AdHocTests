@@ -265,11 +265,8 @@ INSERT INTO SPR_RS
 	'a',
 	'',
 	'LOG::LogInfo( message:"Client: Employee name, birthdate, number" );
-LOG::LogInfo( message:param.emp.Name );
-LOG::LogInfo( message:param.emp.Birthdate );
-LOG::LogInteger( message:param.emp.Number );
-person = param.emp;
 select any menu from instances of EmployeeMenu;
+select any person from instances of Employee;
 if ( not_empty menu )
   relate menu to person across R1.''displays'';
 end if;

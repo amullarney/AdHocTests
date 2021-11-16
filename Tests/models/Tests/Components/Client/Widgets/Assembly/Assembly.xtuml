@@ -1,32 +1,32 @@
 -- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
 
 INSERT INTO O_OBJ
-	VALUES ("275a50a3-0217-4d9f-aa65-4f65a82c0948",
-	'payroll',
-	9,
-	'payroll',
+	VALUES ("7271acaa-0575-4d6c-9afc-6d5d305fe027",
+	'Assembly',
+	2,
+	'Assembly',
 	'',
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO O_ID
 	VALUES (0,
-	"275a50a3-0217-4d9f-aa65-4f65a82c0948");
+	"7271acaa-0575-4d6c-9afc-6d5d305fe027");
 INSERT INTO O_ID
 	VALUES (1,
-	"275a50a3-0217-4d9f-aa65-4f65a82c0948");
+	"7271acaa-0575-4d6c-9afc-6d5d305fe027");
 INSERT INTO O_ID
 	VALUES (2,
-	"275a50a3-0217-4d9f-aa65-4f65a82c0948");
+	"7271acaa-0575-4d6c-9afc-6d5d305fe027");
 INSERT INTO PE_PE
-	VALUES ("275a50a3-0217-4d9f-aa65-4f65a82c0948",
+	VALUES ("7271acaa-0575-4d6c-9afc-6d5d305fe027",
 	1,
-	"7036918d-228f-40f1-b925-22f845d3b660",
+	"616dd458-6ec8-4082-b9ee-94f642cf2c29",
 	"00000000-0000-0000-0000-000000000000",
 	4);
 INSERT INTO EP_PKG_PROXY
-	VALUES ("7036918d-228f-40f1-b925-22f845d3b660",
+	VALUES ("616dd458-6ec8-4082-b9ee-94f642cf2c29",
 	"00000000-0000-0000-0000-000000000000",
 	"846e9e70-104d-4678-8694-b2e3922e335a",
-	'TestEntities',
+	'Widgets',
 	'',
 	0,
-	'../TestEntities.xtuml');
+	'../Widgets.xtuml');
