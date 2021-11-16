@@ -69,12 +69,29 @@ relate pipe4 to pipe1 across R2.''connects to'';
 create object instance pipe5 of pipe;
 relate pipe5 to pipe1 across R2.''connects to'';
 
-select many segments related by pipe1->pipe[R2.''attaches to'']
+select many segments related by pipe1->pipe[R2.''connects to'']
  where ( not selected.empty  );
 for each segment in segments
-	LOG::LogSuccess( message:"found one" );
+	LOG::LogSuccess( message:"found empty segment" );
 end for;
- 
+if ( empty segments )
+  LOG::LogFailure( message:"failed navigation" );
+end if;
+select many segments related by pipe1->pipe[R2.''connects to''];
+for each segment in segments
+  if ( not segment.empty  );
+	LOG::LogSuccess( message:"found empty segment" );
+  end if;
+end for;
+select any segment related by pipe2->pipe[R2.''connects to''];
+if ( not_empty segment )
+  LOG::LogSuccess( message:"navigated accross connects to" );
+end if;
+select many segments related by pipe2->pipe[R2.''connects to'']
+ where ( not selected.empty  );
+for each segment in segments
+	LOG::LogSuccess( message:"found empty segment" );
+end for;
 
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",

@@ -994,7 +994,7 @@ INSERT INTO R_PART
 	"086d7d7b-f3ff-4ca8-be3e-d7b46001b25e",
 	1,
 	1,
-	'attaches to');
+	'connects to');
 INSERT INTO R_RTO
 	VALUES ("223fe87c-29c4-4808-a774-8206e357a2ea",
 	"c8339991-9db0-4ec2-9b6a-ed434e8242db",
