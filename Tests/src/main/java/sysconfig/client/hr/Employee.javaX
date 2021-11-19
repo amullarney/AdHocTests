@@ -7,7 +7,7 @@ import io.ciera.runtime.summit.exceptions.XtumlException;
 import sysconfig.Client;
 import sysconfig.client.widgets.EmployeeMenu;
 
-public interface Employee extends IModelInstance<Employee,Client>, sysconfig.Employee {
+public interface Employee extends IModelInstance<Employee,Client>, sysconfig.hr.Employee {
 
 
     // selections

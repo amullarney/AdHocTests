@@ -10,7 +10,6 @@ import io.ciera.runtime.summit.classes.ModelInstance;
 import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
 import io.ciera.runtime.summit.exceptions.InstancePopulationException;
 import io.ciera.runtime.summit.exceptions.XtumlException;
-import io.ciera.runtime.summit.statemachine.IEvent;
 import io.ciera.runtime.summit.types.IWhere;
 import io.ciera.runtime.summit.types.IXtumlType;
 import io.ciera.runtime.summit.types.StringUtil;
@@ -24,6 +23,7 @@ import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 import org.json.*; 
 import org.json.JSONObject;
 
+
 public class EmployeeImpl extends ModelInstance<Employee,Client> implements Employee {
 
     public static final String KEY_LETTERS = "Employee";
@@ -32,22 +32,13 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     private Client context;
 
     // constructors
+    
     private EmployeeImpl( Client context ) {
         this.context = context;
         m_Name = "";
         m_Birthdate = "";
         m_Number = 0;
         R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
-        statemachine = new EmployeeStateMachine(this, context());
-    }
-
-    private EmployeeImpl( Client context, String m_Name, String m_Birthdate, int m_Number, int initialState ) {
-        this.context = context;
-        this.m_Name = m_Name;
-        this.m_Birthdate = m_Birthdate;
-        this.m_Number = m_Number;
-        R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
-        statemachine = new EmployeeStateMachine(this, context(), initialState);
     }
 
     private EmployeeImpl( Client context, UniqueId instanceId, String m_Name, String m_Birthdate, int m_Number, int initialState ) {
@@ -57,21 +48,12 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         this.m_Birthdate = m_Birthdate;
         this.m_Number = m_Number;
         R1_is_shown_on_EmployeeMenu_inst = EmployeeMenuImpl.EMPTY_EMPLOYEEMENU;
-        statemachine = new EmployeeStateMachine(this, context(), initialState);
-    }
+     }
 
     public static Employee create( Client context ) throws XtumlException {
         Employee newEmployee = new EmployeeImpl( context );
         if ( context.addInstance( newEmployee ) ) {
             newEmployee.getRunContext().addChange(new InstanceCreatedDelta(newEmployee, KEY_LETTERS));
-            return newEmployee;
-        }
-        else throw new InstancePopulationException( "Instance already exists within this population." );
-    }
-
-    public static Employee create( Client context, String m_Name, String m_Birthdate, int m_Number, int initialState ) throws XtumlException {
-        Employee newEmployee = new EmployeeImpl( context, m_Name, m_Birthdate, m_Number, initialState );
-        if ( context.addInstance( newEmployee ) ) {
             return newEmployee;
         }
         else throw new InstancePopulationException( "Instance already exists within this population." );
@@ -85,21 +67,15 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
         else throw new InstancePopulationException( "Instance already exists within this population." );
     }
 
-    private final EmployeeStateMachine statemachine;
-    
-    @Override
-    public void accept(IEvent event) throws XtumlException {
-        statemachine.transition(event);
-    }
-
-    @Override
-    public int getCurrentState() {
-        return statemachine.getCurrentState();
-    }
 
 
     // attributes
     private String m_Name;
+    @Override
+    public String getName() throws XtumlException {
+        checkLiving();
+        return m_Name;
+    }
     @Override
     public void setName(String m_Name) throws XtumlException {
         checkLiving();
@@ -109,12 +85,12 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
             getRunContext().addChange(new AttributeChangedDelta(this, KEY_LETTERS, "m_Name", oldValue, this.m_Name));
         }
     }
-    @Override
-    public String getName() throws XtumlException {
-        checkLiving();
-        return m_Name;
-    }
     private String m_Birthdate;
+    @Override
+    public String getBirthdate() throws XtumlException {
+        checkLiving();
+        return m_Birthdate;
+    }
     @Override
     public void setBirthdate(String m_Birthdate) throws XtumlException {
         checkLiving();
@@ -123,11 +99,6 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
             this.m_Birthdate = m_Birthdate;
             getRunContext().addChange(new AttributeChangedDelta(this, KEY_LETTERS, "m_Birthdate", oldValue, this.m_Birthdate));
         }
-    }
-    @Override
-    public String getBirthdate() throws XtumlException {
-        checkLiving();
-        return m_Birthdate;
     }
     private int m_Number;
     @Override
@@ -153,7 +124,8 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     public void Report() throws XtumlException {
     }
 
-
+    
+    // @Added for 12002
     public String serialize() {
     	System.out.printf( "serializing employee on client side... %s\n", this.m_Name );
 //    	return "\"\""  + this.m_Name + "\", "  +  "\""  + Integer.toString(this.m_Number) + "\"";
@@ -161,7 +133,6 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     }
 
     // static operations
-    
     public static Employee deserialize( Object o, Client context ) {
         System.out.printf( "Employee deserialize for client %s  \n", (String)o );
      	try {
@@ -187,6 +158,7 @@ public class EmployeeImpl extends ModelInstance<Employee,Client> implements Empl
     	};
     	return (Employee) null;
     }
+   
 
     // events
 
@@ -247,11 +219,11 @@ class EmptyEmployee extends ModelInstance<Employee,Client> implements Employee {
     public String getBirthdate() throws XtumlException {
         throw new EmptyInstanceException( "Cannot get attribute of empty instance." );
     }
-    public int getNumber() throws XtumlException {
-        throw new EmptyInstanceException( "Cannot get attribute of empty instance." );
-    }
     public void setNumber( int m_Number ) throws XtumlException {
         throw new EmptyInstanceException( "Cannot set attribute of empty instance." );
+    }
+    public int getNumber() throws XtumlException {
+        throw new EmptyInstanceException( "Cannot get attribute of empty instance." );
     }
 
 
