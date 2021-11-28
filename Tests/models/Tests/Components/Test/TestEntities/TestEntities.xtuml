@@ -90,7 +90,7 @@ INSERT INTO GD_GE
 	"1e5876c6-1f34-4099-87f4-96007df72723",
 	24,
 	0,
-	'Tests::Components::Test::TestEntities::R1');
+	'Tests::Components::Test::TestEntities::R11');
 INSERT INTO GD_CON
 	VALUES ("100f30a0-f4c0-4b3a-89f7-339577111a13",
 	"00000000-0000-0000-0000-000000000000");
@@ -897,7 +897,7 @@ INSERT INTO R_SIMP
 	VALUES ("1e5876c6-1f34-4099-87f4-96007df72723");
 INSERT INTO R_REL
 	VALUES ("1e5876c6-1f34-4099-87f4-96007df72723",
-	1,
+	11,
 	'',
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO R_PART
@@ -1207,6 +1207,7 @@ When simulated time is unchecked( and deterministically unchecked ) log messages
 	0,
 	"00000000-0000-0000-0000-000000000000",
 	0,
+	'',
 	'',
 	'../Test.xtuml');
 INSERT INTO S_SYS_PROXY

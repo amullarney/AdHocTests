@@ -46,6 +46,7 @@ generate observation1:peek() to glance;',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("11a44be8-a1a3-4c0b-9871-0a634b5e8920",
@@ -80,6 +81,7 @@ end for;
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("78879f39-c2a4-467e-8b01-dea55e9d8ab9",
@@ -113,6 +115,7 @@ end for;',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("3477824f-86bc-4c06-a565-396bf833be72",
@@ -165,6 +168,7 @@ end for;                                        ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("69d7ee07-e57d-488b-921d-a34954f3c9f5",
@@ -179,15 +183,16 @@ INSERT INTO S_SYNC
 	'',
 	'create object instance obs1 of observation;
 create object instance trigger1 of trigger;
-relate obs1 to  trigger1 across R1.''waits for '';
-unrelate obs1 from trigger1 across R1.''waits for '';
-select any obs1 related by trigger1->observation[R1.''initiates''];
+relate obs1 to  trigger1 across R11.''waits for '';
+unrelate obs1 from trigger1 across R11.''waits for '';
+select any obs1 related by trigger1->observation[R11.''initiates''];
 if ( empty obs1 )
   delete object instance trigger1;
 end if;',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
+	0,
 	0);
 INSERT INTO PE_PE
 	VALUES ("0fc6c5a7-d306-40e5-a30c-a8e0e6ab5da8",
@@ -218,6 +223,7 @@ When simulated time is unchecked( and deterministically unchecked ) log messages
 	0,
 	"00000000-0000-0000-0000-000000000000",
 	0,
+	'',
 	'',
 	'../Test.xtuml');
 INSERT INTO S_SYS_PROXY
