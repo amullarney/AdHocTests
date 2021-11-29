@@ -39,7 +39,7 @@ INSERT INTO S_SYNC
 	'T2',
 	'',
 	'LOG::LogInfo( message:"T2 invoked" );
-select any e from instances of Employee;
+select any e from instances of Employee where false;
 send Srv::c( emp:e );
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
