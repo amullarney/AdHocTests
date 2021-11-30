@@ -8,10 +8,10 @@ import io.ciera.runtime.summit.interfaces.Message;
 public interface IFoo {
 
     // to provider messages
-    public void c( final EmployeeSet p_empls ) throws XtumlException;
+    public void c( final sysconfig.hr.EmployeeSet p_empls ) throws XtumlException;
     public static final int SIGNAL_NO_C = 3;
     public static class C extends Message {
-        public C( final EmployeeSet p_empls ) throws XtumlException {
+        public C( final sysconfig.hr.EmployeeSet p_empls ) throws XtumlException {
             super.addParm("p_empls", p_empls);
         }
         @Override

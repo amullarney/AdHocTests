@@ -39,8 +39,11 @@ INSERT INTO S_SYNC
 	'T2',
 	'',
 	'LOG::LogInfo( message:"T2 invoked" );
-select many ees from instances of Employee where false;
-send Srv::c( empls:ees );
+select many namedees from instances of Employee where (selected.Name == ""); // where false;
+for each named in namedees
+	LOG::LogInfo( message:"name is " + named.Name );
+end for;
+send Srv::c( empls:namedees );
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,

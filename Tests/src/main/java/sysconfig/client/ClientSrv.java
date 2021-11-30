@@ -14,6 +14,7 @@ import io.ciera.runtime.summit.types.StringUtil;
 import sysconfig.Client;
 import sysconfig.client.hr.Employee;
 import sysconfig.client.hr.impl.EmployeeImpl;
+import sysconfig.client.hr.EmployeeSet;
 import sysconfig.client.widgets.EmployeeMenu;
 import sysconfig.client.widgets.impl.EmployeeMenuImpl;
 
@@ -49,8 +50,10 @@ public class ClientSrv extends Port<Client> implements IFoo {
 
 
     // outbound messages
-    public void c( final sysconfig.hr.Employee p_emp ) throws XtumlException {
-        if ( satisfied() ) send(new IFoo.C(p_emp));
+    public void c( final sysconfig.hr.EmployeeSet q_p_empls ) throws XtumlException {
+    	EmployeeSet p_empls = (EmployeeSet)q_p_empls;
+        context().LOG().LogInfo( "Client invoked c" );
+        if ( satisfied() ) send(new IFoo.C(p_empls));
         else {
         }
     }
