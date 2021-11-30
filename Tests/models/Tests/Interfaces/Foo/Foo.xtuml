@@ -81,12 +81,19 @@ INSERT INTO C_AS
 INSERT INTO C_PP
 	VALUES ("c0c12b37-8581-4cc2-83b3-32746dba74ac",
 	"c3787599-b382-4345-974d-e39c3445ff5c",
-	"e2b6734f-dd71-49ef-a655-90326eb25580",
-	'emp',
+	"1df240a7-8111-44b6-a86d-3fe6bfbcc9df",
+	'empls',
 	'',
 	0,
 	'',
 	"00000000-0000-0000-0000-000000000000");
+INSERT INTO S_DT_PROXY
+	VALUES ("1df240a7-8111-44b6-a86d-3fe6bfbcc9df",
+	"00000000-0000-0000-0000-000000000000",
+	'inst_ref_set<Employee>',
+	'',
+	'',
+	'../../HR/HR.xtuml');
 INSERT INTO PE_PE
 	VALUES ("9f7fbc77-8bfe-4811-bb80-6a925484bbb3",
 	1,

@@ -280,12 +280,15 @@ INSERT INTO SPR_PS
 	VALUES ("5b5963b8-674c-4ed4-b5f8-44a4c90c4cae",
 	'c',
 	'',
-	'LOG::LogInfo( message:"Server: Employee name, birthdate, number" );
-LOG::LogInfo( message:param.emp.Name );
-LOG::LogInfo( message:param.emp.Birthdate );
-LOG::LogInteger( message:param.emp.Number );
-person = param.emp;
-person.Report();',
+	'employees = param.empls;
+LOG::LogInfo( message:"Server: Employee name, birthdate, number" );
+for each emp in employees
+	LOG::LogInfo( message:emp.Name );
+	LOG::LogInfo( message:emp.Birthdate );
+	LOG::LogInteger( message:emp.Number );
+	person = emp;
+	person.Report();
+end for;',
 	1,
 	0,
 	3);
