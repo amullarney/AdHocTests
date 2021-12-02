@@ -1,0 +1,109 @@
+package sysconfig.server.hr.impl;
+
+
+import io.ciera.runtime.summit.classes.InstanceSet;
+import io.ciera.runtime.summit.exceptions.XtumlException;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import sysconfig.Server;
+import sysconfig.server.hr.Employee;
+import sysconfig.server.hr.EmployeeSet;
+
+
+public class EmployeeSetImpl extends InstanceSet<EmployeeSet,Employee> implements EmployeeSet {
+
+    public EmployeeSetImpl() {
+    }
+
+    public EmployeeSetImpl(Comparator<? super Employee> comp) {
+        super(comp);
+    }
+
+    // attributes
+    @Override
+    public void setBirthdate( String m_Birthdate ) throws XtumlException {
+        for ( Employee employee : this ) employee.setBirthdate( m_Birthdate );
+    }
+    @Override
+    public void setNumber( int m_Number ) throws XtumlException {
+        for ( Employee employee : this ) employee.setNumber( m_Number );
+    }
+    @Override
+    public void setName( String m_Name ) throws XtumlException {
+        for ( Employee employee : this ) employee.setName( m_Name );
+    }
+
+
+    // selections
+
+
+	//serialize/deserialize methods
+    public String serialize() throws XtumlException {
+		JSONObject setstr = new JSONObject();
+		JSONArray setarr = new JSONArray();
+		setstr.put("EmployeeSet", setarr);
+		String memberstr = "";
+		List<Employee> contents = elements();
+		for ( Employee member : contents ) {
+            memberstr = member.serialize();
+            setarr.put(memberstr);
+        }
+        System.out.printf( "EmployeeSet serialize Employee: %s \n", setstr.toString() );
+		return setstr.toString();
+    }
+
+    public static EmployeeSet deserialize( Object o, Server context ) {
+    	try {
+	        JSONObject jobj = new JSONObject((String)o);
+	        EmployeeSet set = new EmployeeSetImpl();
+            System.out.printf( "EmployeeSet deserialize in Server: %s \n", (String)o );
+	        JSONArray contents = jobj.getJSONArray("EmployeeSet");
+            System.out.printf( "EmployeeSet deserialize Employee: %s \n", "got array" );
+            int index = 0;
+            String item = "";
+            while (index < contents.length()) {
+            	item = (String)contents.get(index);
+                System.out.printf( "EmployeeSet deserialize content: %s \n", item );
+                Employee e = EmployeeImpl.deserialize( (Object)item, context );
+                
+                set.add(e);
+            	index++;
+            }
+	        
+	        return set;
+    	}
+    	catch(Exception ex ) { 
+            System.out.printf( "EmployeeSet deserialize failed: %s \n", ex.toString() );
+    	};
+    	return (EmployeeSet) null;
+    }
+
+
+    @Override
+    public Employee nullElement() {
+        return EmployeeImpl.EMPTY_EMPLOYEE;
+    }
+
+    @Override
+    public EmployeeSet emptySet() {
+      return new EmployeeSetImpl();
+    }
+
+    @Override
+    public EmployeeSet emptySet(Comparator<? super Employee> comp) {
+      return new EmployeeSetImpl(comp);
+    }
+
+    @Override
+    public List<Employee> elements() {
+        return Arrays.asList(toArray(new Employee[0]));
+    }
+
+}
