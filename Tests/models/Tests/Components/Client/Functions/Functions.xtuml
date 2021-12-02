@@ -40,7 +40,8 @@ INSERT INTO S_SYNC
 	'',
 	'LOG::LogInfo( message:"T2 invoked" );
 create object instance another of Employee;
-another.Name = "John Doe";
+another.Name = "James Bond";
+another.Number = 007;
 select many namedees from instances of Employee where (selected.Name != ""); // where false;
 for each named in namedees
 	LOG::LogInfo( message:"name is " + named.Name );
