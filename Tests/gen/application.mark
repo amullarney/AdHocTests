@@ -1,3 +1,4 @@
 *,RootPackage,*,Tests::SysConfig
 Components::Server,InitFunction,Component,T1
-Interfaces::Foo,Serialize,Interface,Serialize
+Components::Client::Srv,SerializeMessages,Port,Serialize
+Components::Server::Clnt,SerializeMessages,Port,Serialize
