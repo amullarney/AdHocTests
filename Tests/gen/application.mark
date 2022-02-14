@@ -2,3 +2,4 @@
 Components::Server,InitFunction,Component,T1
 Components::Client::Srv,SerializeMessages,Port,Serialize
 Components::Server::Clnt,SerializeMessages,Port,Serialize
+Components::Server::Log,SerializeMessages,Port,Serialize
