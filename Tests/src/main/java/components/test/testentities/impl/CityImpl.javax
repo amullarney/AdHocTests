@@ -1,0 +1,215 @@
+package components.test.testentities.impl;
+
+
+import components.Test;
+import components.test.testentities.City;
+import components.test.testentities.CitySet;
+import components.test.testentities.Route;
+import components.test.testentities.RouteSet;
+import components.test.testentities.impl.CitySetImpl;
+import components.test.testentities.CitySet;
+import components.test.testentities.impl.RouteSetImpl;
+
+import io.ciera.runtime.instanceloading.AttributeChangedDelta;
+import io.ciera.runtime.instanceloading.InstanceCreatedDelta;
+import io.ciera.runtime.summit.application.IRunContext;
+import io.ciera.runtime.summit.classes.IInstanceIdentifier;
+import io.ciera.runtime.summit.classes.InstanceIdentifier;
+import io.ciera.runtime.summit.classes.ModelInstance;
+import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
+import io.ciera.runtime.summit.exceptions.InstancePopulationException;
+import io.ciera.runtime.summit.exceptions.XtumlException;
+import io.ciera.runtime.summit.types.IWhere;
+import io.ciera.runtime.summit.types.IXtumlType;
+import io.ciera.runtime.summit.types.StringUtil;
+import io.ciera.runtime.summit.types.UniqueId;
+
+import org.json.JSONObject;
+
+
+public class CityImpl extends ModelInstance<City,Test> implements City {
+
+    public static final String KEY_LETTERS = "city";
+    public static final City EMPTY_CITY = new EmptyCity();
+
+    private Test context;
+
+    // constructors
+    private CityImpl( Test context ) {
+        this.context = context;
+        m_name = "";
+        R8_is_reachable_from_Route_set = new RouteSetImpl();
+    }
+
+    private CityImpl( Test context, String m_name ) {
+        this.context = context;
+        this.m_name = m_name;
+        R8_is_reachable_from_Route_set = new RouteSetImpl();
+    }
+
+    private CityImpl( Test context, UniqueId instanceId, String m_name ) {
+        super(instanceId);
+        this.context = context;
+        this.m_name = m_name;
+        R8_is_reachable_from_Route_set = new RouteSetImpl();
+    }
+
+    public static City create( Test context ) throws XtumlException {
+        City newCity = new CityImpl( context );
+        if ( context.addInstance( newCity ) ) {
+            newCity.getRunContext().addChange(new InstanceCreatedDelta(newCity, KEY_LETTERS));
+            return newCity;
+        }
+        else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+    public static City create( Test context, String m_name ) throws XtumlException {
+        City newCity = new CityImpl( context, m_name );
+        if ( context.addInstance( newCity ) ) {
+            return newCity;
+        }
+        else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+    public static City create( Test context, UniqueId instanceId, String m_name ) throws XtumlException {
+        City newCity = new CityImpl( context, instanceId, m_name );
+        if ( context.addInstance( newCity ) ) {
+            return newCity;
+        }
+        else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+
+
+    // attributes
+    private String m_name;
+    @Override
+    public void setName(String m_name) throws XtumlException {
+        checkLiving();
+        if (StringUtil.inequality(m_name, this.m_name)) {
+            final String oldValue = this.m_name;
+            this.m_name = m_name;
+            getRunContext().addChange(new AttributeChangedDelta(this, KEY_LETTERS, "m_name", oldValue, this.m_name));
+        }
+    }
+    @Override
+    public String getName() throws XtumlException {
+        checkLiving();
+        return m_name;
+    }
+
+
+    // instance identifiers
+
+    // operations
+
+
+    // static operations
+
+
+    // events
+
+
+    // selections
+    @Override
+    public CitySet R8_is_reachable_from_City() throws XtumlException {
+    	CitySet aset = new CitySetImpl();
+        aset.addAll(this.R8_is_reachable_from_Route().R8_is_reachable_from_City());
+        aset.remove(this);
+        return aset;
+    }
+    private RouteSet R8_is_reachable_from_Route_set;
+    @Override
+    public void addR8_is_reachable_from_Route( Route inst ) {
+        R8_is_reachable_from_Route_set.add(inst);
+    }
+    @Override
+    public void removeR8_is_reachable_from_Route( Route inst ) {
+        R8_is_reachable_from_Route_set.remove(inst);
+    }
+    @Override
+    public RouteSet R8_is_reachable_from_Route() throws XtumlException {
+        return R8_is_reachable_from_Route_set;
+    }
+
+
+    // serialize/deserialize methods
+
+
+
+    @Override
+    public IRunContext getRunContext() {
+        return context().getRunContext();
+    }
+
+    @Override
+    public Test context() {
+        return context;
+    }
+
+    @Override
+    public String getKeyLetters() {
+        return KEY_LETTERS;
+    }
+
+    @Override
+    public City self() {
+        return this;
+    }
+
+    @Override
+    public City oneWhere(IWhere<IXtumlType> condition) throws XtumlException {
+        if (null == condition) throw new XtumlException("Null condition passed to selection.");
+        if (condition.evaluate(this)) return this;
+        else return EMPTY_CITY;
+    }
+
+}
+
+class EmptyCity extends ModelInstance<City,Test> implements City {
+
+    // attributes
+    public void setName( String m_name ) throws XtumlException {
+        throw new EmptyInstanceException( "Cannot set attribute of empty instance." );
+    }
+    public String getName() throws XtumlException {
+        throw new EmptyInstanceException( "Cannot get attribute of empty instance." );
+    }
+
+
+    // operations
+
+
+    // selections
+    @Override
+    public CitySet R8_is_reachable_from_City() {
+        return (new CitySetImpl());
+    }
+    @Override
+    public RouteSet R8_is_reachable_from_Route() {
+        return (new RouteSetImpl());
+    }
+
+
+    @Override
+    public String getKeyLetters() {
+        return CityImpl.KEY_LETTERS;
+    }
+
+    @Override
+    public City self() {
+        return this;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public City oneWhere(IWhere<IXtumlType> condition) throws XtumlException {
+        if (null == condition) throw new XtumlException("Null condition passed to selection.");
+        return CityImpl.EMPTY_CITY;
+    }
+
+}

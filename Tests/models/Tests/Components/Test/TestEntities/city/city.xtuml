@@ -1,0 +1,55 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("e115aa7e-a269-4efd-9d20-6194bbbb37ed",
+	'city',
+	13,
+	'city',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("6b0cff45-08c1-4f3e-885c-90e98a806695",
+	"e115aa7e-a269-4efd-9d20-6194bbbb37ed");
+INSERT INTO O_BATTR
+	VALUES ("6b0cff45-08c1-4f3e-885c-90e98a806695",
+	"e115aa7e-a269-4efd-9d20-6194bbbb37ed");
+INSERT INTO O_ATTR
+	VALUES ("6b0cff45-08c1-4f3e-885c-90e98a806695",
+	"e115aa7e-a269-4efd-9d20-6194bbbb37ed",
+	"00000000-0000-0000-0000-000000000000",
+	'name',
+	'',
+	'',
+	'name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"e115aa7e-a269-4efd-9d20-6194bbbb37ed");
+INSERT INTO O_OIDA
+	VALUES ("6b0cff45-08c1-4f3e-885c-90e98a806695",
+	"e115aa7e-a269-4efd-9d20-6194bbbb37ed",
+	0,
+	'name');
+INSERT INTO O_ID
+	VALUES (1,
+	"e115aa7e-a269-4efd-9d20-6194bbbb37ed");
+INSERT INTO O_ID
+	VALUES (2,
+	"e115aa7e-a269-4efd-9d20-6194bbbb37ed");
+INSERT INTO PE_PE
+	VALUES ("e115aa7e-a269-4efd-9d20-6194bbbb37ed",
+	1,
+	"7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'TestEntities',
+	'',
+	0,
+	'../TestEntities.xtuml');

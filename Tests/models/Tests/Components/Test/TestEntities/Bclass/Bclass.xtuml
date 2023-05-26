@@ -1,0 +1,147 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("ad9563a0-9cac-40b8-8c55-475684f67975",
+	'Bclass',
+	22,
+	'Bclass',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("0bb557a2-3cbe-44ef-b826-f91f949447f7",
+	"ad9563a0-9cac-40b8-8c55-475684f67975");
+INSERT INTO O_BATTR
+	VALUES ("0bb557a2-3cbe-44ef-b826-f91f949447f7",
+	"ad9563a0-9cac-40b8-8c55-475684f67975");
+INSERT INTO O_ATTR
+	VALUES ("0bb557a2-3cbe-44ef-b826-f91f949447f7",
+	"ad9563a0-9cac-40b8-8c55-475684f67975",
+	"00000000-0000-0000-0000-000000000000",
+	'bid',
+	'',
+	'',
+	'bid',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_REF
+	VALUES ("ad9563a0-9cac-40b8-8c55-475684f67975",
+	"546697bf-bd7c-4f2e-b879-f153bb7a2acd",
+	1,
+	"541a2baf-2261-4e8e-82dc-76901cbc3839",
+	"b8730808-5c85-4889-a4d1-1b1972b309b1",
+	"d0b1f9a9-c3c3-458c-97b2-37bc7991423c",
+	"f77a7de1-87c2-4330-839b-aa350b257228",
+	"ad0fe448-0df0-452b-a46b-1a148edd2ca9",
+	"0c59ee8a-54a6-49b4-bfc3-c5ca3e1ae962",
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'Aclass',
+	'fclassid3',
+	'R21');
+INSERT INTO R_RGO_PROXY
+	VALUES ("ad9563a0-9cac-40b8-8c55-475684f67975",
+	"b8730808-5c85-4889-a4d1-1b1972b309b1",
+	"d0b1f9a9-c3c3-458c-97b2-37bc7991423c",
+	'../TestEntities.xtuml');
+INSERT INTO O_RTIDA_PROXY
+	VALUES ("541a2baf-2261-4e8e-82dc-76901cbc3839",
+	"546697bf-bd7c-4f2e-b879-f153bb7a2acd",
+	1,
+	"b8730808-5c85-4889-a4d1-1b1972b309b1",
+	"f77a7de1-87c2-4330-839b-aa350b257228",
+	'../TestEntities.xtuml');
+INSERT INTO O_RATTR
+	VALUES ("ad0fe448-0df0-452b-a46b-1a148edd2ca9",
+	"ad9563a0-9cac-40b8-8c55-475684f67975",
+	"593a43f4-e534-4f6f-a9c1-2ab166bd13f9",
+	"32a7cbae-ca17-4862-b055-37b0b1b24748",
+	1,
+	'fclassid3');
+INSERT INTO O_BATTR_PROXY
+	VALUES ("593a43f4-e534-4f6f-a9c1-2ab166bd13f9",
+	"32a7cbae-ca17-4862-b055-37b0b1b24748",
+	'../formclass/formclass.xtuml');
+INSERT INTO O_ATTR
+	VALUES ("ad0fe448-0df0-452b-a46b-1a148edd2ca9",
+	"ad9563a0-9cac-40b8-8c55-475684f67975",
+	"97387ab0-7a98-4069-b113-a00c743c5482",
+	'fclassid3',
+	'',
+	'',
+	'fclassid3',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000007",
+	'',
+	'');
+INSERT INTO O_REF
+	VALUES ("ad9563a0-9cac-40b8-8c55-475684f67975",
+	"546697bf-bd7c-4f2e-b879-f153bb7a2acd",
+	1,
+	"b46563a9-c178-4851-ad29-8128a309f427",
+	"b8730808-5c85-4889-a4d1-1b1972b309b1",
+	"d0b1f9a9-c3c3-458c-97b2-37bc7991423c",
+	"f77a7de1-87c2-4330-839b-aa350b257228",
+	"97387ab0-7a98-4069-b113-a00c743c5482",
+	"71ef2f6e-0c12-41d3-a7bd-56fa4da5df4a",
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'Aclass',
+	'pclassid2',
+	'R21');
+INSERT INTO O_RTIDA_PROXY
+	VALUES ("b46563a9-c178-4851-ad29-8128a309f427",
+	"546697bf-bd7c-4f2e-b879-f153bb7a2acd",
+	1,
+	"b8730808-5c85-4889-a4d1-1b1972b309b1",
+	"f77a7de1-87c2-4330-839b-aa350b257228",
+	'../TestEntities.xtuml');
+INSERT INTO O_RATTR
+	VALUES ("97387ab0-7a98-4069-b113-a00c743c5482",
+	"ad9563a0-9cac-40b8-8c55-475684f67975",
+	"ecb39166-8182-4adf-b2ab-4b07f6c79bb0",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19",
+	1,
+	'pclassid2');
+INSERT INTO O_BATTR_PROXY
+	VALUES ("ecb39166-8182-4adf-b2ab-4b07f6c79bb0",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19",
+	'../partclass/partclass.xtuml');
+INSERT INTO O_ATTR
+	VALUES ("97387ab0-7a98-4069-b113-a00c743c5482",
+	"ad9563a0-9cac-40b8-8c55-475684f67975",
+	"0bb557a2-3cbe-44ef-b826-f91f949447f7",
+	'pclassid2',
+	'',
+	'',
+	'pclassid2',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000007",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"ad9563a0-9cac-40b8-8c55-475684f67975");
+INSERT INTO O_ID
+	VALUES (1,
+	"ad9563a0-9cac-40b8-8c55-475684f67975");
+INSERT INTO O_ID
+	VALUES (2,
+	"ad9563a0-9cac-40b8-8c55-475684f67975");
+INSERT INTO PE_PE
+	VALUES ("ad9563a0-9cac-40b8-8c55-475684f67975",
+	1,
+	"7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'TestEntities',
+	'',
+	0,
+	'../TestEntities.xtuml');

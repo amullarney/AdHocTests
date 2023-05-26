@@ -1,2 +1,2 @@
 *,RootPackage,*,Tests::Components
-Components::Test,InitFunction,Component,Selections
+Components::Testrel,InitFunction,Component,testall

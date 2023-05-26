@@ -1,0 +1,78 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	'airline',
+	14,
+	'airline',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("7ce0b444-cafc-41d0-9aec-6cfe82c91ad7",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395");
+INSERT INTO O_BATTR
+	VALUES ("7ce0b444-cafc-41d0-9aec-6cfe82c91ad7",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395");
+INSERT INTO O_ATTR
+	VALUES ("7ce0b444-cafc-41d0-9aec-6cfe82c91ad7",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	"00000000-0000-0000-0000-000000000000",
+	'name',
+	'',
+	'',
+	'name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("dd5a23ed-2318-420b-801b-4d3998bcbaf3",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395");
+INSERT INTO O_BATTR
+	VALUES ("dd5a23ed-2318-420b-801b-4d3998bcbaf3",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395");
+INSERT INTO O_ATTR
+	VALUES ("dd5a23ed-2318-420b-801b-4d3998bcbaf3",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	"7ce0b444-cafc-41d0-9aec-6cfe82c91ad7",
+	'designator',
+	'',
+	'',
+	'designator',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395");
+INSERT INTO O_OIDA
+	VALUES ("7ce0b444-cafc-41d0-9aec-6cfe82c91ad7",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	0,
+	'name');
+INSERT INTO O_ID
+	VALUES (1,
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395");
+INSERT INTO O_OIDA
+	VALUES ("dd5a23ed-2318-420b-801b-4d3998bcbaf3",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	1,
+	'designator');
+INSERT INTO O_ID
+	VALUES (2,
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395");
+INSERT INTO PE_PE
+	VALUES ("dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	1,
+	"72edbe1f-73fc-4f34-8416-b50432ea28f5",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("72edbe1f-73fc-4f34-8416-b50432ea28f5",
+	"00000000-0000-0000-0000-000000000000",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'classes',
+	'',
+	0,
+	'../classes.xtuml');

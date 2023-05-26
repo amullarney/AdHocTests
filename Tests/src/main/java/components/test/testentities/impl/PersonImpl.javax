@@ -1,0 +1,209 @@
+package components.test.testentities.impl;
+
+
+import components.Test;
+import components.test.testentities.Licence;
+import components.test.testentities.Person;
+import components.test.testentities.impl.LicenceImpl;
+import components.test.testentities.PersonSet;
+import components.test.testentities.impl.PersonSetImpl;
+
+import io.ciera.runtime.instanceloading.AttributeChangedDelta;
+import io.ciera.runtime.instanceloading.InstanceCreatedDelta;
+import io.ciera.runtime.summit.application.IRunContext;
+import io.ciera.runtime.summit.classes.IInstanceIdentifier;
+import io.ciera.runtime.summit.classes.InstanceIdentifier;
+import io.ciera.runtime.summit.classes.ModelInstance;
+import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
+import io.ciera.runtime.summit.exceptions.InstancePopulationException;
+import io.ciera.runtime.summit.exceptions.XtumlException;
+import io.ciera.runtime.summit.types.IWhere;
+import io.ciera.runtime.summit.types.IXtumlType;
+import io.ciera.runtime.summit.types.StringUtil;
+import io.ciera.runtime.summit.types.UniqueId;
+
+import org.json.JSONObject;
+
+
+public class PersonImpl extends ModelInstance<Person,Test> implements Person {
+
+    public static final String KEY_LETTERS = "person";
+    public static final Person EMPTY_PERSON = new EmptyPerson();
+
+    private Test context;
+
+    // constructors
+    private PersonImpl( Test context ) {
+        this.context = context;
+        m_name = "";
+        R7_is_wed_to_Licence_inst = LicenceImpl.EMPTY_LICENCE;
+    }
+
+    private PersonImpl( Test context, String m_name ) {
+        this.context = context;
+        this.m_name = m_name;
+        R7_is_wed_to_Licence_inst = LicenceImpl.EMPTY_LICENCE;
+    }
+
+    private PersonImpl( Test context, UniqueId instanceId, String m_name ) {
+        super(instanceId);
+        this.context = context;
+        this.m_name = m_name;
+        R7_is_wed_to_Licence_inst = LicenceImpl.EMPTY_LICENCE;
+    }
+
+    public static Person create( Test context ) throws XtumlException {
+        Person newPerson = new PersonImpl( context );
+        if ( context.addInstance( newPerson ) ) {
+            newPerson.getRunContext().addChange(new InstanceCreatedDelta(newPerson, KEY_LETTERS));
+            return newPerson;
+        }
+        else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+    public static Person create( Test context, String m_name ) throws XtumlException {
+        Person newPerson = new PersonImpl( context, m_name );
+        if ( context.addInstance( newPerson ) ) {
+            return newPerson;
+        }
+        else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+    public static Person create( Test context, UniqueId instanceId, String m_name ) throws XtumlException {
+        Person newPerson = new PersonImpl( context, instanceId, m_name );
+        if ( context.addInstance( newPerson ) ) {
+            return newPerson;
+        }
+        else throw new InstancePopulationException( "Instance already exists within this population." );
+    }
+
+
+
+    // attributes
+    private String m_name;
+    @Override
+    public void setName(String m_name) throws XtumlException {
+        checkLiving();
+        if (StringUtil.inequality(m_name, this.m_name)) {
+            final String oldValue = this.m_name;
+            this.m_name = m_name;
+            getRunContext().addChange(new AttributeChangedDelta(this, KEY_LETTERS, "m_name", oldValue, this.m_name));
+        }
+    }
+    @Override
+    public String getName() throws XtumlException {
+        checkLiving();
+        return m_name;
+    }
+
+
+    // instance identifiers
+
+    // operations
+
+
+    // static operations
+
+
+    // events
+
+
+    // selections
+    private Licence R7_is_wed_to_Licence_inst;
+    @Override
+    public void setR7_is_wed_to_Licence( Licence inst ) {
+        R7_is_wed_to_Licence_inst = inst;
+    }
+    @Override
+    public Licence R7_is_wed_to_Licence() throws XtumlException {
+        return R7_is_wed_to_Licence_inst;
+    }
+    @Override
+    public Person R7_is_wed_to_Person() throws XtumlException {
+      PersonSet aset = new PersonSetImpl();
+        aset.addAll(this.R7_is_wed_to_Licence().R7_is_wed_to_Person());
+        aset.remove(this);
+        return aset.any();
+    }
+
+
+    // serialize/deserialize methods
+
+
+
+    @Override
+    public IRunContext getRunContext() {
+        return context().getRunContext();
+    }
+
+    @Override
+    public Test context() {
+        return context;
+    }
+
+    @Override
+    public String getKeyLetters() {
+        return KEY_LETTERS;
+    }
+
+    @Override
+    public Person self() {
+        return this;
+    }
+
+    @Override
+    public Person oneWhere(IWhere<IXtumlType> condition) throws XtumlException {
+        if (null == condition) throw new XtumlException("Null condition passed to selection.");
+        if (condition.evaluate(this)) return this;
+        else return EMPTY_PERSON;
+    }
+
+}
+
+class EmptyPerson extends ModelInstance<Person,Test> implements Person {
+
+    // attributes
+    public void setName( String m_name ) throws XtumlException {
+        throw new EmptyInstanceException( "Cannot set attribute of empty instance." );
+    }
+    public String getName() throws XtumlException {
+        throw new EmptyInstanceException( "Cannot get attribute of empty instance." );
+    }
+
+
+    // operations
+
+
+    // selections
+    @Override
+    public Licence R7_is_wed_to_Licence() {
+        return LicenceImpl.EMPTY_LICENCE;
+    }
+    @Override
+    public Person R7_is_wed_to_Person() {
+        return PersonImpl.EMPTY_PERSON;
+    }
+
+
+    @Override
+    public String getKeyLetters() {
+        return PersonImpl.KEY_LETTERS;
+    }
+
+    @Override
+    public Person self() {
+        return this;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return true;
+    }
+
+    @Override
+    public Person oneWhere(IWhere<IXtumlType> condition) throws XtumlException {
+        if (null == condition) throw new XtumlException("Null condition passed to selection.");
+        return PersonImpl.EMPTY_PERSON;
+    }
+
+}

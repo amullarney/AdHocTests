@@ -1,0 +1,78 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("ef156263-d01c-4d1f-97d3-2f5441496a19",
+	'partclass',
+	26,
+	'partclass',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("ce2eb6d6-09ef-4b5f-8315-7bae6ee04ed9",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19");
+INSERT INTO O_BATTR
+	VALUES ("ce2eb6d6-09ef-4b5f-8315-7bae6ee04ed9",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19");
+INSERT INTO O_ATTR
+	VALUES ("ce2eb6d6-09ef-4b5f-8315-7bae6ee04ed9",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19",
+	"00000000-0000-0000-0000-000000000000",
+	'pclassid1',
+	'',
+	'',
+	'pclassid1',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("ecb39166-8182-4adf-b2ab-4b07f6c79bb0",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19");
+INSERT INTO O_BATTR
+	VALUES ("ecb39166-8182-4adf-b2ab-4b07f6c79bb0",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19");
+INSERT INTO O_ATTR
+	VALUES ("ecb39166-8182-4adf-b2ab-4b07f6c79bb0",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19",
+	"ce2eb6d6-09ef-4b5f-8315-7bae6ee04ed9",
+	'pclassid2',
+	'',
+	'',
+	'pclassid2',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000002",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"ef156263-d01c-4d1f-97d3-2f5441496a19");
+INSERT INTO O_OIDA
+	VALUES ("ce2eb6d6-09ef-4b5f-8315-7bae6ee04ed9",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19",
+	0,
+	'pclassid1');
+INSERT INTO O_ID
+	VALUES (1,
+	"ef156263-d01c-4d1f-97d3-2f5441496a19");
+INSERT INTO O_OIDA
+	VALUES ("ecb39166-8182-4adf-b2ab-4b07f6c79bb0",
+	"ef156263-d01c-4d1f-97d3-2f5441496a19",
+	1,
+	'pclassid2');
+INSERT INTO O_ID
+	VALUES (2,
+	"ef156263-d01c-4d1f-97d3-2f5441496a19");
+INSERT INTO PE_PE
+	VALUES ("ef156263-d01c-4d1f-97d3-2f5441496a19",
+	1,
+	"7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'TestEntities',
+	'',
+	0,
+	'../TestEntities.xtuml');

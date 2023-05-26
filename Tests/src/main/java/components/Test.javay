@@ -1,0 +1,241 @@
+package components;
+
+
+import components.test.testentities.Licence;
+import components.test.testentities.LicenceSet;
+import components.test.testentities.Person;
+import components.test.testentities.PersonSet;
+import components.test.testentities.impl.LicenceImpl;
+import components.test.testentities.impl.LicenceSetImpl;
+import components.test.testentities.impl.PersonImpl;
+import components.test.testentities.impl.PersonSetImpl;
+
+import io.ciera.runtime.summit.application.IApplication;
+import io.ciera.runtime.summit.application.IRunContext;
+import io.ciera.runtime.summit.classes.IModelInstance;
+import io.ciera.runtime.summit.classes.IRelationshipSet;
+import io.ciera.runtime.summit.classes.Relationship;
+import io.ciera.runtime.summit.classes.RelationshipSet;
+import io.ciera.runtime.summit.components.Component;
+import io.ciera.runtime.summit.exceptions.BadArgumentException;
+import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
+import io.ciera.runtime.summit.exceptions.ModelIntegrityException;
+import io.ciera.runtime.summit.exceptions.XtumlException;
+import io.ciera.runtime.summit.types.StringUtil;
+import io.ciera.runtime.summit.util.LOG;
+import io.ciera.runtime.summit.util.impl.LOGImpl;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Properties;
+import java.util.TreeMap;
+
+
+public class Test extends Component<Test> {
+
+    private Map<String, Class<?>> classDirectory;
+
+    // Note: valid only if a deployment does not contain multiple instances of this component.
+    private static Test singleton;
+    public static Test Singleton() {
+        return singleton;
+    }
+    
+public Test(IApplication app, IRunContext runContext, int populationId) {
+        super(app, runContext, populationId);
+        singleton = this;
+        Licence_extent = new LicenceSetImpl();
+        Person_extent = new PersonSetImpl();
+        R7_F_Licence_is_wed_to_Person_extent = new RelationshipSet();
+        R7_P_Licence_is_wed_to_Person_extent = new RelationshipSet();
+        LOG = null;
+        classDirectory = new TreeMap<>();
+        classDirectory.put("licence", LicenceImpl.class);
+        classDirectory.put("person", PersonImpl.class);
+    }
+
+    // domain functions
+    public void testSym() throws XtumlException {
+        Person man = PersonImpl.create( context() );
+        man.setName("Jack");
+        Person wife = PersonImpl.create( context() );
+        wife.setName("Jill");
+        Licence lic = LicenceImpl.create( context() );
+        context().relate_R7_F_Licence_is_wed_to_Person( lic, man );
+        context().relate_R7_P_Licence_is_wed_to_Person( lic, wife );
+
+        PersonSet womanset = new PersonSetImpl();
+        womanset.addAll(man.R7_F_is_wed_to_Licence().R7_P_is_wed_to_Person());
+        womanset.addAll(man.R7_P_is_wed_to_Licence().R7_F_is_wed_to_Person());
+        Person woman = womanset.any();
+        if ( !woman.isEmpty() ) {
+            context().LOG().LogInfo( woman.getName() );
+        }
+        
+        Person fellow = pLicencep(woman).any();
+        
+        if ( !fellow.isEmpty() ) {
+            context().LOG().LogInfo( "fellow is: " + fellow.getName() );
+        }
+
+        Person lady = pLicencep(man).any();
+        
+        if ( !lady.isEmpty() ) {
+            context().LOG().LogInfo( "lady is: " + lady.getName() );
+        }
+
+        Person spouse = Licencep(lic).any();
+        Person other = Licencep(lic).anyWhere(selected -> StringUtil.inequality(((Person)selected).getName(), spouse.getName()));
+
+        if ( !other.isEmpty() ) {
+            context().LOG().LogInfo( "spouse: " + spouse.getName() );
+            context().LOG().LogInfo( "other: " + other.getName() );
+        }
+        
+    }
+
+    public PersonSet pLicencep( Person from ) throws XtumlException {
+    	
+        PersonSet pset = new PersonSetImpl();
+        pset.addAll(from.R7_F_is_wed_to_Licence().R7_P_is_wed_to_Person());
+        pset.addAll(from.R7_P_is_wed_to_Licence().R7_F_is_wed_to_Person());
+        pset.remove(from);
+        return pset;
+    }
+
+    public PersonSet Licencep( Licence lic ) throws XtumlException {
+    	
+        PersonSet pset = new PersonSetImpl();
+        pset.addAll(lic.R7_F_is_wed_to_Person());
+        pset.addAll(lic.R7_P_is_wed_to_Person());
+        return pset;
+    }
+    
+    // relates and unrelates
+    public void relate_R7_F_Licence_is_wed_to_Person( Licence form, Person part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot relate empty instances." );
+        // TODO cardinality check
+        if ( R7_F_Licence_is_wed_to_Person_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.setR7_F_is_wed_to_Licence(form);
+            form.addR7_F_is_wed_to_Person(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be related." );
+    }
+
+    public void unrelate_R7_F_Licence_is_wed_to_Person( Licence form, Person part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot unrelate empty instances." );
+        if ( R7_F_Licence_is_wed_to_Person_extent.remove( R7_F_Licence_is_wed_to_Person_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.setR7_F_is_wed_to_Licence(LicenceImpl.EMPTY_LICENCE);
+            form.removeR7_F_is_wed_to_Person(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be unrelated." );
+    }
+    public void relate_R7_P_Licence_is_wed_to_Person( Licence form, Person part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot relate empty instances." );
+        // TODO cardinality check
+        if ( R7_P_Licence_is_wed_to_Person_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.setR7_P_is_wed_to_Licence(form);
+            form.addR7_P_is_wed_to_Person(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be related." );
+    }
+
+    public void unrelate_R7_P_Licence_is_wed_to_Person( Licence form, Person part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot unrelate empty instances." );
+        if ( R7_P_Licence_is_wed_to_Person_extent.remove( R7_P_Licence_is_wed_to_Person_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.setR7_P_is_wed_to_Licence(LicenceImpl.EMPTY_LICENCE);
+            form.removeR7_P_is_wed_to_Person(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be unrelated." );
+    }
+
+
+    // instance selections
+    private LicenceSet Licence_extent;
+    public LicenceSet Licence_instances() {
+        return Licence_extent;
+    }
+    private PersonSet Person_extent;
+    public PersonSet Person_instances() {
+        return Person_extent;
+    }
+
+
+    // relationship selections
+    private IRelationshipSet R7_F_Licence_is_wed_to_Person_extent;
+    public IRelationshipSet R7_F_Licence_is_wed_to_Persons() throws XtumlException {
+        return R7_F_Licence_is_wed_to_Person_extent;
+    }
+    private IRelationshipSet R7_P_Licence_is_wed_to_Person_extent;
+    public IRelationshipSet R7_P_Licence_is_wed_to_Persons() throws XtumlException {
+        return R7_P_Licence_is_wed_to_Person_extent;
+    }
+
+
+    // ports
+
+
+    // utilities
+    private LOG LOG;
+    public LOG LOG() {
+        if ( null == LOG ) LOG = new LOGImpl<>( this );
+        return LOG;
+    }
+
+
+    // component initialization function
+    @Override
+    public void initialize() throws XtumlException {
+        testSym();
+    }
+
+    @Override
+    public String getVersion() {
+        Properties prop = new Properties();
+        try {
+            prop.load(getClass().getResourceAsStream("TestProperties.properties"));
+        } catch (IOException e) { /* do nothing */ }
+        return prop.getProperty("version", "Unknown");
+    }
+    @Override
+    public String getVersionDate() {
+        Properties prop = new Properties();
+        try {
+            prop.load(getClass().getResourceAsStream("TestProperties.properties"));
+        } catch (IOException e) { /* do nothing */ }
+        return prop.getProperty("version_date", "Unknown");
+    }
+
+    @Override
+    public boolean addInstance( IModelInstance<?,?> instance ) throws XtumlException {
+        if ( null == instance ) throw new BadArgumentException( "Null instance passed." );
+        if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot add empty instance to population." );
+        if ( instance instanceof Licence ) return Licence_extent.add( (Licence)instance );
+        else if ( instance instanceof Person ) return Person_extent.add( (Person)instance );
+        return false;
+    }
+
+    @Override
+    public boolean removeInstance( IModelInstance<?,?> instance ) throws XtumlException {
+        if ( null == instance ) throw new BadArgumentException( "Null instance passed." );
+        if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot remove empty instance from population." );
+        if ( instance instanceof Licence ) return Licence_extent.remove( (Licence)instance );
+        else if ( instance instanceof Person ) return Person_extent.remove( (Person)instance );
+        return false;
+    }
+
+    @Override
+    public Test context() {
+        return this;
+    }
+
+    @Override
+    public Class<?> getClassByKeyLetters(String keyLetters) {
+        return classDirectory.get(keyLetters);
+    }
+
+}

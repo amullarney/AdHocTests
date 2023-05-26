@@ -1,0 +1,32 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("7aff84fa-0887-4347-a1cc-467df5e23cb9",
+	'border',
+	16,
+	'border',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_ID
+	VALUES (0,
+	"7aff84fa-0887-4347-a1cc-467df5e23cb9");
+INSERT INTO O_ID
+	VALUES (1,
+	"7aff84fa-0887-4347-a1cc-467df5e23cb9");
+INSERT INTO O_ID
+	VALUES (2,
+	"7aff84fa-0887-4347-a1cc-467df5e23cb9");
+INSERT INTO PE_PE
+	VALUES ("7aff84fa-0887-4347-a1cc-467df5e23cb9",
+	1,
+	"7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'TestEntities',
+	'',
+	0,
+	'../TestEntities.xtuml');

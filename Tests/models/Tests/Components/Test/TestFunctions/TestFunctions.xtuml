@@ -34,180 +34,119 @@ INSERT INTO DIM_DIA
 	0.000000,
 	"00000000-0000-0000-0000-000000000000");
 INSERT INTO S_SYNC
-	VALUES ("11a44be8-a1a3-4c0b-9871-0a634b5e8920",
+	VALUES ("e1211753-7625-4a68-abd8-3c4efad88d4b",
 	"00000000-0000-0000-0000-000000000000",
-	'TestEventPending',
-	'A test to show that an event which caused a transition into a state is misleadingly 
-displayed as pending in Verifier''s Session Explorer.
-Set a breakpoint in state "looking" of observation class before executing this function.
-View the instance in Session Explorer: event "peek" is shown as pending.',
-	'create object instance glance of observation;
-generate observation1:peek() to glance;',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
+	'testSym',
 	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("11a44be8-a1a3-4c0b-9871-0a634b5e8920",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("78879f39-c2a4-467e-8b01-dea55e9d8ab9",
-	"00000000-0000-0000-0000-000000000000",
-	'PipeTest',
-	'',
-	'create object instance pipe1 of pipe;
-create object instance pipe2 of pipe;
-relate pipe2 to pipe1 across R2.''connects to'';
-pipe2.empty = true;
-create object instance pipe3 of pipe;
-relate pipe3 to pipe1 across R2.''connects to'';
-create object instance pipe4 of pipe;
-relate pipe4 to pipe1 across R2.''connects to'';
-create object instance pipe5 of pipe;
-relate pipe5 to pipe1 across R2.''connects to'';
+	'create object instance man of person;
+man.name = "Jack";
+create object instance wife of person;
+wife.name = "Jill";
+create object instance lic of Licence; 
+relate man to wife across R7.''is wed to'' using lic;
+select one woman related by man->person[R7.''is wed to''];
+if ( not_empty woman )
+  LOG::LogInfo( message:"woman is: " + woman.name );
+else
+  LOG::LogFailure( message:"hmm.." );
+end if;
 
-select many segments related by pipe1->pipe[R2.''connects to'']
- where ( not selected.empty  );
-for each segment in segments
-	LOG::LogSuccess( message:"found empty segment" );
-end for;
-if ( empty segments )
-  LOG::LogFailure( message:"failed navigation" );
+select one l related by woman->Licence[R7.''is wed to''];
+select any body related by l->person[R7.''is wed to''];
+if ( not_empty body )
+  LOG::LogInfo( message:"from licence we got: " + body.name );
 end if;
-select many segments related by pipe1->pipe[R2.''connects to''];
-for each segment in segments
-  if ( not segment.empty  );
-	LOG::LogSuccess( message:"found empty segment" );
-  end if;
+
+select any spouse related by lic->person[R7.''is wed to''];
+select any other related by lic->person[R7.''is wed to''] where ( selected.name != spouse.name );
+LOG::LogInfo( message:"spouse is: " + spouse.name );
+LOG::LogInfo( message:"other is: " + other.name );
+select many people related by lic->person[R7.''is wed to''];
+LOG::LogInfo( message:"select many.." );
+for each person in people
+  LOG::LogInfo( message:"person is: " + person.name );
 end for;
-select any segment related by pipe2->pipe[R2.''connects to''];
-if ( not_empty segment )
-  LOG::LogSuccess( message:"navigated accross connects to" );
+
+/*create object instance friend of person;
+relate friend to man across R10.''is aquainted with'';
+relate friend to wife across R10.''is aquainted with'';
+select many aquaintances related by friend->person[R10.''is aquainted with''];
+for each aq in aquaintances
+  LOG::LogInfo( message:"friend knows: " + aq.name );
+end for;
+*/
+
+create object instance b1 of boy;
+create object instance b2 of boy;
+create object instance b3 of boy;
+create object instance b4 of boy;
+relate b1 to b2 across R10.''plays with'';
+relate b4 to b3 across R10.''plays with'';
+select one playmate related by b1->boy[R10.''plays with''];
+unrelate b2 from b1 across R10.''plays with'';
+unrelate b3 from b4 across R10.''plays with'';
+
+unrelate man from wife across R7.''is wed to'' using lic;
+select one ex related by man->person[R7.''is wed to''];
+if ( not_empty ex )
+  LOG::LogFailure( message:"hmm.." );
 end if;
-select many segments related by pipe2->pipe[R2.''connects to'']
- where ( not selected.empty  );
-for each segment in segments
-	LOG::LogSuccess( message:"found empty segment" );
-end for;
+
+create object instance USA of Territory;
+USA.Name = "USA";
+
+create object instance Mexico of Territory;
+Mexico.Name = "Mexico";
+relate USA to Mexico across R1.''is adjacent to'';
+select any t related by Mexico->Territory[R1.''is adjacent to''];
+LOG::LogInfo( message:t.Name );
+unrelate USA from Mexico across R1.''is adjacent to'';
+
+
+create object instance x of city;
+x.name = "Dublin";
+create object instance y of city;
+y.name = "Cork";
+create object instance r1 of route;
+r1.toll = true;
+relate x to y across R8.''is reachable from'' using r1;
+create object instance r2 of route;
+relate x to y across R8.''is reachable from'' using r2;
+select any z related by x->city[R8.''is reachable from''];
+LOG::LogInfo( message:"reached: " + z.name );
+select many routes related by x->route[R8.''is reachable from''];
+LOG::LogInteger( message:cardinality routes );
+select many cities related by r1->city[R8.''is reachable from''];
+LOG::LogInfo( message:"r1 joins cities" );
+LOG::LogInteger( message:cardinality cities );
+
+create object instance az of state;
+az.name = "AZ";
+create object instance nm of state;
+nm.name = "NM";
+create object instance ca of state;
+ca.name = "CA";
+create object instance aznm of border;
+create object instance azca of border;
+relate az to ca across R9.''is adjacent to'' using azca;
+relate az to nm across R9.''is adjacent to'' using aznm;
+select many states related by az->state[R9.''is adjacent to''];
+LOG::LogInfo( message:"AZ borders" );
+LOG::LogInteger( message:cardinality states );
+
+
+
+
+
 
 ',
 	"ba5eda7a-def5-0000-0000-000000000000",
 	1,
 	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("78879f39-c2a4-467e-8b01-dea55e9d8ab9",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
+	0,
 	1);
-INSERT INTO S_SYNC
-	VALUES ("3477824f-86bc-4c06-a565-396bf833be72",
-	"00000000-0000-0000-0000-000000000000",
-	'SetAddition',
-	'',
-	'create object instance t1 of thing;
-t1.sequenceNumber = 1;
-create object instance t2 of thing;
-t2.sequenceNumber = 2;
-create object instance t3 of thing;
-t3.sequenceNumber = 3;
-create object instance t4 of thing;
-t4.sequenceNumber = 4;
-create object instance t5 of thing;
-t5.sequenceNumber = 5;
-
-select many items from instances of thing;
-select many entities from instances of thing;
-
-all = items + entities;
-for each t in all
-  LOG::LogInteger( message:t.sequenceNumber );
-end for;',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0);
 INSERT INTO PE_PE
-	VALUES ("3477824f-86bc-4c06-a565-396bf833be72",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("69d7ee07-e57d-488b-921d-a34954f3c9f5",
-	"00000000-0000-0000-0000-000000000000",
-	'Selections',
-	'',
-	'create object instance e1 of employee;
-e1.name = "Jack";
-create object instance e2 of employee;
-e2.name = "Jill";
-
-create object instance p1 of payment;
-relate p1 to e1 across R3.''is for'';
-create object instance p2 of payment;
-relate p2 to e2 across R3.''is for'';
-
-// Jack''s pay
-create object instance element1 of payElement;
-relate element1 to p1 across R4.''contributes to'';
-create object instance element2 of payElement;
-relate element2 to p1 across R4.''contributes to'';
-create object instance element3 of payElement;
-relate element3 to p1 across R4.''contributes to'';
-
-// Jill''s pay
-create object instance element4 of payElement;
-relate element4 to p2 across R4.''contributes to'';
-create object instance element5 of payElement;
-relate element5 to p2 across R4.''contributes to'';
-
-create object instance payroll of payroll;
-select many elements from instances of payElement;
-for each element in elements
-  relate element to payroll across R5.''is part of'';
-end for;
-
-select many employees related by payroll->payElement[R5.''computes'']
-                                        ->payment[R4.''contributes to'']
-                                        ->employee[R3.''is for''];
-                                        
-for each employee in employees
-  LOG::LogInfo( message:"name is " + employee.name );
-end for;                                        ',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("69d7ee07-e57d-488b-921d-a34954f3c9f5",
-	1,
-	"6a4a82e9-5119-463b-b210-5e00c3ece052",
-	"00000000-0000-0000-0000-000000000000",
-	1);
-INSERT INTO S_SYNC
-	VALUES ("0fc6c5a7-d306-40e5-a30c-a8e0e6ab5da8",
-	"00000000-0000-0000-0000-000000000000",
-	'Testtrigger',
-	'',
-	'create object instance obs1 of observation;
-create object instance trigger1 of trigger;
-relate obs1 to  trigger1 across R1.''waits for '';
-unrelate obs1 from trigger1 across R1.''waits for '';
-select any obs1 related by trigger1->observation[R1.''initiates''];
-if ( empty obs1 )
-  delete object instance trigger1;
-end if;',
-	"ba5eda7a-def5-0000-0000-000000000000",
-	1,
-	'',
-	0);
-INSERT INTO PE_PE
-	VALUES ("0fc6c5a7-d306-40e5-a30c-a8e0e6ab5da8",
+	VALUES ("e1211753-7625-4a68-abd8-3c4efad88d4b",
 	1,
 	"6a4a82e9-5119-463b-b210-5e00c3ece052",
 	"00000000-0000-0000-0000-000000000000",
@@ -235,6 +174,7 @@ When simulated time is unchecked( and deterministically unchecked ) log messages
 	0,
 	"00000000-0000-0000-0000-000000000000",
 	0,
+	'',
 	'',
 	'../Test.xtuml');
 INSERT INTO S_SYS_PROXY

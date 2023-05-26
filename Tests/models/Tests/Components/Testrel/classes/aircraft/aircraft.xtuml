@@ -1,0 +1,106 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("3e1ae614-8da4-4153-a550-55de99cec574",
+	'aircraft',
+	15,
+	'aircraft',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("93c33115-7519-43fe-b524-d1cf5824a53d",
+	"3e1ae614-8da4-4153-a550-55de99cec574");
+INSERT INTO O_BATTR
+	VALUES ("93c33115-7519-43fe-b524-d1cf5824a53d",
+	"3e1ae614-8da4-4153-a550-55de99cec574");
+INSERT INTO O_ATTR
+	VALUES ("93c33115-7519-43fe-b524-d1cf5824a53d",
+	"3e1ae614-8da4-4153-a550-55de99cec574",
+	"00000000-0000-0000-0000-000000000000",
+	'tailnumber',
+	'',
+	'',
+	'tailnumber',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_REF
+	VALUES ("3e1ae614-8da4-4153-a550-55de99cec574",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	1,
+	"dd5a23ed-2318-420b-801b-4d3998bcbaf3",
+	"008a1020-7d88-4a3a-85fe-3a2436cc5013",
+	"4cecfa32-f8e9-456a-8001-5c84bf72df6c",
+	"8d522e1e-5fc0-4263-9fb3-04c9cffceb3e",
+	"6403eedc-9bcd-469c-b2ed-e496bf2a8ea8",
+	"bc925b76-a5c3-410b-9257-f9cc077bb498",
+	"00000000-0000-0000-0000-000000000000",
+	0,
+	'',
+	'airline',
+	'designator',
+	'R106.''is operated by''');
+INSERT INTO R_RGO_PROXY
+	VALUES ("3e1ae614-8da4-4153-a550-55de99cec574",
+	"008a1020-7d88-4a3a-85fe-3a2436cc5013",
+	"4cecfa32-f8e9-456a-8001-5c84bf72df6c",
+	'../classes.xtuml');
+INSERT INTO O_RTIDA_PROXY
+	VALUES ("dd5a23ed-2318-420b-801b-4d3998bcbaf3",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	1,
+	"008a1020-7d88-4a3a-85fe-3a2436cc5013",
+	"8d522e1e-5fc0-4263-9fb3-04c9cffceb3e",
+	'../classes.xtuml');
+INSERT INTO O_RATTR
+	VALUES ("6403eedc-9bcd-469c-b2ed-e496bf2a8ea8",
+	"3e1ae614-8da4-4153-a550-55de99cec574",
+	"dd5a23ed-2318-420b-801b-4d3998bcbaf3",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	1,
+	'designator');
+INSERT INTO O_BATTR_PROXY
+	VALUES ("dd5a23ed-2318-420b-801b-4d3998bcbaf3",
+	"dec490ec-f419-4fcb-afc4-e33f1fdc5395",
+	'../airline/airline.xtuml');
+INSERT INTO O_ATTR
+	VALUES ("6403eedc-9bcd-469c-b2ed-e496bf2a8ea8",
+	"3e1ae614-8da4-4153-a550-55de99cec574",
+	"93c33115-7519-43fe-b524-d1cf5824a53d",
+	'designator',
+	'',
+	'',
+	'designator',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000007",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"3e1ae614-8da4-4153-a550-55de99cec574");
+INSERT INTO O_OIDA
+	VALUES ("93c33115-7519-43fe-b524-d1cf5824a53d",
+	"3e1ae614-8da4-4153-a550-55de99cec574",
+	0,
+	'tailnumber');
+INSERT INTO O_ID
+	VALUES (1,
+	"3e1ae614-8da4-4153-a550-55de99cec574");
+INSERT INTO O_ID
+	VALUES (2,
+	"3e1ae614-8da4-4153-a550-55de99cec574");
+INSERT INTO PE_PE
+	VALUES ("3e1ae614-8da4-4153-a550-55de99cec574",
+	1,
+	"72edbe1f-73fc-4f34-8416-b50432ea28f5",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("72edbe1f-73fc-4f34-8416-b50432ea28f5",
+	"00000000-0000-0000-0000-000000000000",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'classes',
+	'',
+	0,
+	'../classes.xtuml');

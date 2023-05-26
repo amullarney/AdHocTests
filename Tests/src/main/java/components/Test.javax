@@ -1,0 +1,300 @@
+package components;
+
+
+import components.test.testentities.City;
+import components.test.testentities.CitySet;
+import components.test.testentities.Licence;
+import components.test.testentities.LicenceSet;
+import components.test.testentities.Person;
+import components.test.testentities.PersonSet;
+import components.test.testentities.Route;
+import components.test.testentities.RouteSet;
+import components.test.testentities.impl.CityImpl;
+import components.test.testentities.impl.CitySetImpl;
+import components.test.testentities.impl.LicenceImpl;
+import components.test.testentities.impl.LicenceSetImpl;
+import components.test.testentities.impl.PersonImpl;
+import components.test.testentities.impl.PersonSetImpl;
+import components.test.testentities.impl.RouteImpl;
+import components.test.testentities.impl.RouteSetImpl;
+
+import io.ciera.runtime.summit.application.IApplication;
+import io.ciera.runtime.summit.application.IRunContext;
+import io.ciera.runtime.summit.classes.IModelInstance;
+import io.ciera.runtime.summit.classes.IRelationshipSet;
+import io.ciera.runtime.summit.classes.Relationship;
+import io.ciera.runtime.summit.classes.RelationshipSet;
+import io.ciera.runtime.summit.components.Component;
+import io.ciera.runtime.summit.exceptions.BadArgumentException;
+import io.ciera.runtime.summit.exceptions.EmptyInstanceException;
+import io.ciera.runtime.summit.exceptions.ModelIntegrityException;
+import io.ciera.runtime.summit.exceptions.XtumlException;
+import io.ciera.runtime.summit.types.StringUtil;
+import io.ciera.runtime.summit.util.LOG;
+import io.ciera.runtime.summit.util.impl.LOGImpl;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
+import java.util.TreeMap;
+
+
+public class Test extends Component<Test> {
+
+    private Map<String, Class<?>> classDirectory;
+
+    // Note: valid only if a deployment does not contain multiple instances of this component.
+    private static Test singleton;
+    public static Test Singleton() {
+        return singleton;
+    }
+    
+public Test(IApplication app, IRunContext runContext, int populationId) {
+        super(app, runContext, populationId);
+        singleton = this;
+        City_extent = new CitySetImpl();
+        Licence_extent = new LicenceSetImpl();
+        Person_extent = new PersonSetImpl();
+        Route_extent = new RouteSetImpl();
+        R7_F_Licence_is_wed_to_Person_extent = new RelationshipSet();
+        R7_P_Licence_is_wed_to_Person_extent = new RelationshipSet();
+        R8_F_Route_can_reach_to_City_extent = new RelationshipSet();
+        R8_P_Route_is_reachable_from_City_extent = new RelationshipSet();
+        LOG = null;
+        classDirectory = new TreeMap<>();
+        classDirectory.put("city", CityImpl.class);
+        classDirectory.put("licence", LicenceImpl.class);
+        classDirectory.put("person", PersonImpl.class);
+        classDirectory.put("route", RouteImpl.class);
+    }
+
+    // domain functions
+    public void testSym() throws XtumlException {
+        Person man = PersonImpl.create( context() );
+        man.setName("Jack");
+        Person wife = PersonImpl.create( context() );
+        wife.setName("Jill");
+        Licence lic = LicenceImpl.create( context() );
+        context().relate_R7_F_Licence_is_wed_to_Person( lic, man );
+        context().relate_R7_P_Licence_is_wed_to_Person( lic, wife );
+        Person woman = man.R7_F_is_wed_to_Licence().R7_P_is_wed_to_Person().any();
+        Person spouse = lic.R7_P_is_wed_to_Person().any();
+        //final Person _final0_spouse = spouse;
+        Person other = lic.R7_P_is_wed_to_Person().anyWhere(selected -> StringUtil.inequality(((Person)selected).getName(), spouse.getName()));
+        Licence l = woman.R7_F_is_wed_to_Licence();
+        spouse = l.R7_P_is_wed_to_Person().any();
+        if ( !woman.isEmpty() ) {
+            context().LOG().LogInfo( woman.getName() );
+        }
+        else {
+            context().LOG().LogFailure( "hmm.." );
+        }
+        context().LOG().LogInfo( "spouse is: " + spouse.getName() );
+        context().LOG().LogInfo( "other is: " + other.getName() );
+        PersonSet people = lic.R7_P_is_wed_to_Person();
+        context().LOG().LogInfo( "select many.." );
+        Person person;
+        for ( Iterator<Person> _person_iter = people.elements().iterator(); _person_iter.hasNext(); ) {
+            person = _person_iter.next();
+            context().LOG().LogInfo( "person is: " + person.getName() );
+        }
+        City x = CityImpl.create( context() );
+        City y = CityImpl.create( context() );
+        Route r = RouteImpl.create( context() );
+        context().relate_R8_P_Route_is_reachable_from_City( r, x );
+        context().relate_R8_F_Route_can_reach_to_City( r, y );
+        City z = x.R8_is_reachable_from_Route().R8_is_reachable_from_City().any();
+        r = z.R8_can_reach_to_Route().any();
+    }
+
+
+
+    // relates and unrelates
+    public void relate_R7_F_Licence_is_wed_to_Person( Licence form, Person part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot relate empty instances." );
+        // TODO cardinality check
+        if ( R7_F_Licence_is_wed_to_Person_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.setR7_F_is_wed_to_Licence(form);
+            form.addR7_F_is_wed_to_Person(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be related." );
+    }
+
+    public void unrelate_R7_F_Licence_is_wed_to_Person( Licence form, Person part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot unrelate empty instances." );
+        if ( R7_F_Licence_is_wed_to_Person_extent.remove( R7_F_Licence_is_wed_to_Person_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.setR7_F_is_wed_to_Licence(LicenceImpl.EMPTY_LICENCE);
+            form.removeR7_F_is_wed_to_Person(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be unrelated." );
+    }
+    public void relate_R7_P_Licence_is_wed_to_Person( Licence form, Person part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot relate empty instances." );
+        // TODO cardinality check
+        if ( R7_P_Licence_is_wed_to_Person_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.setR7_P_is_wed_to_Licence(form);
+            form.addR7_P_is_wed_to_Person(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be related." );
+    }
+
+    public void unrelate_R7_P_Licence_is_wed_to_Person( Licence form, Person part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot unrelate empty instances." );
+        if ( R7_P_Licence_is_wed_to_Person_extent.remove( R7_P_Licence_is_wed_to_Person_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.setR7_P_is_wed_to_Licence(LicenceImpl.EMPTY_LICENCE);
+            form.removeR7_P_is_wed_to_Person(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be unrelated." );
+    }
+    public void relate_R8_F_Route_can_reach_to_City( Route form, City part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot relate empty instances." );
+        // TODO cardinality check
+        if ( R8_F_Route_can_reach_to_City_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.addR8_is_reachable_from_Route(form);
+            form.setR8_can_reach_to_City(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be related." );
+    }
+
+    public void unrelate_R8_F_Route_can_reach_to_City( Route form, City part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot unrelate empty instances." );
+        if ( R8_F_Route_can_reach_to_City_extent.remove( R8_F_Route_can_reach_to_City_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.removeR8_is_reachable_from_Route(form);
+            form.setR8_can_reach_to_City(CityImpl.EMPTY_CITY);
+        }
+        else throw new ModelIntegrityException( "Instances could not be unrelated." );
+    }
+    public void relate_R8_P_Route_is_reachable_from_City( Route form, City part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot relate empty instances." );
+        // TODO cardinality check
+        if ( R8_P_Route_is_reachable_from_City_extent.add( new Relationship( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.addR8_can_reach_to_Route(form);
+            form.setR8_is_reachable_from_City(part);
+        }
+        else throw new ModelIntegrityException( "Instances could not be related." );
+    }
+
+    public void unrelate_R8_P_Route_is_reachable_from_City( Route form, City part ) throws XtumlException {
+        if ( null == form || null == part ) throw new BadArgumentException( "Null instances passed." );
+        if ( form.isEmpty() || part.isEmpty() ) throw new EmptyInstanceException( "Cannot unrelate empty instances." );
+        if ( R8_P_Route_is_reachable_from_City_extent.remove( R8_P_Route_is_reachable_from_City_extent.get( form.getInstanceId(), part.getInstanceId() ) ) ) {
+            part.removeR8_can_reach_to_Route(form);
+            form.setR8_is_reachable_from_City(CityImpl.EMPTY_CITY);
+        }
+        else throw new ModelIntegrityException( "Instances could not be unrelated." );
+    }
+
+
+    // instance selections
+    private CitySet City_extent;
+    public CitySet City_instances() {
+        return City_extent;
+    }
+    private LicenceSet Licence_extent;
+    public LicenceSet Licence_instances() {
+        return Licence_extent;
+    }
+    private PersonSet Person_extent;
+    public PersonSet Person_instances() {
+        return Person_extent;
+    }
+    private RouteSet Route_extent;
+    public RouteSet Route_instances() {
+        return Route_extent;
+    }
+
+
+    // relationship selections
+    private IRelationshipSet R7_F_Licence_is_wed_to_Person_extent;
+    public IRelationshipSet R7_F_Licence_is_wed_to_Persons() throws XtumlException {
+        return R7_F_Licence_is_wed_to_Person_extent;
+    }
+    private IRelationshipSet R7_P_Licence_is_wed_to_Person_extent;
+    public IRelationshipSet R7_P_Licence_is_wed_to_Persons() throws XtumlException {
+        return R7_P_Licence_is_wed_to_Person_extent;
+    }
+    private IRelationshipSet R8_F_Route_can_reach_to_City_extent;
+    public IRelationshipSet R8_F_Route_can_reach_to_Citys() throws XtumlException {
+        return R8_F_Route_can_reach_to_City_extent;
+    }
+    private IRelationshipSet R8_P_Route_is_reachable_from_City_extent;
+    public IRelationshipSet R8_P_Route_is_reachable_from_Citys() throws XtumlException {
+        return R8_P_Route_is_reachable_from_City_extent;
+    }
+
+
+    // ports
+
+
+    // utilities
+    private LOG LOG;
+    public LOG LOG() {
+        if ( null == LOG ) LOG = new LOGImpl<>( this );
+        return LOG;
+    }
+
+
+    // component initialization function
+    @Override
+    public void initialize() throws XtumlException {
+        testSym();
+    }
+
+    @Override
+    public String getVersion() {
+        Properties prop = new Properties();
+        try {
+            prop.load(getClass().getResourceAsStream("TestProperties.properties"));
+        } catch (IOException e) { /* do nothing */ }
+        return prop.getProperty("version", "Unknown");
+    }
+    @Override
+    public String getVersionDate() {
+        Properties prop = new Properties();
+        try {
+            prop.load(getClass().getResourceAsStream("TestProperties.properties"));
+        } catch (IOException e) { /* do nothing */ }
+        return prop.getProperty("version_date", "Unknown");
+    }
+
+    @Override
+    public boolean addInstance( IModelInstance<?,?> instance ) throws XtumlException {
+        if ( null == instance ) throw new BadArgumentException( "Null instance passed." );
+        if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot add empty instance to population." );
+        if ( instance instanceof City ) return City_extent.add( (City)instance );
+        else if ( instance instanceof Licence ) return Licence_extent.add( (Licence)instance );
+        else if ( instance instanceof Person ) return Person_extent.add( (Person)instance );
+        else if ( instance instanceof Route ) return Route_extent.add( (Route)instance );
+        return false;
+    }
+
+    @Override
+    public boolean removeInstance( IModelInstance<?,?> instance ) throws XtumlException {
+        if ( null == instance ) throw new BadArgumentException( "Null instance passed." );
+        if ( instance.isEmpty() ) throw new EmptyInstanceException( "Cannot remove empty instance from population." );
+        if ( instance instanceof City ) return City_extent.remove( (City)instance );
+        else if ( instance instanceof Licence ) return Licence_extent.remove( (Licence)instance );
+        else if ( instance instanceof Person ) return Person_extent.remove( (Person)instance );
+        else if ( instance instanceof Route ) return Route_extent.remove( (Route)instance );
+        return false;
+    }
+
+    @Override
+    public Test context() {
+        return this;
+    }
+
+    @Override
+    public Class<?> getClassByKeyLetters(String keyLetters) {
+        return classDirectory.get(keyLetters);
+    }
+
+}

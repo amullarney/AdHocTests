@@ -1,0 +1,50 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("2569cb7a-b03b-466d-a1ba-dd9dc6e8bcb7",
+	'Territory',
+	18,
+	'Territory',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("1a8d95af-59cb-488c-b43d-42a408c27e95",
+	"2569cb7a-b03b-466d-a1ba-dd9dc6e8bcb7");
+INSERT INTO O_BATTR
+	VALUES ("1a8d95af-59cb-488c-b43d-42a408c27e95",
+	"2569cb7a-b03b-466d-a1ba-dd9dc6e8bcb7");
+INSERT INTO O_ATTR
+	VALUES ("1a8d95af-59cb-488c-b43d-42a408c27e95",
+	"2569cb7a-b03b-466d-a1ba-dd9dc6e8bcb7",
+	"00000000-0000-0000-0000-000000000000",
+	'Name',
+	'',
+	'',
+	'Name',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"2569cb7a-b03b-466d-a1ba-dd9dc6e8bcb7");
+INSERT INTO O_ID
+	VALUES (1,
+	"2569cb7a-b03b-466d-a1ba-dd9dc6e8bcb7");
+INSERT INTO O_ID
+	VALUES (2,
+	"2569cb7a-b03b-466d-a1ba-dd9dc6e8bcb7");
+INSERT INTO PE_PE
+	VALUES ("2569cb7a-b03b-466d-a1ba-dd9dc6e8bcb7",
+	1,
+	"7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("7036918d-228f-40f1-b925-22f845d3b660",
+	"00000000-0000-0000-0000-000000000000",
+	"846e9e70-104d-4678-8694-b2e3922e335a",
+	'TestEntities',
+	'',
+	0,
+	'../TestEntities.xtuml');
